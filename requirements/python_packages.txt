@@ -1,0 +1,10 @@
+# web framework
+graphene
+django
+
+# db driver
+pymysql
+
+# debug tool
+ipdb
+
