@@ -8,3 +8,5 @@ pymysql
 # debug tool
 ipdb
 
+# supervisor
+supervisor
