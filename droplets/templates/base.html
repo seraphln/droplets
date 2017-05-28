@@ -23,416 +23,28 @@
 </head>
 
 <body>
-<!-- 公共头部包含 --> 
-<div id="header_a">
-  <div id="header">
-    <div class="tou clearfix">
-      <div class="wel fl"><p>欢迎您光临{{ site.site_name }}！</p></div>
-          <div class="fenx fl"></div>
-          <div class="k1 fr"><a href="{{site.site}}/sitemap">sitemap</a></div>
-      </div>
-      <div class="top clearfix">
-        <div class="logo"><a href={{site.site}}><img src="{{site.logo}}" alt="{{site.name}}" title="{{site.name}}"></a></div>
-      </div>
-      <!-- 导航栏包含 -->
-      <div id="menu">  
-      <ul class="nav clearfix">
-          {% for cate in cates %}
-              <li><a href={{cate.url}}>{{cate.name}}</a>
-              <div style="height: 0px; overflow: hidden;" class="sec"> </div>
-            </li>
-          {% endfor %}
-      </ul>
-    </div> 
+<!-- 公共头部包含 -->
+{% extend "header.html" %}
 
-    <script type="text/javascript">
-    $(function(){
-      $('.nav > li').hover(function(){
-        var sec_count  = $(this).find('.sec a').length;
-        var a_height   = $(this).find('.sec a').eq(0).height(); 
-        var sec_height =  sec_count * a_height;
-        $(this).find('.sec').stop().animate({height:sec_height},300);
-      },function(){
-        $(this).find('.sec').stop().animate({height:0},300);
-      });
-    });
-    </script>
-     
-    </div>
-  </div>
-
-<!-- 首页banner -->
-<div class="topbanner">
-<div class="bannerzhl">
-			<div id="banner_nr">
-				<ul id="banner_img" style="left: -3840px;">
-					 
-    <li style="width: 1920px;"><a href="http://www.cggjggc.com/" target="_blank"><img src="./index_files/20160615103859.jpg" alt="北京华峰创业彩钢钢构工程有限公司" title="北京华峰创业彩钢钢构工程有限公司"></a></li>
-         
-    <li style="width: 1920px;"><a href="http://www.cggjggc.com/" target="_blank"><img src="./index_files/20160615110309.jpg" alt="北京华峰创业彩钢钢构工程有限公司" title="北京华峰创业彩钢钢构工程有限公司"></a></li>
-         
-    <li style="width: 1920px;"><a href="http://www.cggjggc.com/" target="_blank"><img src="./index_files/20160615110318.jpg" alt="北京华峰创业彩钢钢构工程有限公司" title="北京华峰创业彩钢钢构工程有限公司"></a></li>
-        
-					<div class="clear"></div>
-				</ul>
-				<div id="number" style="display:none;">
-					<ul>
-						<li class="">1</li>
-						<li class="">2</li>
-						<li class="current">3</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<script type="text/javascript">
-			var _num=$('#number ul li');			
-			var _img=$('#banner_img');
-			var _tarWidth=$(window).width();			
-			var _imgLi=$('#banner_img li');
-			_imgLi.css('width',_tarWidth);			
-			var _len=_num.length;
-			var _index;
-			var _autoplay;
-			_num.mouseover(function(){
-				_index=_num.index(this);
-				_img.stop().animate({left:-_index*_tarWidth},600);
-				$('#number ul li').removeClass('current').eq(_index).addClass('current');
-				
-			}).eq(0).mouseover();
-			$('#banner_nr').hover(function(){
-				clearInterval(autoplay);
-			},function(){
-					autoplay=setInterval(function(){
-					_img.stop().animate({left:-_index*_tarWidth},600);
-					$('#number ul li').removeClass('current').eq(_index).addClass('current');
-					_index++;
-					if(_index==_len){
-						_index=0;
-					}
-				},3000)
-			}).trigger('mouseleave');
-			
-		
-		</script>
-  </div>
   <!-- 通告-->
-  <div class="ggbj">
-    <div class="gsgg clearfix">
-    <!-- 单行滚动新闻可选控制按钮 公告类新闻 -->
-    <div class="wenz fl">最新公告：</div>
-      <div class="fl news-marquee-handle mr20" id="last-news">
-          <ul class="news-marquee-list" id="indexgg" style="height: 532px;"> 
-          <li class="news-marquee-item"><a href="http://www.cggjggc.com/news/68.html">办公家具的主流时代</a><span>2017-01-12</span></li>
-          <li class="news-marquee-item"><a href="http://www.cggjggc.com/news/67.html">办公家具的选择</a><span>2017-01-11</span></li>
-          <li class="news-marquee-item"><a href="http://www.cggjggc.com/news/66.html">冬季彩钢板施工注意什么？</a><span>2017-01-06</span></li>
-          <li class="news-marquee-item"><a href="http://www.cggjggc.com/news/65.html">公路波形梁钢护栏为什么安装在高速公路</a><span>2017-01-06</span></li>
-          <li class="news-marquee-item"><a href="http://www.cggjggc.com/news/64.html">彩钢板房发展走势前瞻钢构岩棉板房屋或走红</a><span>2016-12-30</span></li>
-          <li class="news-marquee-item"><a href="http://www.cggjggc.com/news/63.html">怎样区别高质量的彩钢夹芯板?</a><span>2016-12-20</span></li>
-          <li class="news-marquee-item"><a href="http://www.cggjggc.com/news/62.html">怎样区别高质量的彩钢夹芯板?</a><span>2016-12-15</span></li>
-         <li class="news-marquee-item"><a href="http://www.cggjggc.com/news/68.html">办公家具的主流时代</a><span>2017-01-12</span></li><li class="news-marquee-item"><a href="http://www.cggjggc.com/news/67.html">办公家具的选择</a><span>2017-01-11</span></li><li class="news-marquee-item"><a href="http://www.cggjggc.com/news/66.html">冬季彩钢板施工注意什么？</a><span>2017-01-06</span></li><li class="news-marquee-item"><a href="http://www.cggjggc.com/news/65.html">公路波形梁钢护栏为什么安装在高速公路</a><span>2017-01-06</span></li><li class="news-marquee-item"><a href="http://www.cggjggc.com/news/64.html">彩钢板房发展走势前瞻钢构岩棉板房屋或走红</a><span>2016-12-30</span></li><li class="news-marquee-item"><a href="http://www.cggjggc.com/news/63.html">怎样区别高质量的彩钢夹芯板?</a><span>2016-12-20</span></li><li class="news-marquee-item"><a href="http://www.cggjggc.com/news/62.html">怎样区别高质量的彩钢夹芯板?</a><span>2016-12-15</span></li></ul>
-      </div>
-      <div class="fl news-marquee-ctrl">
-          <a class="block mb5" id="goUp" href="javascript:void(0);"><img src="./index_files/last_news_up.png" alt="向上滚动1"></a>
-          <a class="block" id="goDown" href="javascript:void(0);"><img src="./index_files/last_news_down.png" alt="向下滚动"></a>
-      </div>
-      <script>
-          // 单行滚动新闻可选控制按钮
-          $('#last-news').supermarquee({
-              isEqual: false,                         //
-              distance: 39,                           // 滚动的距离
-              time: 4,                                // 滚动的间隔时间
-              btnGo: {up:'#goUp',down:'#goDown'},     // 滚动方向控件  
-              direction: 'up'                         // 默认滚动方向
-          });
-      </script>    
-            <div class="search clearfix fr">
-              <h1 class="hotSearch">热门关键词：<a href="http://www.cggjggc.com/" target="_blank">彩钢板</a>,<a href="http://www.cggjggc.com/" target="_blank">彩钢房</a>,<a href="http://www.cggjggc.com/" target="_blank">彩钢厂</a></h1>
-            </div>
-              </div>
-          </div>
+  {% block news %}{% endblock %}
 
   <div id="container_a">
-   
-  <div class="rxcp">
-        <h2 class="tongy2">工程案例<br><span>ENGINEERING CASE</span>
-                
-        </h2>
-        <div class="content">
-          
-          <!-- 滚动开始 -->
-  <div id="demo">
-  <div id="indemo" style="width: 10020px;">
-    <div id="demo1">
-      <ul class="case_list roll_product clearfix">
-      
-      
-                <li>
-            <a href="http://www.cggjggc.com/cases/257.html" class="img"><img src="./index_files/20170227112139.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/257.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/256.html" class="img"><img src="./index_files/20170227112129.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/256.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/255.html" class="img"><img src="./index_files/20170227112119.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/255.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/254.html" class="img"><img src="./index_files/20170227112111.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/254.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/253.html" class="img"><img src="./index_files/20170227112103.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/253.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/252.html" class="img"><img src="./index_files/20170227112029.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/252.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/251.html" class="img"><img src="./index_files/20170227112020.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/251.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/250.html" class="img"><img src="./index_files/20170227112013.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/250.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/249.html" class="img"><img src="./index_files/20170227112006.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/249.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/248.html" class="img"><img src="./index_files/20170227111958.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/248.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/247.html" class="img"><img src="./index_files/20170227111855.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/247.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/246.html" class="img"><img src="./index_files/20170227111847.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/246.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/245.html" class="img"><img src="./index_files/20170227111836.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/245.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/244.html" class="img"><img src="./index_files/20170227111828.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/244.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/243.html" class="img"><img src="./index_files/20170227111820.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/243.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/242.html" class="img"><img src="./index_files/20170227111812.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/242.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/241.html" class="img"><img src="./index_files/20170227111804.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/241.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/240.html" class="img"><img src="./index_files/20170227111755.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/240.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/239.html" class="img"><img src="./index_files/20170227111748.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/239.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/238.html" class="img"><img src="./index_files/20170227111739.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/238.html">施工案例</a></h3>
-            
-          </li> 
-                
-            </ul>
-    </div>
-    <div id="demo2">
-      <ul class="case_list roll_product clearfix">
-      
-      
-                <li>
-            <a href="http://www.cggjggc.com/cases/257.html" class="img"><img src="./index_files/20170227112139.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/257.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/256.html" class="img"><img src="./index_files/20170227112129.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/256.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/255.html" class="img"><img src="./index_files/20170227112119.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/255.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/254.html" class="img"><img src="./index_files/20170227112111.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/254.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/253.html" class="img"><img src="./index_files/20170227112103.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/253.html">新型彩钢板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/252.html" class="img"><img src="./index_files/20170227112029.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/252.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/251.html" class="img"><img src="./index_files/20170227112020.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/251.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/250.html" class="img"><img src="./index_files/20170227112013.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/250.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/249.html" class="img"><img src="./index_files/20170227112006.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/249.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/248.html" class="img"><img src="./index_files/20170227111958.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/248.html">喷绘围挡板</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/247.html" class="img"><img src="./index_files/20170227111855.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/247.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/246.html" class="img"><img src="./index_files/20170227111847.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/246.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/245.html" class="img"><img src="./index_files/20170227111836.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/245.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/244.html" class="img"><img src="./index_files/20170227111828.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/244.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/243.html" class="img"><img src="./index_files/20170227111820.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/243.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/242.html" class="img"><img src="./index_files/20170227111812.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/242.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/241.html" class="img"><img src="./index_files/20170227111804.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/241.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/240.html" class="img"><img src="./index_files/20170227111755.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/240.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/239.html" class="img"><img src="./index_files/20170227111748.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/239.html">施工案例</a></h3>
-            
-          </li> 
-        
-                <li>
-            <a href="http://www.cggjggc.com/cases/238.html" class="img"><img src="./index_files/20170227111739.jpg"></a>
-            <h3><a href="http://www.cggjggc.com/cases/238.html">施工案例</a></h3>
-            
-          </li> 
-                
-            </ul>
-    </div>
-    </div>
-  </div>
-  <!-- 滚动结束 -->	
-        </div>
-  </div>
+    <!-- 工程案例 -->
+    {% block case %}{% endblock %}
+    <!-- 工程案例 -->
+
   <div id="container">
     <div class="tongy2 c1">产品中心<br><span>PRODUCT CENTER</span></div>
     <div class="upbox clearfix">
         <div class="cpfl fl">
               <h2 class="tongy">产品分类</h2>
               <div class="content"><ul class="sort1">
-       
-         
+
+
         <li class="layery" id="teshu">
         <a href="http://www.cggjggc.com/supply/cpzx/index_BeiJing.html" class="topnewb list_item">北京产品中心</a>
-      </li> 
-         
-         
-       
+      </li>
   </ul>
   <script type="text/javascript">
   $(".layery .layere").addClass("yingcang");
@@ -447,12 +59,12 @@
   $(".layery").each(function(){
 
     if($(this).find(".layere li").length > 0 )
-    {  
+    {
        $(this).find(".topnewb").attr("href","javascript:void(0);");
      $(this).click(function(){
       $(this).find(".layere").slideDown(600);
       $(this).siblings().children('.layere').stop().slideUp(400);
-     
+
      });
     }
   });
@@ -462,12 +74,11 @@
   $(".topnew").each(function(){
 
     if($(this).find(".layers li").length > 0 )
-    {  
+    {
        $(this).find(".topnewa").attr("href","javascript:void(0);");
      $(this).click(function(){
       $(this).find(".layers").slideDown(600);
       $(this).siblings().children('.layers').stop().slideUp(400);
-     
      });
     }
   });
@@ -494,67 +105,14 @@
                        <a href="http://www.cggjggc.com/supply">更多&gt;&gt;</a>
               </h2>
               <div class="content">
-            <ul class="product_list1 clearfix"> 
-            
-                            <li>
-                  <a href="http://www.cggjggc.com/supply/BeiJing_59.html" class="img"><img src="./index_files/20160615022037.jpg" alt="北京彩钢活动房" title="北京彩钢活动房"></a>
-                  <h3><a href="http://www.cggjggc.com/supply/BeiJing_59.html">北京彩钢活动房</a></h3>
-                  <div class="tub1"><a href="http://www.cggjggc.com/supply/BeiJing_59.html"><img src="./index_files/tb1.jpg"></a></div>
-                         
-                </li>
-            
-                            <li>
-                  <a href="http://www.cggjggc.com/supply/BeiJing_85.html" class="img"><img src="./index_files/20160615025522.jpg" alt="北京活动板房" title="北京活动板房"></a>
-                  <h3><a href="http://www.cggjggc.com/supply/BeiJing_85.html">北京活动板房</a></h3>
-                  <div class="tub1"><a href="http://www.cggjggc.com/supply/BeiJing_85.html"><img src="./index_files/tb1.jpg"></a></div>
-                         
-                </li>
-            
-                            <li>
-                  <a href="http://www.cggjggc.com/supply/BeiJing_84.html" class="img"><img src="./index_files/20160615025333.jpg" alt="北京钢结构楼梯" title="北京钢结构楼梯"></a>
-                  <h3><a href="http://www.cggjggc.com/supply/BeiJing_84.html">北京钢结构楼梯</a></h3>
-                  <div class="tub1"><a href="http://www.cggjggc.com/supply/BeiJing_84.html"><img src="./index_files/tb1.jpg"></a></div>
-                         
-                </li>
-            
-                            <li>
-                  <a href="http://www.cggjggc.com/supply/BeiJing_77.html" class="img"><img src="./index_files/20160615024540.jpg" alt="北京岩棉夹芯板" title="北京岩棉夹芯板"></a>
-                  <h3><a href="http://www.cggjggc.com/supply/BeiJing_77.html">北京岩棉夹芯板</a></h3>
-                  <div class="tub1"><a href="http://www.cggjggc.com/supply/BeiJing_77.html"><img src="./index_files/tb1.jpg"></a></div>
-                         
-                </li>
-            
-                            <li>
-                  <a href="http://www.cggjggc.com/supply/BeiJing_75.html" class="img"><img src="./index_files/20160615024436.jpg" alt="北京压型钢板" title="北京压型钢板"></a>
-                  <h3><a href="http://www.cggjggc.com/supply/BeiJing_75.html">北京压型钢板</a></h3>
-                  <div class="tub1"><a href="http://www.cggjggc.com/supply/BeiJing_75.html"><img src="./index_files/tb1.jpg"></a></div>
-                         
-                </li>
-            
-                            <li>
-                  <a href="http://www.cggjggc.com/supply/BeiJing_72.html" class="img"><img src="./index_files/20160615023930.jpg" alt="北京C型钢" title="北京C型钢"></a>
-                  <h3><a href="http://www.cggjggc.com/supply/BeiJing_72.html">北京C型钢</a></h3>
-                  <div class="tub1"><a href="http://www.cggjggc.com/supply/BeiJing_72.html"><img src="./index_files/tb1.jpg"></a></div>
-                         
-                </li>
-            
-                            <li>
-                  <a href="http://www.cggjggc.com/supply/BeiJing_71.html" class="img"><img src="./index_files/20160615023810.jpg" alt="北京单层彩钢板" title="北京单层彩钢板"></a>
-                  <h3><a href="http://www.cggjggc.com/supply/BeiJing_71.html">北京单层彩钢板</a></h3>
-                  <div class="tub1"><a href="http://www.cggjggc.com/supply/BeiJing_71.html"><img src="./index_files/tb1.jpg"></a></div>
-                         
-                </li>
-            
-                            <li>
-                  <a href="http://www.cggjggc.com/supply/BeiJing_69.html" class="img"><img src="./index_files/20160615023613.jpg" alt="北京 彩钢瓦围挡板" title="北京 彩钢瓦围挡板"></a>
-                  <h3><a href="http://www.cggjggc.com/supply/BeiJing_69.html">北京 彩钢瓦围挡板</a></h3>
-                  <div class="tub1"><a href="http://www.cggjggc.com/supply/BeiJing_69.html"><img src="./index_files/tb1.jpg"></a></div>
-                         
-                </li>
-                     
-                          
-                        </ul>
-              </div>
+            <ul class="product_list1 clearfix">
+              <li>
+                <a href="http://www.cggjggc.com/supply/BeiJing_59.html" class="img"><img src="./index_files/20160615022037.jpg" alt="北京彩钢活动房" title="北京彩钢活动房"></a>
+                <h3><a href="http://www.cggjggc.com/supply/BeiJing_59.html">北京彩钢活动房</a></h3>
+                <div class="tub1"><a href="http://www.cggjggc.com/supply/BeiJing_59.html"><img src="./index_files/tb1.jpg"></a></div>
+              </li>
+            </ul>
+          </div>
 
         </div>
     </div>
@@ -564,39 +122,39 @@
   </div>
   <div class="gsys">
     <ul class="tup">
-      <img src="./index_files/liy.jpg"> 
+      <img src="./index_files/liy.jpg">
       <li class="y1">
-        <span class="dazi">企业网站建设</span> 
+        <span class="dazi">企业网站建设</span>
         <p>
           智能化温控系统，分区域、分时段自动调节室内温度，随时启动或关闭供暖，灵活方便。
         </p>
       </li>
       <li class="y2">
-        <span class="dazi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机网站制作</span> 
+        <span class="dazi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机网站制作</span>
         <p>
           持续向上散发远红外光热，实现低功率、大面积供暖．散发的远红外光波对人体有良好的生物效能，对失眠、神经衰弱、颈椎炎及微循环系统等等有防治和改善的显著效果。
         </p>
       </li>
       <li class="y3">
-        <span class="dazi">营销型网站推广</span> 
+        <span class="dazi">营销型网站推广</span>
         <p>
           比目前国内外应用的地暖产品耗电能效每平方米能节约30%,能耗最低，节能效果最明显。
         </p>
       </li>
       <li class="y4">
-        <span class="dazi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;企业网站建设</span> 
+        <span class="dazi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;企业网站建设</span>
         <p>
           通电后1-3分钟，地板即开始发热，快速达到大面积供暖的目的。
         </p>
       </li>
       <li class="y5">
-        <span class="dazi">手机网站制作</span> 
+        <span class="dazi">手机网站制作</span>
         <p>
           每块地板都是独立的，具有标准化制作模板，安装与传统木地板一样简便快捷，运营成本远低于其他取暖方式。
         </p>
       </li>
       <li class="y6">
-        <span class="dazi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;营销型网站推广</span> 
+        <span class="dazi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;营销型网站推广</span>
         <p>
           如果存在损坏，不影响日常使用，不存在定期疏通、清洗的麻烦不用担心水质、燃气质量，无需担心冬季爆管破壁的隐患。
         </p>
@@ -617,8 +175,8 @@
         <div class="cjwt fl">
               <h2>常见问题解答<a href="http://www.cggjggc.com/news/">MORE+</a></h2>
               <div class="content">
-             <ul class="news_listt"> 
-                               
+             <ul class="news_listt">
+
                          </ul>
               </div>
         </div>
@@ -629,159 +187,54 @@
         </ul>
         <div class="tab_content">
           <div class="tt" id="tab1">
-             <ul class="list1"> 
-                  
-            
+             <ul class="list1">
+
+
                    <li><a href="http://www.cggjggc.com/news/68.html">办公家具的主流时代</a>
              <span>2017-01-12</span>
              </li>
-          
+
                    <li><a href="http://www.cggjggc.com/news/67.html">办公家具的选择</a>
              <span>2017-01-11</span>
              </li>
-          
+
                    <li><a href="http://www.cggjggc.com/news/66.html">冬季彩钢板施工注意什么？</a>
              <span>2017-01-06</span>
              </li>
-          
+
                    <li><a href="http://www.cggjggc.com/news/65.html">公路波形梁钢护栏为什么安装在高速公路</a>
              <span>2017-01-06</span>
              </li>
-          
+
                    <li><a href="http://www.cggjggc.com/news/64.html">彩钢板房发展走势前瞻钢构岩棉板房屋或走红</a>
              <span>2016-12-30</span>
              </li>
-          
+
                    <li><a href="http://www.cggjggc.com/news/63.html">怎样区别高质量的彩钢夹芯板?</a>
              <span>2016-12-20</span>
              </li>
-          
+
                    <li><a href="http://www.cggjggc.com/news/62.html">怎样区别高质量的彩钢夹芯板?</a>
              <span>2016-12-15</span>
              </li>
-           
-         
-                     </ul>          
+
+
+                     </ul>
           </div>
 
-        </div>      
+        </div>
   </div>
     </div>
-    
-    <div class="f_link">
-    地区分站： 
-     
-          ·<a href="http://www.cggjggc.com/index_BeiJing.html" target="_blank" title="北京">
-          <font style="font-size: 12px;">北京 </font>
-          </a>
-           
-          ·<a href="http://www.cggjggc.com/index_HeBei.html" target="_blank" title="河北">
-          <font style="font-size: 12px;">河北 </font>
-          </a>
-           
-          ·<a href="http://www.cggjggc.com/index_TianJin.html" target="_blank" title="天津">
-          <font style="font-size: 12px;">天津 </font>
-          </a>
-           
-          ·<a href="http://www.cggjggc.com/index_QingDao.html" target="_blank" title="青岛">
-          <font style="font-size: 12px;">青岛 </font>
-          </a>
-           
-          ·<a href="http://www.cggjggc.com/index_ShanDong.html" target="_blank" title="山东">
-          <font style="font-size: 12px;">山东 </font>
-          </a>
-          
-         </div>
-  <div class="f_link">
-    友情链接： 
-    
-          ·<a href="http://www.ccydcg.com/" target="_blank" title="长春钢结构">
-          <font style="font-size: 12px;">长春钢结构 </font>
-          </a>
-         
-          ·<a href="http://www.dldqlmc.com/" target="_blank" title="大连断桥铝门窗">
-          <font style="font-size: 12px;">大连断桥铝门窗 </font>
-          </a>
-         
-          ·<a href="http://www.tjfybaby.com/" target="_blank" title="金地格林托班">
-          <font style="font-size: 12px;">金地格林托班 </font>
-          </a>
-         
-         </div>
 
+    {% block friend %}{% endblock %}
   <div id="footer_a">
-  <div id="footer">
-        <ul class="navv clearfix">
-       
-        <li><a href="http://www.cggjggc.com/about">关于我们</a> 
-             <div class="secc">	
-         
-                              
-             <a href="http://www.cggjggc.com/about/">走进我们</a>
-                       
-             <a href="http://www.cggjggc.com/about/about9.html">联系我们</a>
-                       
-             <a href="http://www.cggjggc.com/about/about10.html">产品介绍</a>
-
-                                
-                                      
-                               
-                                      
-                          </div>
-        </li>
-        <li><a href="http://www.cggjggc.com/supply">产品展示</a>
-          <div class="secc">
-                        
-                              
-                   <a href="http://www.cggjggc.com/supply/cpzx/index_BeiJing.html">北京产品中心</a>
-                
-
-                        
-                     </div>
-        </li>   
-        <li><a href="http://www.cggjggc.com/news/">新闻资讯</a>
-          <div class="secc">
-                                  
-                               
-             <a href="http://www.cggjggc.com/news/gsdt/">公司动态</a>
-        
-            
-                               
-             <a href="http://www.cggjggc.com/news/xwgg/">新闻公告</a>
-        
-            
-                                    
-                          </div>
-        </li> 
-        
-        <li class="last" style="width:292px;"><a href="http://www.cggjggc.com/contact/">联系我们</a>
-          <div class="secc">
-                 <table data-sort="sortDisabled"><tbody><tr class="firstRow"><td rowspan="2" colspan="1" valign="top"><img src="./index_files/1449741338263645.png" title="1449741338263645.png" alt="tubiao_11.png"></td><td style="word-break: break-all;" valign="top"><span style="font-size: 14px;"><strong>010-63729969</strong></span></td></tr><tr><td style="word-break: break-all;" valign="top"><strong><span style="font-family: 宋体, SimSun; font-size: 14px;">7*24小时服务热线</span></strong></td></tr><tr><td rowspan="2" colspan="1" valign="top"><img src="./index_files/1449741348782158.png" title="1449741348782158.png" alt="tubiao_14.png"></td><td style="word-break: break-all;" valign="top">在线咨询</td></tr><tr><td style="word-break: break-all;" valign="top">7*24小时热线</td></tr></tbody></table>
-          </div>
-        </li> 
-
-        <li class="last" style="padding-top:10px;"><p><img src="./index_files/1450492185754045.png" title="1450492185754045.png" alt="二维码.png"></p>
-          
-        </li> 
-        
-
-        
-    </ul>
-
-
-
-
-    <div class="nav_foot">
-    <p><a href="http://www.cggjggc.com/">网站首页</a> | <a href="http://www.cggjggc.com/about/">关于我们</a> | <a href="http://www.cggjggc.com/supply/">产品中心</a> | <a href="http://www.cggjggc.com/news/">新闻中心</a> |  <a href="http://www.cggjggc.com/contact">联系我们</a></p></div>
-    <div class="copyright"> Copyright&nbsp;www.cggjggc.com&nbsp;北京华峰创业彩钢钢构工程有限公司专业生产<a href="http://www.cggjggc.com/" target="_blank">彩钢板</a>,<a href="http://www.cggjggc.com/" target="_blank">彩钢房</a>,<a href="http://www.cggjggc.com/" target="_blank">彩钢厂</a>等产品，欢迎来电订购. </div>
-    
-     
+    {% block footer %} {% endblock %}
   </div>
-  </div>
+
   <script type="text/javascript" src="./index_files/MessageLeftBox.js.下载"></script><span id="tmpAreaLmtDiv"><div style="z-index: 9; right: 0px; bottom: 0px; height: 29px; width: 250px; overflow: hidden; position: fixed;" id="PcPoPmarket"> <div style="z-index:9; POSITION: absolute; width:250px; height:29px; overflow:hidden;"><span style="CURSOR: pointer;float:left;clear:none; width:123px; height:13px; overflow:hidden; margin:10px 5px;"></span><span title="展开" style="background: url(&quot;/admin/inquiry/images/fd.png&quot;); cursor: pointer; float: right; width: 15px; height: 13px; overflow: hidden; clear: none; display: block; margin: 9px 15px 0px 0px;" onclick="showDiv()" id="showvod"></span><span title="最小化" style="background: url(&quot;/admin/inquiry/images/sx.png&quot;); cursor: pointer; float: right; overflow: hidden; width: 15px; height: 13px; clear: none; margin: 9px 15px 0px 0px; display: none;" onclick="hideDiv()" id="hidevod"></span></div> <iframe scrolling="no" frameborder="0" width="250" height="275" src="./index_files/MessageLeftMain.html"></iframe></div></span>
   <!--底部JS加载区域-->
   <script type="text/javascript" src="./index_files/common.js.下载"></script>
-   
+
   <script>
     bb1();	  //首页banner切换
     scroll(); //产品滚动

@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'droplets.dphome',
+    'droplets.news',
+    'droplets.seo',
+    'droplets.products',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'droplets.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["%s/droplets/templates/" % BASE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +122,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#MEDIA_ROOT = "%s/uploads/" % BASE_DIR
+
+MEDIA_PATH = "/uploads/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'droplets/static/uploads')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'droplets/static')]
+
+print STATICFILES_DIRS
+print MEDIA_ROOT

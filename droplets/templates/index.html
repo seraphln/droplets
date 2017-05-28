@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!-- title和keywords -->
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="Keywords" content="{{ site.keywords }}">
+  <meta name="Description" content="{{ site.desc }}">
+
+  <!-- 通用meta配置 -->
+  <meta http-equiv="mobile-agent" content="format=xhtml; url={{ site.wap_site }}">
+  <meta http-equiv="mobile-agent" content="format=html5; url={{ site.wap_site }}">
+
+  <!-- 通用css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/model.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+  <!-- 通用js -->
+  <script src="/static/js/jquery-1.js"></script>
+  <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/mobile.js"></script>
+</head>
+
+<body>
+  <!-- 首页banner -->
+  {% include "header.html" %}
+
+  <!-- 通告-->
+  {% include "news.html" %}
+
+  <div id="container_a">
+    <!-- 工程案例 -->
+    {% include "cases.html" %}
+    <!-- 工程案例 -->
+  </div>
+
+  <div id="container">
+    <!-- 产品展示 -->
+    {% include "products.html" %}
+    <!-- 产品展示 -->
+  </div>
+
+  <div class="gsys">
+    {% include "gsys.html" %}
+  </div>
+
+  <div class="jjbj">
+    <div class="gsjj">
+        <h2 class="tongy2">公司简介<br><span>ABOUT US</span></h2>
+        <div class="content">
+        <table>
+          <tbody>
+            <tr class="firstRow">
+              <td style="word-break: break-all;" valign="top" width="422">
+                <img src="/static/images/20170506113714_0681.jpg" alt=""></td>
+              <td style="word-break: break-all; vertical-align: top;" valign="top" width="633">
+                <p>　　北京华峰创业彩钢钢构工程有限公司依托行业优势，彩钢板产品销售遍布全国各地，本着“坚持质量第一，提供满足客户需求的产品服务”的质量方针，能以最好的品质，最快的速度，最优惠的价格满足客户要求。只要客户提出任何疑问和要求，华锋创业彩钢板厂售后很快给予答复和解决，以“面对客户、服务客户、面向市场、开发市场”的宗旨全面展开工作，建立与客户长期合作的友好关系。
+  　　华峰创业彩钢钢构工程有限公司与客户厂家合作都非常愉快，赢得了一致好评，展望未来，公司全体员工继续努力，不断创新，无论新、老客户，本厂都以同样的品质、同样的服务对待，华锋创业彩钢板厂真诚希望与国内外客户合作，共同走向辉煌!</p>
+                <p style="margin-top:10px;">
+                  <a href="http://www.cggjggc.com/about/" target="_self">
+                    <img src="/static/images/1448935977544007.jpg" title="1448935977544007.jpg" alt="more.jpg">
+                  </a>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+    </div>
+  </div>
+      <div class="tongy2 c2">资讯中心<br><span>NEWS CENTER</span></div>
+    <div class="underbox clearfix">
+        <div class="cjwt fl">
+              <h2>常见问题解答<a href="http://www.cggjggc.com/news/">MORE+</a></h2>
+              <div class="content">
+             <ul class="news_listt">
+
+                         </ul>
+              </div>
+        </div>
+        <div class="cjwt fr">
+        <ul class="tab clearfix">
+          <li><a href="javascript:void(0);">新闻资讯</a></li>
+          <a class="tyt" href="http://www.cggjggc.com/news/">MORE+</a>
+        </ul>
+        <div class="tab_content">
+          <div class="tt" id="tab1">
+             <ul class="list1">
+
+
+                   <li><a href="http://www.cggjggc.com/news/68.html">办公家具的主流时代</a>
+             <span>2017-01-12</span>
+             </li>
+
+                   <li><a href="http://www.cggjggc.com/news/67.html">办公家具的选择</a>
+             <span>2017-01-11</span>
+             </li>
+
+                   <li><a href="http://www.cggjggc.com/news/66.html">冬季彩钢板施工注意什么？</a>
+             <span>2017-01-06</span>
+             </li>
+
+                   <li><a href="http://www.cggjggc.com/news/65.html">公路波形梁钢护栏为什么安装在高速公路</a>
+             <span>2017-01-06</span>
+             </li>
+
+                   <li><a href="http://www.cggjggc.com/news/64.html">彩钢板房发展走势前瞻钢构岩棉板房屋或走红</a>
+             <span>2016-12-30</span>
+             </li>
+
+                   <li><a href="http://www.cggjggc.com/news/63.html">怎样区别高质量的彩钢夹芯板?</a>
+             <span>2016-12-20</span>
+             </li>
+
+                   <li><a href="http://www.cggjggc.com/news/62.html">怎样区别高质量的彩钢夹芯板?</a>
+             <span>2016-12-15</span>
+             </li>
+
+
+                     </ul>
+          </div>
+
+        </div>
+  </div>
+    </div>
+
+    {% block friend %}{% endblock %}
+  <div id="footer_a">
+    {% block footer %} {% endblock %}
+  </div>
+
+  <script type="text/javascript" src="/static/js/MessageLeftBox.js"></script>
+  <span id="tmpAreaLmtDiv">
+    <div style="z-index: 9; right: 0px; bottom: 0px; height: 29px; width: 250px; overflow: hidden; position: fixed;" id="PcPoPmarket">
+      <div style="z-index:9; POSITION: absolute; width:250px; height:29px; overflow:hidden;">
+        <span style="CURSOR: pointer;float:left;clear:none; width:123px; height:13px; overflow:hidden; margin:10px 5px;"></span>
+        <span title="展开" style="background: url("/static/images/fd.png";); cursor: pointer; float: right; width: 15px; height: 13px; overflow: hidden; clear: none; display: block; margin: 9px 15px 0px 0px;" onclick="showDiv()" id="showvod"></span>
+        <span title="最小化" style="background: url("/static/images/sx.png";); cursor: pointer; float: right; overflow: hidden; width: 15px; height: 13px; clear: none; margin: 9px 15px 0px 0px; display: none;" onclick="hideDiv()" id="hidevod"></span>
+      </div>
+      <iframe scrolling="no" frameborder="0" width="250" height="275" src=""></iframe>
+    </div>
+  </span>
+  <!--底部JS加载区域-->
+  <script type="text/javascript" src="/static/js/common.js"></script>
+  <script>
+    bb1();	  //首页banner切换
+    scroll(); //产品滚动
+    scroll2(); //产品滚动
+  </script>
+  <div align="center">
+  技术支持：信融科技
+  </div>
+  <script src="" language="JavaScript"> </script>
+  <script src="" charset="utf-8" type="text/javascript"></script>
+  <a href="http://www.cnzz.com/stat/website.php?web_id=1259933101" target="_blank" title="站长统计">站长统计</a>
+  </body>
+</html>

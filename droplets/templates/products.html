@@ -1,0 +1,85 @@
+
+<div class="tongy2 c1">产品中心<br><span>PRODUCT CENTER</span></div>
+  <div class="upbox clearfix">
+    <div class="cpfl fl">
+      <h2 class="tongy">产品分类</h2>
+        <div class="content">
+          <ul class="sort1">
+            <li class="layery" id="teshu">
+              <a href="http://www.cggjggc.com/supply/cpzx/index_BeiJing.html" class="topnewb list_item">北京产品中心</a>
+            </li>
+          </ul>
+
+          <script type="text/javascript">
+            $(".layery .layere").addClass("yingcang");
+            $(".sort1 >li:eq(0) .layere").removeClass("yingcang");
+            $(".layery").click(function(){
+              $(".sort1 >li:eq(0) .layere").addClass("yingcang");
+              $(this).find(".layere").slideDown(600);
+              $(this).find(".layere").parent().siblings().children('.layere').stop().slideUp(400);
+            });
+
+            $(".layery").each(function(){
+              if($(this).find(".layere li").length > 0) {
+                $(this).find(".topnewb").attr("href","javascript:void(0);");
+                $(this).click(function(){
+                  $(this).find(".layere").slideDown(600);
+                  $(this).siblings().children('.layere').stop().slideUp(400);});
+                }
+            });
+
+            $(".topnew").each(function() {
+              if($(this).find(".layers li").length > 0) {
+                $(this).find(".topnewa").attr("href","javascript:void(0);");
+                $(this).click(function(){
+                  $(this).find(".layers").slideDown(600);
+                  $(this).siblings().children('.layers').stop().slideUp(400);
+                });
+              }
+            });
+          </script>
+
+        <div class="lxwm">
+          <p>
+            <img src="/static/images/1448934590132550.jpg" title="1448934590132550.jpg" alt="lx.jpg">
+          </p>
+          <p>
+            咨询热线：
+          </p>
+          <p class="zixun">
+          <strong><span class="zixunphone">{{ ci.telephone }}</span></strong>
+          </p>
+          <p>
+          公司： {{site.name}}
+          </p>
+          <p>
+          地址: {{ci.address}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="cpzs fr">
+      <h2 class="tongy">产品中心
+        <a href="http://www.cggjggc.com/supply">更多&gt;&gt;</a>
+      </h2>
+      <div class="content">
+        <ul class="product_list1 clearfix">
+          {% for product in products %}
+            <li>
+              <a href="{{product.url}}" class="img">
+                <img src="{{product.pic}}" alt="{{product.title}}" title="{{product.title}}">
+              </a>
+              <h3>
+                <a href="{{product.url}}">{{product.title}}</a>
+              </h3>
+              <div class="tub1">
+                <a href="{{product.url}}">
+                  <img src="/static/images/tb1.jpg"></a></div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="clearboth"></div>
+</div>

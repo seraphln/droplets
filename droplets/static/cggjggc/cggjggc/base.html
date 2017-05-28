@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+    <title>北京彩钢板|北京彩钢房|北京彩钢厂|北京彩钢板价格|北京彩钢压型板|北京华峰创业彩钢钢构工程有限公司</title>
+    <meta http-equiv="mobile-agent" content="format=xhtml; url=http://www.cggjggc.com/3g/">
+    <meta http-equiv="mobile-agent" content="format=html5; url=http://www.cggjggc.com/3g/">
+    <meta name="Keywords" content="北京彩钢板,北京彩钢房,北京彩钢厂,北京彩钢板价格,北京彩钢压型板">
+    <meta name="Description" content=""> {% block_statics %}{% end_block %}
+    <link rel="stylesheet" type="text/css" href="./index_files/base.css">
+    <link rel="stylesheet" type="text/css" href="./index_files/model.css">
+    <link rel="stylesheet" type="text/css" href="./index_files/main.css">
+    <script src="./index_files/jquery-1.js.下载"></script>
+    <script src="./index_files/jquery.js.下载"></script>
+    <script src="./index_files/mobile.js.下载"></script>
+</head>
+
+<body>
+    <div id="header_a">
+        <div id="header">
+            <div class="tou clearfix">
+                <div class="wel fl">
+                    <p>欢迎您光临北京华峰创业彩钢钢构工程有限公司！</p>
+                </div>
+                <div class="fenx fl">
+
+                </div>
+                <div class="k1 fr">
+                    <a href="http://www.cggjggc.com/sitemap">sitemap</a>
+                </div>
+            </div>
+            <div class="top clearfix">
+                <div class="logo">
+                    <a href="http://www.cggjggc.com/"><img src="./index_files/20160615103013.jpg" alt="北京华峰创业彩钢钢构工程有限公司" title="北京华峰创业彩钢钢构工程有限公司"></a>
+                </div>
+            </div>
+            <!-- 导航栏包含 -->
+            <div id="menu">
+                {% block menu %}{% end block %}
+            </div>
+
+            <!-- 轮播JS -->
+            <script type="text/javascript">
+                $(function() {
+                    $('.nav > li').hover(function() {
+                        var sec_count = $(this).find('.sec a').length;
+                        var a_height = $(this).find('.sec a').eq(0).height();
+                        var sec_height = sec_count * a_height;
+                        $(this).find('.sec').stop().animate({
+                            height: sec_height
+                        }, 300);
+                    }, function() {
+                        $(this).find('.sec').stop().animate({
+                            height: 0
+                        }, 300);
+                    });
+                });
+            </script>
+</body>
+
+</html>

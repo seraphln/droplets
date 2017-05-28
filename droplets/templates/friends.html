@@ -1,0 +1,16 @@
+<div class="f_link">
+地区分站：
+  {% for sub_site in sub_sites %}
+    ·<a href="{{ sub_site.url }}" target="_blank" title="{{ sub_site.title }}">
+      <font style="font-size: 12px;">{{ sub_site.title }}</font>
+    </a>
+  {% endfor %}
+</div>
+<div class="f_link">
+  友情链接：
+    {% for friend in friends %}
+      ·<a href="{{ friend.url }}" target="_blank" title="{{friend.name}}">
+        <font style="font-size: 12px;">{{friend.name}}</font>
+      </a>
+    {% endfor %}
+</div>

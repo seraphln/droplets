@@ -1,0 +1,48 @@
+<!-- 首页banner -->
+<div class="topbanner">
+  <div class="bannerzhl">
+    <div id="banner_nr">
+      <ul id="banner_img" style="left: -3840px;">
+        {% for banner in banners %}
+          <li style="width: 1920px;"><a href="{{site.url}}" target="_blank"><img src="{{banner.tfile}}" alt="{{site.name}}" title="{{site.name}}"></a></li>
+        {% endfor %}
+        <div class="clear"></div>
+			</ul>
+			<div id="number" style="display:none;">
+        <ul>
+          <li class="">1</li>
+					<li class="">2</li>
+					<li class="current">3</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+  <script type="text/javascript">
+    var _num=$('#number ul li');
+    var _img=$('#banner_img');
+    var _tarWidth=$(window).width();
+    var _imgLi=$('#banner_img li');
+    _imgLi.css('width',_tarWidth);
+    var _len=_num.length;
+    var _index;
+    var _autoplay;
+    _num.mouseover(function(){
+      _index=_num.index(this);
+      _img.stop().animate({left:-_index*_tarWidth},600);
+      $('#number ul li').removeClass('current').eq(_index).addClass('current');
+
+    }).eq(0).mouseover();
+    $('#banner_nr').hover(function(){
+      clearInterval(autoplay);
+    },function(){
+        autoplay=setInterval(function(){
+        _img.stop().animate({left:-_index*_tarWidth},600);
+        $('#number ul li').removeClass('current').eq(_index).addClass('current');
+        _index++;
+        if(_index==_len){
+          _index=0;
+        }
+      },3000)
+    }).trigger('mouseleave');
+  </script>
+</div>

@@ -1,0 +1,40 @@
+<!-- 公共头部包含 -->
+<div id="header_a">
+  <div id="header">
+    <div class="tou clearfix">
+      <div class="wel fl"><p>欢迎您光临{{ site.name }}！</p></div>
+          <div class="fenx fl"></div>
+          <div class="k1 fr"><a href="{{site.site}}/sitemap">sitemap</a></div>
+      </div>
+      <div class="top clearfix">
+        <div class="logo"><a href={{site.site}}><img src="{{site.logo}}" alt="{{site.name}}" title="{{site.name}}"></a></div>
+      </div>
+      <!-- 导航栏包含 -->
+      <div id="menu">
+      <ul class="nav clearfix">
+          {% for menu in menus %}
+              <li><a href="{{menu.dir_name}}">{{menu.name}}</a>
+              <div style="height: 0px; overflow: hidden;" class="sec"> </div>
+            </li>
+          {% endfor %}
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+    $(function(){
+      $('.nav > li').hover(function(){
+        var sec_count  = $(this).find('.sec a').length;
+        var a_height   = $(this).find('.sec a').eq(0).height();
+        var sec_height =  sec_count * a_height;
+        $(this).find('.sec').stop().animate({height:sec_height},300);
+      },function(){
+        $(this).find('.sec').stop().animate({height:0},300);
+      });
+    });
+    </script>
+
+    </div>
+  </div>
+
+  <!-- 首页banner -->
+  {% include "banner.html" %}

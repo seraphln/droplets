@@ -1,0 +1,38 @@
+<div class="ggbj">
+  <div class="gsgg clearfix">
+  <!-- 单行滚动新闻可选控制按钮 公告类新闻 -->
+  <div class="wenz fl">最新公告：</div>
+    <div class="fl news-marquee-handle mr20" id="last-news">
+      <ul class="news-marquee-list" id="indexgg" style="height: 532px;">
+        {% for news in total_news %}
+        <li class="news-marquee-item">
+          <a href="{{news.url}}">{{news.title}}</a>
+          <span>{{news.created_on|date:"Y-m-d"}}</span>
+        </li>
+        {% endfor %}
+     </ul>
+    </div>
+    <div class="fl news-marquee-ctrl">
+        <a class="block mb5" id="goUp" href="javascript:void(0);"><img src="/static/images/last_news_up.png" alt="向上滚动1"></a>
+        <a class="block" id="goDown" href="javascript:void(0);"><img src="/static/images/last_news_down.png" alt="向下滚动"></a>
+    </div>
+    <script>
+        // 单行滚动新闻可选控制按钮
+        $('#last-news').supermarquee({
+            isEqual: false,                         //
+            distance: 39,                           // 滚动的距离
+            time: 4,                                // 滚动的间隔时间
+            btnGo: {up:'#goUp',down:'#goDown'},     // 滚动方向控件
+            direction: 'up'                         // 默认滚动方向
+        });
+    </script>
+    <div class="search clearfix fr">
+      <h1 class="hotSearch">
+        热门关键词：
+        {% for hk in hot_keywords %}
+        <a href="{{hk.url}}" target="_blank">{{hk.name}}</a>,
+        {% endfor %}
+      </h1>
+    </div>
+  </div>
+</div>
