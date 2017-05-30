@@ -11,7 +11,9 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 
 from droplets.seo.models import HotKeywords
+from droplets.seo.models import LongTailKeywords
 from droplets.news.models import News
+from droplets.dphome.models import Links
 from droplets.dphome.models import Menus
 from droplets.dphome.models import Banners
 from droplets.dphome.models import SiteConfig
@@ -19,6 +21,7 @@ from droplets.dphome.models import CompanyInfo
 from droplets.products.models import Cases
 from droplets.products.models import Products
 
+from droplets.seo.utils import generate_pinyin_mapper
 from droplets.dphome.utils import get_and_format_site
 
 
@@ -32,6 +35,9 @@ def index(request):
     menus = Menus.objects.filter()
     ci = CompanyInfo.objects.filter().first()
     products = Products.objects.filter()[:10]
+    links = Links.objects.filter()
+    lt = LongTailKeywords.objects.filter().first()
+    subsites = generate_pinyin_mapper(lt.cities)
     return render_to_response("index.html",
                               {"site": site,
                                "banners": banners,
@@ -40,9 +46,11 @@ def index(request):
                                "total_news": news,
                                "ci": ci,
                                "products": products,
+                               "links": links,
+                               "subsites": subsites,
                                "cases": cases})
 
-def about(request):
+def about(request, path=None):
     """ 渲染关于我们"""
     site = SiteConfig.objects.filter().first()
     banners = Banners.objects.filter()
@@ -61,3 +69,7 @@ def about(request):
                                "ci": ci,
                                "products": products,
                                "cases": cases})
+
+
+def message(request):
+    return render_to_response("MessageLeftMain.htm", locals())

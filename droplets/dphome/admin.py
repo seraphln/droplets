@@ -12,7 +12,7 @@ from droplets.dphome.models import CompanyInfo
 
 class SiteConfigAdmin(admin.ModelAdmin):
     """ 系统信息 """
-    list_display = ("id", "name", "logo", "url")
+    list_display = ("id", "name", "logo", "url", "qrcode")
 
 
 class CompanyInfoAdmin(admin.ModelAdmin):

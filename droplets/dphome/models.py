@@ -17,11 +17,14 @@ class SiteConfig(models.Model):
     """ 站点基本配置数据模型 """
     name = models.CharField(max_length=128, verbose_name=u"公司名称")
     url = models.CharField(max_length=128, verbose_name=u"公司URL地址")
-    logo = models.CharField(max_length=128, verbose_name=u"网站LOGO")
+    logo = models.FileField(upload_to="../uploads/", verbose_name=u"网站LOGO",
+                            blank=True, null=True)
     intro = models.TextField(verbose_name=u"首页公司概况")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"公司创建时间")
-    cnzz = models.TextField(verbose_name=u"站长统计编号", default="", null=True)
-    tongji_js = models.TextField(verbose_name=u"统计JS", default="", null=True)
+    cnzz = models.TextField(verbose_name=u"站长统计编号", default="", null=True, blank=True)
+    tongji_js = models.TextField(verbose_name=u"统计JS", default="", null=True, blank=True)
+    qrcode = models.FileField(upload_to="../uploads/", verbose_name=u"网站二维码",
+                              blank=True, null=True)
     title = models.CharField(max_length=255, verbose_name=u"网站标题",
                              default="", null=True, blank=True)
     keywords = models.CharField(max_length=255, verbose_name=u"默认关键词",
@@ -72,7 +75,7 @@ class Menus(models.Model):
     name = models.CharField(max_length=128, verbose_name=u"导航名称")
     customized_seq = models.IntegerField(default=0, verbose_name=u"序号")
     dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
-    description = models.IntegerField(max_length=255, verbose_name=u"描述", blank=True, null=True)
+    description = models.CharField(max_length=255, verbose_name=u"描述", blank=True, null=True)
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
 
@@ -105,7 +108,7 @@ class Links(models.Model):
     url = models.CharField(max_length=255, verbose_name=u"友链URL")
 
     def __unicode__(self):
-        return self.tfile
+        return self.name
 
     class Meta:
         verbose_name = u"友情链接"

@@ -24,12 +24,14 @@ from django.conf.urls.static import static
 
 from droplets.dphome.views import index
 from droplets.dphome.views import about
+from droplets.dphome.views import message
 
 urlpatterns = [
-    #url(r'^about/about(\d).html', nm_about),
+    #url(r'^about/about(\d).html', about),
     url(r'^about/$', about),
     url(r'^$', index),
     url(r'^admin/', admin.site.urls),
+    url(r'^MessageLeftMain.htm', message),
 ]
 
 if settings.DEBUG:
