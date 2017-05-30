@@ -25,9 +25,9 @@ from droplets.seo.utils import generate_pinyin_mapper
 from droplets.dphome.utils import get_and_format_site
 
 
-def index(request):
+def index(request, city=None):
     """ 渲染网站首页 """
-    site = get_and_format_site(request)
+    site = get_and_format_site(request, city)
     banners = Banners.objects.filter()
     news = News.objects.filter()
     hot_keywords = HotKeywords.objects.filter()

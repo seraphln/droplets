@@ -29,6 +29,7 @@ from droplets.dphome.views import message
 urlpatterns = [
     #url(r'^about/about(\d).html', about),
     url(r'^about/$', about),
+    url(r'^index_(?P<city>\w+).html', index),
     url(r'^$', index),
     url(r'^admin/', admin.site.urls),
     url(r'^MessageLeftMain.htm', message),

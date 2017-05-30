@@ -47,7 +47,7 @@ def do_generate_meta(keyword, site):
     return site
 
 
-def generate_meta(request, site):
+def generate_meta(request, site, city):
     """
         根据数据库表存的关键词，生成:
         1. 标题：title
@@ -60,14 +60,17 @@ def generate_meta(request, site):
         @param site: 给定的site对象
         @type site: dphome.models.SiteConfig
 
+        @param city: 当前请求中带的城市
+        @type city: String
+
         :return: site
         >>> cities = u"北京,天津"
-        >>> request.path = "/index.html"
-        >>> generate_meta(request, site)
+        >>> city = u"北京"
+        >>> generate_meta(request, site, city)
         北京钢板房
 
-        >>> request.path = "/index_Tianjin.html"
-        >>> generate_meta(request, site)
+        >>> city = u"天津"
+        >>> generate_meta(request, site, city)
         天津钢板房
     """
     path = request.path
@@ -79,11 +82,8 @@ def generate_meta(request, site):
 
     pinyin_mapper = generate_pinyin_mapper(lt.cities)
 
-    last_path = path.split("/")[-1]
-    last_path.split(".")[0].split("_")[-1]
-
     # 取不到就是北京
-    suffix_keyword = pinyin_mapper.get(last_path, u"北京")
+    suffix_keyword = pinyin_mapper.get(city, u"北京")
     return do_generate_meta(suffix_keyword, site)
 
 

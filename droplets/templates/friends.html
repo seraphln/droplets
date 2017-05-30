@@ -1,7 +1,7 @@
 <div class="f_link">
 地区分站：
   {% for pinyin, city in subsites.items %}
-  ·<a href="http://{{site.url}}/index_{{ pinyin }}.html" target="_blank" title="{{ city }}">
+  ·<a href="/index_{{ pinyin }}.html" target="_blank" title="{{ city }}">
       <font style="font-size: 12px;">{{ city }}</font>
     </a>
   {% endfor %}
