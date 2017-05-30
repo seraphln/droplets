@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% include "headers.html" %}
+  <div id="container" class="clearfix">
+    <div class="left">
+      <div class="box sort_menu">
+        <h3> 精彩展示</h3>
+        <ul class="sort">
+           <li><a href="http://www.cggjggc.com/about/">走进我们</a></li>
+           <li> <a href="http://www.cggjggc.com/about/about9.html">联系我们</a></li>
+           <li> <a href="http://www.cggjggc.com/about/about10.html">产品介绍</a> </li>
+        </ul>
+      </div>
+      <div class="box n_contact">
+        <h3>联系我们</h3>
+        <p>联系:{{site.contact_user}}</p>
+        <p>手机: {{site.mobile}}</p>
+        <p>电话: {{site.phone}}</p>
+        <p>传真: {{site.fax}}</p>
+        <p>邮箱: <a href="mailto:{{site.email}}">{{site.email}}</a></p>
+        <p>网址:{{site.url}}</p>
+        <p>地址: {{site.address}}</p>
+      </div>
+    </div>
+    <div class="right">
+      <div class="sitemp clearfix">
+        <h2>详细信息</h2>
+        <div class="site">
+          <a href="{{site.url}}">首页</a> &gt; <a href="http://www.cggjggc.com/about/">走进我们</a>
+        </div>
+      </div>
+      <div class="content">
+        <div class="container1">
+          <div class="content1">
+            <h3>走进我们</h3>
+            <div class="container2" id="zoom">
+              {{ cate.content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endlbock %}

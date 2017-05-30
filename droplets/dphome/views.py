@@ -19,10 +19,12 @@ from droplets.dphome.models import CompanyInfo
 from droplets.products.models import Cases
 from droplets.products.models import Products
 
+from droplets.dphome.utils import get_and_format_site
+
 
 def index(request):
     """ 渲染网站首页 """
-    site = SiteConfig.objects.filter().first()
+    site = get_and_format_site(request)
     banners = Banners.objects.filter()
     news = News.objects.filter()
     hot_keywords = HotKeywords.objects.filter()
@@ -31,6 +33,26 @@ def index(request):
     ci = CompanyInfo.objects.filter().first()
     products = Products.objects.filter()[:10]
     return render_to_response("index.html",
+                              {"site": site,
+                               "banners": banners,
+                               "hot_keywords": hot_keywords,
+                               "menus": menus,
+                               "total_news": news,
+                               "ci": ci,
+                               "products": products,
+                               "cases": cases})
+
+def about(request):
+    """ 渲染关于我们"""
+    site = SiteConfig.objects.filter().first()
+    banners = Banners.objects.filter()
+    news = News.objects.filter()
+    hot_keywords = HotKeywords.objects.filter()
+    cases = Cases.objects.filter(title=u"施工案例")
+    menus = Menus.objects.filter()
+    ci = CompanyInfo.objects.filter().first()
+    products = Products.objects.filter()[:10]
+    return render_to_response("about.html",
                               {"site": site,
                                "banners": banners,
                                "hot_keywords": hot_keywords,

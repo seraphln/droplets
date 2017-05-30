@@ -10,3 +10,6 @@ ipdb
 
 # supervisor
 supervisor
+
+# pinyin
+xpinyin

@@ -20,8 +20,14 @@ class SiteConfig(models.Model):
     logo = models.CharField(max_length=128, verbose_name=u"网站LOGO")
     intro = models.TextField(verbose_name=u"首页公司概况")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"公司创建时间")
-    cnzz = models.TextField(verbose_name=u"站长统计编号", default="", null="")
-    tongji_js = models.TextField(verbose_name=u"统计JS", default="", null="")
+    cnzz = models.TextField(verbose_name=u"站长统计编号", default="", null=True)
+    tongji_js = models.TextField(verbose_name=u"统计JS", default="", null=True)
+    title = models.CharField(max_length=255, verbose_name=u"网站标题",
+                             default="", null=True, blank=True)
+    keywords = models.CharField(max_length=255, verbose_name=u"默认关键词",
+                                default="", null=True, blank=True)
+    desc = models.CharField(max_length=255, verbose_name=u"默认描述",
+                            default="", null=True, blank=True)
 
     def __unicode__(self):
         return self.name
