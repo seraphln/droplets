@@ -56,7 +56,7 @@ Author URI: qxw1885670206.my3w.com
 
 
 /* 单行滚动新闻带控制按钮 */
-.news-marquee-handle {overflow: hidden;width: 340px;height: 38px;left center no-repeat;}
+.news-marquee-handle {overflow: hidden;width: 340px;height: 38px;background: url(../images/notic.jpg) left center no-repeat;}
 .news-marquee-handle .news-marquee-item {font-size: 14px;line-height: 38px;}
 .news-marquee-handle .news-marquee-item a {font:400 12px/38px "Microsoft YaHei";color:#333;}
 .news-marquee-handle .news-marquee-item span{font:400 12px/38px "Microsoft YaHei";color:#333;margin-left:20px;}
@@ -118,7 +118,7 @@ Author URI: qxw1885670206.my3w.com
 .tab li a.tab_click{color:#333;text-decoration:none;}
 .tab_content{margin-top:25px;}
 
-.list1 li{line-height:32px;height:32px;position:relative;vertical-align: middle; no-repeat left center;border-bottom: 1px dashed #c0c0c0;}
+.list1 li{line-height:32px;height:32px;position:relative;vertical-align: middle;background:url(../images/list_dot1.jpg) no-repeat left center;border-bottom: 1px dashed #c0c0c0;}
 .list1 li a{padding-left:15px;line-height:32px;color:#333; display:block; width:350px; overflow:hidden; height:32px;}
 .list1 li a:hover{color:#e87518;text-decoration:none;}
 .list1 li span{position:absolute;text-align:center;right:0px;line-height:32px;top:0;color:#333;}
@@ -154,7 +154,7 @@ border-bottom:2px solid #df2525;font-size:14px;}
 .f_link a{color:#666;font:400 12px/49px "Microsoft Yahei";}
 
 /*页面底部*/
-#footer_a{repeat-x #000;padding-top:20px;padding-bottom: 20px;}
+#footer_a{background:url(../images/footbj.jpg) repeat-x #000;padding-top:20px;padding-bottom: 20px;}
 #footer{position:relative;width:1000px;margin:0 auto;text-align:center;padding-top:8px;color: #fff;}
 #footer a{color:#fff;}
 .nav_foot{text-align:center;line-height:25px;padding-top:15px;}
