@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 #
 
 
@@ -6,6 +6,8 @@ from django.contrib import admin
 
 # Register your models here.
 
+from droplets.seo.models import Robots
+from droplets.seo.models import SiteKey
 from droplets.seo.models import HotKeywords
 from droplets.seo.models import LongTailKeywords
 
@@ -20,5 +22,16 @@ class LongTailKeywordsAdmin(admin.ModelAdmin):
     list_display = ("id", "cities", "suffix")
 
 
+class SiteKeyAdmin(admin.ModelAdmin):
+    """ SEO站长提交密钥管理 """
+    list_display = ("id", "key")
+
+
+class RobotsKeyAdmin(admin.ModelAdmin):
+    """ SEO站长提交密钥管理 """
+    list_display = ("id", "content")
+
+admin.site.register(SiteKey, SiteKeyAdmin)
+admin.site.register(Robots, RobotsKeyAdmin)
 admin.site.register(HotKeywords, HotKeywordsAdmin)
 admin.site.register(LongTailKeywords, LongTailKeywordsAdmin)

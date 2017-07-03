@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 #
 
 
@@ -33,3 +33,35 @@ class LongTailKeywords(models.Model):
     class Meta:
         verbose_name = u"长尾词设置"
         verbose_name_plural = u"长尾词设置"
+
+
+class SiteKey(models.Model):
+    """ 站点密钥设置 """
+    key = models.CharField(max_length=255, verbose_name=u"密钥")
+
+    def __unicode__(self):
+        return self.key
+
+    class Meta:
+        verbose_name = u"站长提交密钥"
+        verbose_name_plural = u"站长提交密钥"
+
+
+class Robots(models.Model):
+    """ robots协议管理 """
+    content = models.TextField(null=True, blank=True, verbose_name=u"robots.txt配置")
+
+    def __unicode__(self):
+        return str(self.id)
+
+    class Meta:
+        verbose_name = u"Robots协议配置"
+        verbose_name_plural = u"Robots协议配置"
+
+    def save(self, *args, **kwargs):
+        """ 重写save方法，在保存时，更新robots.txt """
+        # write_robots()
+        robots_path = "robots.txt"
+        with open(robots_path, "w") as fp:
+            fp.write(self.content.encode("utf8"))
+        super(Robots, self).save(*args, **kwargs)

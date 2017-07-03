@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{site.name}}{% endblock %}
+{% block body %}
+<!-- 首页banner -->
+{% include "header.html" %}
+<div id="container" class="clearfix">
+	<div class="left">
+		<div class="box sort_menu">
+		  <h3> 案例分类</h3>
+        <ul class="sort">
+         {% for case in case_categories %}
+             <li><a href="/cases/{{case.dir_name}}/">{{case.name}}</a></li>
+         {% endfor %}
+        </ul>
+		</div>
+
+  {% include "contract.html" %}
+</div>
+
+<div class="right">
+  <div class="sitemp clearfix">
+    {% if cur_cate %}
+      <h2>{{cur_cate.name}}</h2>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/cases/">公司案例</a> &gt; <a href="/cases/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a></div>
+    {% else %}
+      <h2>案例展示</h2>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/cases/">公司案例</a></div>
+    {% endif %}
+   </div>
+<div class="content">
+  <div class="container1">
+    <div class="content1">
+      <h3>{{case.title}}</h3>
+      <div class="container2" id="zoom">
+        {{ case.content | safe }}
+      </div>
+    </div>
+	</div>
+  </div>
+ </div>
+	</div>
+</div>
+<div id="footer_a">
+{% include "footer.html" %}
+  </div>
+{% endblock %}

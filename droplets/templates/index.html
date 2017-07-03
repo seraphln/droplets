@@ -55,9 +55,9 @@
               <td style="word-break: break-all;" valign="top" width="422">
                 <img src="/static/images/20170506113714_0681.jpg" alt=""></td>
               <td style="word-break: break-all; vertical-align: top;" valign="top" width="633">
-                {{ site.intro }}
+                {{ site.intro|safe }}
                 <p style="margin-top:10px;">
-                  <a href="http://www.cggjggc.com/about/" target="_self">
+                <a href="http://{{site.url}}/about/" target="_self">
                     <img src="/static/images/1448935977544007.jpg" title="1448935977544007.jpg" alt="more.jpg">
                   </a>
                 </p>

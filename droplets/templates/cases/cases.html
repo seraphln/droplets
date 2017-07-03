@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{site.name}}{% endblock %}
+{% block body %}
+<!-- 首页banner -->
+{% include "header.html" %}
+<div id="container" class="clearfix">
+	<div class="left">
+		<div class="box sort_menu">
+		  <h3> 案例分类</h3>
+        <ul class="sort">
+         {% for case in case_categories %}
+             <li><a href="/cases/{{case.dir_name}}/">{{case.name}}</a></li>
+         {% endfor %}
+        </ul>
+		</div>
+
+  {% include "contract.html" %}
+</div>
+
+<div class="right">
+  <div class="sitemp clearfix">
+    {% if cur_cate %}
+      <h2>{{cur_cate.name}}</h2>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/cases/">公司案例</a> &gt; <a href="/cases/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a></div>
+    {% else %}
+      <h2>案例展示</h2>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/cases/">公司案例</a></div>
+    {% endif %}
+   </div>
+<div class="content">
+  <div class="container1">
+    <div class="pro_b">
+     {% for case in cases %}
+       <div>
+         <h2><a href="/cases/{{case.id}}.html"><img src="/{{case.pic}}" title="{{case.title}}" alt="{{case.category}}" height="150" width="150"></a></h2>
+         <h3><a href="/cases/{{case.id}}.html">{{case.title}}</a></h3>
+       </div>
+     {% endfor %}
+     <h6 class="clear"></h6>
+	</div>
+
+  <div class="pages">
+    <ul>
+      <li class="previous_s"><a href="/cases/{{cur_cate.dir_name}}/Cases_{{case_page_info.pre_page}}.html">上一页<a></li>
+      <li class="pages_solid">第{{case_page_info.page}}页</li>
+      <li class="next"><a href="/cases/{{cur_cate.dir_name}}/Cases_{{case_page_info.next_page}}.html">下一页</a></li>
+    </ul>
+  </div>
+
+  </div>
+ </div>
+	</div>
+</div>
+<div id="footer_a">
+{% include "footer.html" %}
+  </div>
+{% endblock %}

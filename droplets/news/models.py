@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 #
 
 
@@ -10,6 +10,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils import timezone
+
+from ckeditor.fields import RichTextField
 
 
 class NewsCategory(models.Model):
@@ -41,7 +43,7 @@ class News(models.Model):
                                       default=0)
     url = models.CharField(max_length=255, verbose_name=u"新闻页面的URL", blank=True, null=True)
     desc = models.TextField(null=True, blank=True, verbose_name=u"新闻标题")
-    content = models.TextField(null=True, blank=True, verbose_name=u"新闻正文")
+    content = RichTextField(blank=True, null=True, verbose_name="新闻正文")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
 

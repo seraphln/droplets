@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 #
 
 """
@@ -47,11 +47,10 @@ class Cases(models.Model):
         verbose_name_plural = u"案例介绍"
 
 
-
 class ProductsCategory(models.Model):
     """ 产品类别 """
     name = models.CharField(max_length=255, verbose_name=u"产品类别")
-    dir_name = models.CharField(max_length=255, verbose_name=u"产品名称")
+    dir_name = models.CharField(max_length=255, verbose_name=u"产品目录")
 
     def __unicode__(self):
         return self.name
@@ -67,6 +66,11 @@ class Products(models.Model):
     title = models.CharField(max_length=255, verbose_name=u"产品标题")
     category = models.ForeignKey(ProductsCategory, verbose_name=u"产品类别")
     pic = models.FileField(upload_to="../uploads/", verbose_name=u"产品图片", blank=True, null=True)
+    spec = models.CharField(max_length=128, verbose_name=u"产品规格", blank=True, null=True)
+    model = models.CharField(max_length=128, verbose_name=u"产品型号", blank=True, null=True)
+    brand = models.CharField(max_length=128, verbose_name=u"产品品牌", blank=True, null=True)
+    price = models.CharField(max_length=128, verbose_name=u"区间价格(元/人民币)", blank=True, null=True)
+    application = models.CharField(max_length=128, verbose_name=u"应用范围", blank=True, null=True)
     keywords = models.CharField(max_length=255, verbose_name=u"相关搜索", blank=True, null=True)
     url = models.CharField(max_length=255, verbose_name=u"产品页面的URL", blank=True, null=True)
     desc = models.TextField(null=True, blank=True, verbose_name=u"产品描述")

@@ -13,3 +13,6 @@ supervisor
 
 # pinyin
 xpinyin
+
+# ckeditor
+django-ckeditor

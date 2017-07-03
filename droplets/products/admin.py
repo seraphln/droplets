@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 #
 
 
@@ -20,7 +20,8 @@ class CasesAdmin(admin.ModelAdmin):
 
 class ProductsAdmin(admin.ModelAdmin):
     """ 产品管理 """
-    list_display = ("id", "title", "category", "keywords", "created_on", "modified_on")
+    list_display = ("id", "title", "category", "keywords", "created_on", "modified_on",\
+                    "spec", "model", "brand", "price", "application")
 
 
 class CasesCategoryAdmin(admin.ModelAdmin):

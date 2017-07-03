@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 #
 
 
@@ -9,6 +9,33 @@ SEO相关的功能函数集合
 from xpinyin import Pinyin
 
 from droplets.seo.models import LongTailKeywords
+
+
+def do_generate_product_name(products, city):
+    """
+        处理多站时的产品中心名称
+
+        @param products: 需要处理的产品列表
+        @type products: List
+
+        @param city: 对应的城市
+        @type city: String
+
+        :return:
+    """
+    lt = LongTailKeywords.objects.filter().first()
+    # 没有设置长尾词，直接返回
+    if not lt or not lt.cities:
+        return site
+
+    pinyin_mapper = generate_pinyin_mapper(lt.cities)
+
+    # 取不到就是北京
+    suffix_keyword = pinyin_mapper.get(city, u"北京")
+    for product in products:
+        product.title = u"%s%s" % (suffix_keyword, product.title)
+
+    return products
 
 
 def do_generate_meta(keyword, site):

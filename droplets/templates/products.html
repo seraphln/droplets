@@ -6,10 +6,9 @@
         <div class="content">
           <ul class="sort1">
             <li class="layery" id="teshu">
-              <a href="http://www.cggjggc.com/supply/cpzx/index_BeiJing.html" class="topnewb list_item">北京产品中心</a>
+            <a href="http://{{site.url}}/supply/" class="topnewb list_item">{{cur_city_name}}产品中心</a>
             </li>
           </ul>
-
           <script type="text/javascript">
             $(".layery .layere").addClass("yingcang");
             $(".sort1 >li:eq(0) .layere").removeClass("yingcang");
@@ -60,20 +59,20 @@
     </div>
     <div class="cpzs fr">
       <h2 class="tongy">产品中心
-        <a href="http://www.cggjggc.com/supply">更多&gt;&gt;</a>
+        <a href="http://{{site.url}}/supply/">更多&gt;&gt;</a>
       </h2>
       <div class="content">
         <ul class="product_list1 clearfix">
           {% for product in products %}
             <li>
-              <a href="{{product.url}}" class="img">
+            <a href="/supply/{{product.id}}.html" class="img">
                 <img src="{{product.pic}}" alt="{{product.title}}" title="{{product.title}}">
               </a>
               <h3>
-                <a href="{{product.url}}">{{product.title}}</a>
+                <a href="/supply/{{product.id}}.html">{{product.title}}</a>
               </h3>
               <div class="tub1">
-                <a href="{{product.url}}">
+                <a href="/supply/{{product.id}}.html">
                   <img src="/static/images/tb1.jpg"></a></div>
             </li>
           {% endfor %}

@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 #
 
 
@@ -12,6 +12,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 
+from ckeditor.fields import RichTextField
+
 
 class SiteConfig(models.Model):
     """ 站点基本配置数据模型 """
@@ -19,7 +21,7 @@ class SiteConfig(models.Model):
     url = models.CharField(max_length=128, verbose_name=u"公司URL地址")
     logo = models.FileField(upload_to="../uploads/", verbose_name=u"网站LOGO",
                             blank=True, null=True)
-    intro = models.TextField(verbose_name=u"首页公司概况")
+    intro = RichTextField(blank=True,null=True, verbose_name="首页公司概况")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"公司创建时间")
     cnzz = models.TextField(verbose_name=u"站长统计编号", default="", null=True, blank=True)
     tongji_js = models.TextField(verbose_name=u"统计JS", default="", null=True, blank=True)
@@ -76,8 +78,10 @@ class Menus(models.Model):
     customized_seq = models.IntegerField(default=0, verbose_name=u"序号")
     dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
     description = models.CharField(max_length=255, verbose_name=u"描述", blank=True, null=True)
+    parent_cate = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级分类")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
+    is_root = models.BooleanField(default=False, verbose_name=u"是否是顶级分类")
 
     def __unicode__(self):
         return self.name
@@ -106,6 +110,7 @@ class Links(models.Model):
     """ 友情链接管理 """
     name = models.CharField(max_length=128, verbose_name=u"友链名")
     url = models.CharField(max_length=255, verbose_name=u"友链URL")
+    created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
 
     def __unicode__(self):
         return self.name
@@ -113,3 +118,46 @@ class Links(models.Model):
     class Meta:
         verbose_name = u"友情链接"
         verbose_name_plural = u"友情链接"
+
+
+class Details(models.Model):
+    """详细信息"""
+    name = models.CharField(max_length=128, verbose_name=u"法定代表人/负责人")
+    industry = models.CharField(max_length=128, verbose_name=u"主营行业")
+    enterprise = models.CharField(max_length=128, verbose_name=u"企业类型")
+    operating = models.CharField(max_length=128, verbose_name=u"经营模式")
+    registered = models.CharField(max_length=128, verbose_name=u"注册资本(人民币/万元)")
+    registered_add = models.CharField(max_length=128, verbose_name=u"公司注册地(省份/城市)")
+    address = models.CharField(max_length=128, verbose_name=u"详细地址")
+    employees = models.CharField(max_length=128, verbose_name=u"员工人数")
+    people = models.CharField(max_length=128, verbose_name=u"研发部门人数")
+    workshop = models.CharField(max_length=128, verbose_name=u"厂房面积(平方米)")
+    account = models.CharField(max_length=128, verbose_name=u"开户银行")
+    account_number = models.CharField(max_length=128, verbose_name=u"银行账号")
+    authentication = models.CharField(max_length=128, verbose_name=u"管理体系认证")
+    customer = models.CharField(max_length=128, verbose_name=u"主要客户(如：超市、服装厂、印刷厂)")
+    market = models.CharField(max_length=128, verbose_name=u"主要市场")
+    kepp = models.CharField(max_length=128, verbose_name=u"备案号")
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = u"详细信息"
+        verbose_name_plural = u"详细信息"
+
+
+class UserMessage(models.Model):
+    """ 用户浏览模块 """
+    username = models.CharField(max_length=128, verbose_name=u"用户名")
+    telephone = models.CharField(max_length=128, verbose_name=u"用户电话")
+    email = models.CharField(max_length=128, verbose_name=u"用户邮箱")
+    content = models.CharField(max_length=128, verbose_name=u"用户留言信息")
+    created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
+
+    def __unicode__(self):
+        return self.username
+
+    class Meta:
+        verbose_name = u"用户留言"
+        verbose_name_plural = u"用户留言"
