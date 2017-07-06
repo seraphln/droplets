@@ -186,27 +186,6 @@ def get_case_by_page(request, cate_name, page, per_page=10):
         return render_to_response("new_case.html", basic_params)
 
 
-def get_news_by_id(request, id):
-    """
-        根据给定的id获取新闻信息
-
-        @param id: 给定的新闻id
-        @type id: Int
-
-        :return: resp
-    """
-    site = SiteConfig.objects.filter().first()
-
-    # 传入的参数错误，则直接返回首页
-    news = News.objects.filter(id=id).first()
-    if not news:
-        return http.HttpResponseRedirect(site.url)
-    else:
-        basic_params = get_basic_params()
-        basic_params["news"] = news
-        return render_to_response("news_detail.html", basic_params)
-
-
 def cpzx(request, city):
     """
         根据city来分页获取产品中心的信息

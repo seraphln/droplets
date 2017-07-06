@@ -26,7 +26,6 @@ from droplets.dphome.views import index
 from droplets.dphome.views import about
 from droplets.dphome.views import message
 from droplets.dphome.views import supply
-from droplets.dphome.views import get_supply_by_id
 from droplets.dphome.views import news
 #from droplets.dphome.views import cases
 
@@ -35,33 +34,56 @@ from droplets.products.views import cases
 from droplets.products.views import get_case_by_id
 from droplets.products.views import get_case_by_page
 
+from droplets.products.views import products
+from droplets.products.views import get_products_by_id
+from droplets.products.views import get_products_by_page
+
+
+from droplets.news.views import news
+from droplets.news.views import get_news_by_id
+from droplets.news.views import get_news_by_page
+
 from droplets.dphome.views import sitemap
 from droplets.dphome.views import add_msg
-from droplets.dphome.views import get_news_by_id
 from droplets.dphome.views import get_supply_by_page
 
 
 urlpatterns = [
+    # 案例相关接口
     url(r'^cases/(?P<cid>\d+).html', get_case_by_id),
-    #url(r'^cases/(?P<cate_name>\w+)_(?P<page>\d+).html', get_case_by_page),
     url(r'^cases/(?P<dir_name>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html', get_case_by_page),
     url(r'^cases/(?P<dir_name>\w+)/$', cases),
     url(r'^cases/$',cases),
-    url(r'^news/(?P<id>\d+).html', get_news_by_id),
-    url(r'^news/(?P<dir_name>)', news),
+
+    # 新闻相关接口
+    url(r'^news/(?P<cid>\d+).html', get_news_by_id),
+    url(r'^news/(?P<dir_name>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html', get_news_by_page),
+    url(r'^news/(?P<dir_name>\w+)/$', news),
     url(r'^news/$', news),
-    url(r'^supply/$', supply),
-    url(r'^supply/(?P<id>\d+).html', get_supply_by_id),
+
+    # 产品相关接口
+    url(r'^supply/(?P<cid>\d+).html', get_products_by_id),
+    url(r'^supply/(?P<dir_name>\w+)/$', products),
+    url(r'^supply/Products_(?P<page>\d+).html$', get_supply_by_page),
+    url(r'^supply/$', products),
+
+    # 关于我们
     url(r'^about/(?P<dir_name>\w+.html)', about),
     url(r'^about/$', about),
+
+    # 站点地图
     url(r'^sitemap/$', sitemap),
+
+    # 首页以及多站点配置
     url(r'^index_(?P<city>\w+).html', index),
-    url(r'^supply/Products_(?P<page>\d+).html$', get_supply_by_page),
     url(r'^$', index),
+
+    # 后台管理
     url(r'^admin/', admin.site.urls),
+
+    # 留言管理
     url(r'^MessageLeftMain.htm', message),
     url(r'^admin/add_msg/', add_msg),
-    #url(r'^ckeditor/', include('ckeditor.urls')),
 ]
 
 if settings.DEBUG:

@@ -39,13 +39,15 @@
      <h6 class="clear"></h6>
 	</div>
 
-  <div class="pages">
-    <ul>
-      <li class="previous_s"><a href="/cases/{{cur_cate.dir_name}}/Cases_{{case_page_info.pre_page}}.html">上一页<a></li>
-      <li class="pages_solid">第{{case_page_info.page}}页</li>
-      <li class="next"><a href="/cases/{{cur_cate.dir_name}}/Cases_{{case_page_info.next_page}}.html">下一页</a></li>
-    </ul>
-  </div>
+  {% if cases %}
+    <div class="pages">
+      <ul>
+        <li class="previous_s"><a href="/cases/{{cur_cate.dir_name}}/Cases_{{case_page_info.pre_page}}.html">上一页<a></li>
+        <li class="pages_solid">第{{case_page_info.page}}页</li>
+        <li class="next"><a href="/cases/{{cur_cate.dir_name}}/Cases_{{case_page_info.next_page}}.html">下一页</a></li>
+      </ul>
+    </div>
+  {% endif %}
 
   </div>
  </div>

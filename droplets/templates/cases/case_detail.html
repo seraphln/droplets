@@ -37,6 +37,19 @@
     </div>
 	</div>
   </div>
+
+  {% if prev_case %}
+  <div>
+    <p><a href="/cases/{{prev_case.id}}.html">上一页：{{ prev_case.title }}</a></p>
+  </div>
+  {% endif %}
+
+  {% if next_case %}
+  <div>
+    <p><a href="/cases/{{next_case.id}}.html">下一页：{{ next_case.title }}</a></p>
+  </div>
+  {% endif %}
+
  </div>
 	</div>
 </div>

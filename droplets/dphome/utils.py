@@ -20,6 +20,9 @@ from droplets.dphome.models import Menus
 from droplets.dphome.models import Banners
 from droplets.dphome.models import CompanyInfo
 
+from droplets.news.models import NewsCategory
+from droplets.products.models import ProductsCategory
+
 
 def get_and_format_site(request, city):
     """
@@ -48,13 +51,17 @@ def get_basic_params(city=None):
     menus = Menus.objects.filter()
     ci = CompanyInfo.objects.filter().first()
     hot_keywords = HotKeywords.objects.filter()
+    news_categories = NewsCategory.objects.filter()
+    products_categories = ProductsCategory.objects.filter()
 
     return {"site": site,
             "banners": banners,
             "news": news,
             "hot_keywords": hot_keywords,
             "menus": menus,
-            "ci": ci}
+            "ci": ci,
+            "news_categories":news_categories,
+            "products_categories":products_categories}
 
 
 def get_data_by_page(model_cls, query_dict={}, page=1,
@@ -130,3 +137,22 @@ def make_api_response(result=None, page_info=None, message=""):
     resp = HttpResponse(json.dumps(ret), content_type="application/json")
     return resp
 
+
+def get_prev_and_next_page(model_cls, cid):
+    """
+        获取当前页面的上一页面和下一页面
+
+        @param model_cls: 当前页面所属对象
+        @type model_cls: django.models
+
+        @param cid: 当前的id
+        @type cid: Int
+
+        :return: (model_cls_instance, model_cls_instance)
+    """
+
+    cid = int(cid)
+    prev_data = model_cls.objects.filter(id__lt=cid).order_by("-id").first()
+    next_data = model_cls.objects.filter(id__gt=cid).first()
+
+    return prev_data, next_data

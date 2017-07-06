@@ -82,6 +82,7 @@ class Menus(models.Model):
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     is_root = models.BooleanField(default=False, verbose_name=u"是否是顶级分类")
+    is_foot = models.BooleanField(default=False, verbose_name=u"是否是加入底边框")
 
     def __unicode__(self):
         return self.name
