@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{site.name}}{% endblock %}
+{% block body %}
+<!-- 首页banner -->
+{% include "header.html" %}
+<div id="container" class="clearfix">
+	<div class="left">
+		<div class="box sort_menu">
+		  <h3> 案例分类</h3>
+        <ul class="sort">
+         {% for news in news_categories %}
+             <li><a href="/news/{{news.dir_name}}/">{{news.name}}</a></li>
+         {% endfor %}
+        </ul>
+		</div>
+
+  {% include "contract.html" %}
+</div>
+
+<div class="right">
+  <div class="sitemp clearfix">
+    {% if cur_cate %}
+      <h2>{{cur_cate.name}}</h2>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/news/">企业新闻</a> &gt; <a href="/news/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a></div>
+    {% else %}
+      <h2>案例展示</h2>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/news/">企业新闻</a></div>
+    {% endif %}
+   </div>
+<div class="content">
+  <div class="container1">
+       {% for new in news %}
+       <div>
+         <a href="/news/{{new.id}}.html">{{new.title}}</a>
+        </div>
+     {% endfor %}
+     <h6 class="clear"></h6>
+	</div>
+
+  {% if news %}
+    <div class="pages">
+      <ul>
+        <li class="previous_s"><a href="/news/{{cur_cate.dir_name}}/News_{{news_page_info.pre_page}}.html">上一页<a></li>
+        <li class="pages_solid">第{{news_page_info.page}}页</li>
+        <li class="next"><a href="/news/{{cur_cate.dir_name}}/News_{{news_page_info.next_page}}.html">下一页</a></li>
+      </ul>
+    </div>
+  {% endif %}
+
+  </div>
+ </div>
+	</div>
+</div>
+<div id="footer_a">
+{% include "footer.html" %}
+  </div>
+{% endblock %}

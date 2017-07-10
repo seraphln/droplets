@@ -1,12 +1,12 @@
 <div id="footer">
   <ul class="navv clearfix">
-    {% for foot in footers_dict.items %}
-    <li><a href="{{foot.0.dir_name}}">{{foot.0}}</a>
-       <div class="secc">
-        {% for i in foot.1 %}
-          <a href="{{i.url}}">{{i}}</a>
-        {% endfor %}
-        </div>
+    {% for foot in menus_foot %}
+      <li><a href="{{foot.dir_name}}">{{foot.name}}</a>
+          <div class="secc">
+            {% for i in news_categories %}
+                {{i}}
+            {% endfor %}
+         </div>
         </li>
     {% endfor %}
     <li class="last" style="width:292px;"><a href="http://{{site.url}}/about9.html/">联系我们</a>

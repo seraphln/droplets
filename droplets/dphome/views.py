@@ -6,10 +6,13 @@
 后续页面都会渲染成静态页面
 """
 
+import time
 import datetime
 
 from django import http
 from django.shortcuts import render
+from django.shortcuts import Http404
+from django.shortcuts import HttpResponse
 from django.shortcuts import render_to_response
 
 from droplets.seo.models import HotKeywords
@@ -67,160 +70,29 @@ def index(request, city=None):
 
 
 def about(request, dir_name=None):
-    site = SiteConfig.objects.filter().first()
-    banners = Banners.objects.filter()
-    news = News.objects.filter()
-    hot_keywords = HotKeywords.objects.filter()
-    menus = Menus.objects.filter(is_root=True)
-    cases = []
+    """ 关于我们的页面 """
+    basic_params = get_basic_params()
 
     # 取出产品中心的导航
-    b = Menus.objects.filter(name=u"产品中心",
-                             is_root=True).first()
-    a = Menus.objects.filter(parent_cate=b)
+    cur_menu = Menus.objects.filter(name=u"产品中心", is_root=True).first()
+    cates = Menus.objects.filter(parent_cate=cur_menu)
 
-    ci = CompanyInfo.objects.filter().first()
-    products = Products.objects.filter()[:10]
+    basic_params["cates"] = cates
+
     target_dir = "/about"
-    result = {"site": site,"banners": banners,
-            "hot_keywords": hot_keywords,
-              "menus": menus,"total_news": news,
-              "a": a,
-              "ci": ci, "products": products,"cases": cases}
+
     if dir_name:
         target_dir = "%s/%s" %(target_dir, dir_name)
+
     if Menus.objects.filter(dir_name=target_dir).first():
         if dir_name:
             template_names = target_dir
             template_name = template_names.split("/")[2]
         else:
             template_name = "about.html"
-        return render_to_response(template_name,result)
+        return render_to_response(template_name, basic_params)
     else:
         return http.HttpResponseRedirect(site.url)
-
-
-def get_supply_by_id(request, id=None):
-    """
-        获取产品中心的页面
-
-        @param id: 产品id，如果为None则取产品中心页面
-        @type id: Int
-
-        :return: resp
-    """
-    basic_params = get_basic_params()
-    basic_params["case"] = Cases.objects.filter(id=int(id)).first()
-
-    return render_to_response("supply_detail.html", basic_params)
-
-def news(request, dir_name=None):
-    site = SiteConfig.objects.filter().first()
-    banners = Banners.objects.filter()
-    news = News.objects.filter()
-    newsc = NewsCategory.objects.filter()
-    menus = Menus.objects.filter()
-    ci = CompanyInfo.objects.filter().first()
-    products = Products.objects.filter()[:10]
-    target_dir = ""
-    result = {"site": site,"banners": banners,
-              "menus": menus,"total_news": news,
-              "ci": ci,"products": products, "newsc": newsc}
-    if dir_name:
-        target_dir = "%s/%s" %(target_dir, dir_name)
-        if NewsCategory.objects.filter(dir_name=target_dir).first():
-            if dir_name:
-                template_names = target_dir
-                template_name = template_names.split("/")[2]
-            else:
-                template_name = "new.html"
-            return render_to_response(template_name,result)
-    else:
-        return render_to_response("new.html", result)
-
-
-def cases(request, dir_name=None):
-    """
-        获取案例中心页面
-    """
-
-    basic_params = get_basic_params()
-
-    # 获取案例
-    category = CasesCategory.objects.filter(name=u"施工案例").first()
-    case_page_info, cases = get_data_by_page(Cases, {"category": category})
-
-    basic_params["case_page_info"] = case_page_info
-    basic_params["cases"] = cases
-    basic_params["new_cases"] = CasesCategory.objects.filter()
-    basic_params["ci"] = CompanyInfo.objects.filter().first()
-
-    target_dir = ""
-    if dir_name:
-        target_dir = "%s/%s" %(target_dir, dir_name)
-        if CasesCategory.objects.filter(dir_name=target_dir).first():
-            if dir_name:
-                template_names = target_dir
-                template_name = template_names.split("/")[2]
-            else:
-                template_name = "new_case.html"
-            return render_to_response(template_name, basic_params)
-    else:
-        return render_to_response("new_case.html", basic_params)
-
-
-def get_case_by_page(request, cate_name, page, per_page=10):
-    """ 根据当前传入的参数来获取对应分页的结果 """
-    cate_mapper = {"Products": Products,
-                   "Cases": Cases}
-    site = SiteConfig.objects.filter().first()
-    # 传入的参数错误，则直接返回首页
-    if not cate_name or not page:
-        return http.HttpResponseRedirect(site.url)
-    else:
-        data, page_info = cate_mapper.get(cate_name)(int(page), int(per_page))
-
-        basic_params = get_basic_params()
-        basic_params["data"] = data
-        basic_params["page_info"] = page_info
-        return render_to_response("new_case.html", basic_params)
-
-
-def cpzx(request, city):
-    """
-        根据city来分页获取产品中心的信息
-
-        @param request: 当前请求的request对象
-        @type request: Django.Request
-    """
-
-def supply(request, dir_name=None):
-    """
-        获取产品展示页面
-    """
-
-    basic_params = get_basic_params()
-
-    # 获取公司联系人信息
-    basic_params["ci"] = CompanyInfo.objects.filter().first()
-
-    # 更新产品信息
-    prod_page_info, products = get_data_by_page(Products)
-    basic_params["prod_page_info"] = prod_page_info
-    basic_params["products"] = products
-
-    target_dir = ""
-    if dir_name:
-        target_dir = "%s/%s" %(target_dir, dir_name)
-        if NewsCategory.objects.filter(dir_name=target_dir).first():
-            if dir_name:
-                template_names = target_dir
-                template_name = template_names.split("/")[2]
-            else:
-                template_name = "supply.html"
-            return render_to_response(template_name, basic_params)
-    else:
-        return render_to_response("supply.html", basic_params)
 
 
 def message(request):
@@ -281,3 +153,26 @@ def add_msg(request):
         msg.created_on = datetime.datetime.utcnow()
 
     return make_api_response()
+
+
+def sceneImgUpload(request):
+    """ ckeditor用到的上传图片功能 """
+    if request.method == 'POST':
+        callback = request.GET.get('CKEditorFuncNum')
+        try:
+            url_path = "static/uploads/" + time.strftime("%Y%m%d%H%M%S",time.localtime())
+            path = "droplets/static/uploads/" + time.strftime("%Y%m%d%H%M%S",time.localtime())
+            f = request.FILES["upload"]
+            file_name = path + "_" + f.name
+            des_origin_f = open(file_name, "wb+")
+            for chunk in f.chunks():
+                des_origin_f.write(chunk)
+            des_origin_f.close()
+        except Exception, e:
+            print e
+        url_name = url_path + "_" + f.name
+        res = "<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'/"+url_name+"', '');</script>"
+        print res
+        return HttpResponse(res)
+    else:
+        raise Http404()

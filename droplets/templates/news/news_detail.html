@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}{{site.name}}{% endblock %}
+{% block body %}
+<!-- 首页banner -->
+{% include "header.html" %}
+<div id="container" class="clearfix">
+	<div class="left">
+		<div class="box sort_menu">
+		  <h3> 新闻分类</h3>
+        <ul class="sort">
+         {% for news in news_categories %}
+             <li><a href="/news/{{news.dir_name}}/">{{news.name}}</a></li>
+         {% endfor %}
+        </ul>
+		</div>
+
+  {% include "contract.html" %}
+</div>
+
+<div class="right">
+  <div class="sitemp clearfix">
+    {% if cur_cate %}
+      <h2>{{cur_cate.name}}</h2>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/news/">企业新闻</a> &gt; <a href="/news/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a></div>
+    {% else %}
+      <h2>案例展示</h2>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/news/">企业新闻</a></div>
+    {% endif %}
+   </div>
+<div class="content">
+  <div class="container1">
+    <div class="content1">
+      <h3>{{news.title}}</h3>
+      <div class="container2" id="zoom">
+        {{ news.content | safe }}
+      </div>
+    </div>
+	</div>
+</div>
+  {% if prev_news %}
+  <div>
+    <p><a href="/news/{{prev_news.id}}.html">上一页：{{ prev_news.title }}</a></p>
+  </div>
+  {% endif %}
+
+  {% if next_news %}
+  <div>
+    <p><a href="/news/{{next_news.id}}.html">下一页：{{ next_news.title }}</a></p>
+  </div>
+  {% endif %}
+
+ </div>
+	</div>
+</div>
+<div id="footer_a">
+{% include "footer.html" %}
+  </div>
+{% endblock %}

@@ -7,6 +7,7 @@ dphome首页用到的公共函数集合
 """
 
 import json
+import urllib2
 from django.http import HttpResponse
 
 from droplets.seo.utils import generate_meta
@@ -22,6 +23,7 @@ from droplets.dphome.models import CompanyInfo
 
 from droplets.news.models import NewsCategory
 from droplets.products.models import ProductsCategory
+from droplets.products.models import CasesCategory
 
 
 def get_and_format_site(request, city):
@@ -42,6 +44,46 @@ def get_and_format_site(request, city):
 
     return site
 
+def get_footer(footer):
+
+    case_foot = CasesCategory.objects.filter(parent_cate=footer)
+    if case_foot:
+        return case_foot
+    menus_foot = Menus.objects.filter(parent_cate=footer)
+    if menus_foot:
+        return menus_foot
+    product_foot = ProductsCategory.objects.filter(parent_cate=footer)
+    if product_foot:
+        return product_foot
+    new_foot = NewsCategory.objects.filter(parent_cate=footer)
+    if new_foot:
+        return new_foot
+    return []
+
+
+def format_footer_url(footer, foot_cates):
+    """
+        格式化footer的url
+
+        @param footer: 当前的主分类
+        @type footer: Menus
+
+        @param foot_cates: 对应的自分类列表
+        @type foot_cates: List
+
+        :return: foot_cates
+    """
+
+    for foot_cate in foot_cates:
+        if "about" not in footer.dir_name:
+            url = urllib2.urlparse.urljoin(footer.dir_name, foot_cate.dir_name)
+        else:
+            url = footer.dir_name
+
+        setattr(foot_cate, "url", url)
+
+    return foot_cates
+
 
 def get_basic_params(city=None):
     """ 获取渲染页面需要的基础数据 """
@@ -49,18 +91,24 @@ def get_basic_params(city=None):
     banners = Banners.objects.filter()
     news = News.objects.filter()
     menus = Menus.objects.filter()
+    menus_foot = Menus.objects.filter(is_foot=True)
     ci = CompanyInfo.objects.filter().first()
     hot_keywords = HotKeywords.objects.filter()
     news_categories = NewsCategory.objects.filter()
     products_categories = ProductsCategory.objects.filter()
+    footers_dict = {}
+    for footer in menus_foot:
+        footers_dict[footer] = format_footer_url(footer, get_footer(footer))
 
     return {"site": site,
             "banners": banners,
             "news": news,
             "hot_keywords": hot_keywords,
             "menus": menus,
+            "menus_foot": menus_foot,
             "ci": ci,
             "news_categories":news_categories,
+            "footers_dict": footers_dict,
             "products_categories":products_categories}
 
 

@@ -178,7 +178,7 @@ function scroll2(){
 	var tab = document.getElementById("m_demo");
 	var tab1 = document.getElementById("m_demo1");
 	var tab2 = document.getElementById("m_demo2");
-	var liwidth=tab1.getElementsByTagName("li");
+	//var liwidth=tab1.getElementsByTagName("li");
 	var liwidths=liwidth[0].offsetWidth;
 	var length=$("#m_demo1 li").length;
 	var mleft=parseInt($("#m_demo1 li:eq(0)").css("marginLeft"));

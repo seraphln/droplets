@@ -10,12 +10,17 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils import timezone
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
+from droplets.dphome.models import Menus
 
 
 class CasesCategory(models.Model):
     """ 案例类别 """
     name = models.CharField(max_length=255, verbose_name=u"案例类别")
     dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
+    parent_cate = models.ForeignKey(Menus, null=True, blank=True, verbose_name=u"上级分类")
 
     def __unicode__(self):
         return self.name
@@ -35,7 +40,7 @@ class Cases(models.Model):
     if_recommend = models.BooleanField(default=False, verbose_name=u"是否推荐")
     url = models.CharField(max_length=255, verbose_name=u"案例页面的URL", blank=True, null=True)
     desc = models.TextField(null=True, blank=True, verbose_name=u"案例描述")
-    content = models.TextField(null=True, blank=True, verbose_name=u"案例正文")
+    content = RichTextField(blank=True, null=True, verbose_name="案例正文")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
 
@@ -51,6 +56,7 @@ class ProductsCategory(models.Model):
     """ 产品类别 """
     name = models.CharField(max_length=255, verbose_name=u"产品类别")
     dir_name = models.CharField(max_length=255, verbose_name=u"产品目录")
+    parent_cate = models.ForeignKey(Menus, null=True, blank=True, verbose_name=u"上级分类")
 
     def __unicode__(self):
         return self.name
@@ -74,7 +80,7 @@ class Products(models.Model):
     keywords = models.CharField(max_length=255, verbose_name=u"相关搜索", blank=True, null=True)
     url = models.CharField(max_length=255, verbose_name=u"产品页面的URL", blank=True, null=True)
     desc = models.TextField(null=True, blank=True, verbose_name=u"产品描述")
-    content = models.TextField(null=True, blank=True, verbose_name=u"产品正文")
+    content = RichTextField(blank=True, null=True, verbose_name="产品正文")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     is_recommend = models.BooleanField(default=False, verbose_name=u"是否强力推荐")

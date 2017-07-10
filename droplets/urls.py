@@ -25,9 +25,6 @@ from django.conf.urls.static import static
 from droplets.dphome.views import index
 from droplets.dphome.views import about
 from droplets.dphome.views import message
-from droplets.dphome.views import supply
-from droplets.dphome.views import news
-#from droplets.dphome.views import cases
 
 # 案例相关接口
 from droplets.products.views import cases
@@ -45,6 +42,7 @@ from droplets.news.views import get_news_by_page
 
 from droplets.dphome.views import sitemap
 from droplets.dphome.views import add_msg
+from droplets.dphome.views import sceneImgUpload
 from droplets.dphome.views import get_supply_by_page
 
 
@@ -84,6 +82,9 @@ urlpatterns = [
     # 留言管理
     url(r'^MessageLeftMain.htm', message),
     url(r'^admin/add_msg/', add_msg),
+
+    # uploads
+    url(r'^upload_image', sceneImgUpload),
 ]
 
 if settings.DEBUG:

@@ -20,9 +20,9 @@
     <div class="box sort_menu">
       <h3> 精彩展示</h3>
       <ul class="sort">
-        <li> <a href="/about/">走进我们</a></li>
-        <li> <a href="/about/about9.html">联系我们</a></li>
-        <li> <a href="/about/about10.html">产品介绍</a></li>
+        {% for b in a %}
+        <li> <a href="{{b.dir_name}}">{{b.name}}</a></li>
+        {% endfor %}
       </ul>
     </div>
     <div class="box n_contact">
@@ -47,7 +47,7 @@
           <div class="content1">
             <h3>走进我们</h3>
 	    <div class="container2" id="zoom">
-        {{ site.intro }}
+        {{ site.intro|safe }}
             </div>
 	  </div>
 	</div>
