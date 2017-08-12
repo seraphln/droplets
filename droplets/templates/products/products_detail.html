@@ -6,10 +6,10 @@
 <div id="container" class="clearfix">
 	<div class="left">
 		<div class="box sort_menu">
-		  <h3> 案例分类</h3>
+		  <h3>产品分类</h3>
         <ul class="sort">
          {% for product in products_categories %}
-             <li><a href="/supply/{{product.dir_name}}/">{{product.name}}</a></li>
+         <li><a href="/supply_{{cur_city}}/{{product.dir_name}}/">{{cur_city_name}}{{product.name}}</a></li>
          {% endfor %}
         </ul>
 		</div>
@@ -39,13 +39,13 @@
   </div>
   {% if prev_prod %}
   <div>
-    <p><a href="/supply/{{prev_prod.id}}.html">上一页：{{ prev_prod.title }}</a></p>
+    <p><a href="/supply_{{cur_city}}/{{prev_prod.id}}.html">上一页：{{ prev_prod.title }}</a></p>
   </div>
   {% endif %}
 
   {% if next_prod %}
   <div>
-    <p><a href="/supply/{{next_prod.id}}.html">下一页：{{ next_prod.title }}</a></p>
+    <p><a href="/supply_{{cur_city}}/{{next_prod.id}}.html">下一页：{{ next_prod.title }}</a></p>
   </div>
   {% endif %}
 

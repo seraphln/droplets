@@ -70,30 +70,25 @@
   </div>
   <div class="tongy2 c2">资讯中心<br><span>NEWS CENTER</span></div>
     <div class="underbox clearfix">
-      <div class="cjwt fl">
-        <h2>常见问题解答<a href="/news/">MORE+</a></h2>
-        <div class="content">
-          <ul class="news_listt"> </ul>
-        </div>
-      </div>
-      <div class="cjwt fr">
-        <ul class="tab clearfix">
-          <li><a href="javascript:void(0);">新闻资讯</a></li>
-          <a class="tyt" href="/news/">MORE+</a>
-        </ul>
-        <div class="tab_content">
-          <div class="tt" id="tab1">
-            <ul class="list1">
-              {% for news in total_news %}
-              <li><a href="/news/{{news.id}}.html">{{news.title}}</a>
-              <span>{{news.created_on|date:"Y-m-d"}}</span>
-              </li>
-              {% endfor %}
-            </ul>
+      {% for cate, news in total_news.items %}
+        <div class="cjwt fl">
+          <ul class="tab clearfix">
+            <li><a href="javascript:void(0);">{{cate.name}}</a></li>
+            <a class="tyt" href="/news/{{cate.dir_name}}">MORE+</a>
+          </ul>
+          <div class="tab_content">
+            <div class="tt" id="tab1">
+              <ul class="list1">
+                {% for cur_news in news %}
+                  <li><a href="/news/{{cur_news.id}}.html">{{cur_news.title}}</a>
+                  <span>{{cur_news.created_on|date:"Y-m-d"}}</span>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
           </div>
-
         </div>
-      </div>
+      {% endfor %}
     </div>
 
     {% include "friends.html" %}

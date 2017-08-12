@@ -25,6 +25,7 @@ from django.conf.urls.static import static
 from droplets.dphome.views import index
 from droplets.dphome.views import about
 from droplets.dphome.views import message
+from droplets.dphome.views import supplyproducts
 
 # 案例相关接口
 from droplets.products.views import cases
@@ -34,7 +35,6 @@ from droplets.products.views import get_case_by_page
 from droplets.products.views import products
 from droplets.products.views import get_products_by_id
 from droplets.products.views import get_products_by_page
-
 
 from droplets.news.views import news
 from droplets.news.views import get_news_by_id
@@ -51,7 +51,8 @@ urlpatterns = [
     url(r'^cases/(?P<cid>\d+).html', get_case_by_id),
     url(r'^cases/(?P<dir_name>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html', get_case_by_page),
     url(r'^cases/(?P<dir_name>\w+)/$', cases),
-    url(r'^cases/$',cases),
+    url(r'^cases/(?P<cate_name>\w+)_(?P<page>\d+).html', get_case_by_page),
+    url(r'^cases/$', cases),
 
     # 新闻相关接口
     url(r'^news/(?P<cid>\d+).html', get_news_by_id),
@@ -60,9 +61,13 @@ urlpatterns = [
     url(r'^news/$', news),
 
     # 产品相关接口
-    url(r'^supply/(?P<cid>\d+).html', get_products_by_id),
-    url(r'^supply/(?P<dir_name>\w+)/$', products),
-    url(r'^supply/Products_(?P<page>\d+).html$', get_supply_by_page),
+    #url(r'^supply/(?P<cid>\d+).html', get_products_by_id),
+    url(r'^supply_(?P<cur_city>\w+)/(?P<cid>\d+).html', get_products_by_id),
+    url(r'^supply_(?P<cur_city>\w+)/(?P<cate_name>\w+)_(?P<dir_name>\w+)/$', get_products_by_page),
+    #url(r'^supply/Products_(?P<page>\d+).html$', get_products_by_page),
+    url(r'^supply_(?P<cur_city>\w+)/Products_(?P<page>\d+).html$', get_products_by_page),
+    url(r'^supply_(?P<cur_city>\w+)/(?P<dir_name>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html$', get_products_by_page),
+    url(r'^supply_(?P<cur_city>\w+)/(?P<dir_name>\w+)/$', products),
     url(r'^supply/$', products),
 
     # 关于我们
@@ -85,6 +90,9 @@ urlpatterns = [
 
     # uploads
     url(r'^upload_image', sceneImgUpload),
+
+    # 二次开发示例
+    url(r'^supplyproducts', supplyproducts),
 ]
 
 if settings.DEBUG:

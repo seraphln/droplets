@@ -25,15 +25,14 @@ def do_generate_product_name(products, city):
     """
     lt = LongTailKeywords.objects.filter().first()
     # 没有设置长尾词，直接返回
-    if not lt or not lt.cities:
-        return site
 
-    pinyin_mapper = generate_pinyin_mapper(lt.cities)
+    pinyin_mapper = generate_pinyin_mapper(getattr(lt, "cities", ""))
 
     # 取不到就是北京
     suffix_keyword = pinyin_mapper.get(city, u"北京")
     for product in products:
-        product.title = u"%s%s" % (suffix_keyword, product.title)
+        if product:
+            product.title = u"%s%s" % (suffix_keyword, product.title)
 
     return products
 

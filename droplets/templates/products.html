@@ -8,6 +8,9 @@
             <li class="layery" id="teshu">
             <a href="http://{{site.url}}/supply/" class="topnewb list_item">{{cur_city_name}}产品中心</a>
             </li>
+           {% for product in products_categories %}
+           <li><a href="/supply_{{cur_city}}/Products_{{product.dir_name}}/">{{cur_city_name}}{{product.name}}</a></li>
+           {% endfor %}
           </ul>
           <script type="text/javascript">
             $(".layery .layere").addClass("yingcang");
@@ -59,20 +62,20 @@
     </div>
     <div class="cpzs fr">
       <h2 class="tongy">产品中心
-        <a href="http://{{site.url}}/supply/">更多&gt;&gt;</a>
+        <a href="http://{{site.url}}/supply_{{cur_city}}/">更多&gt;&gt;</a>
       </h2>
       <div class="content">
         <ul class="product_list1 clearfix">
           {% for product in products %}
             <li>
-            <a href="/supply/{{product.id}}.html" class="img">
+            <a href="/supply_{{cur_city}}/{{product.id}}.html" class="img">
                 <img src="{{product.pic}}" alt="{{product.title}}" title="{{product.title}}">
               </a>
               <h3>
-                <a href="/supply/{{product.id}}.html">{{product.title}}</a>
+                <a href="/supply_{{cur_city}}/{{product.id}}.html">{{product.title}}</a>
               </h3>
               <div class="tub1">
-                <a href="/supply/{{product.id}}.html">
+                <a href="/supply_{{cur_city}}/{{product.id}}.html">
                   <img src="/static/images/tb1.jpg"></a></div>
             </li>
           {% endfor %}

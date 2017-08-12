@@ -28,6 +28,7 @@ from droplets.dphome.models import UserMessage
 from droplets.products.models import Cases
 from droplets.products.models import CasesCategory
 from droplets.products.models import Products
+from droplets.products.models import ProductsCategory
 
 from droplets.seo.utils import generate_pinyin_mapper
 
@@ -43,9 +44,9 @@ def index(request, city=None):
     """ 渲染网站首页 """
     basic_params = get_basic_params()
     basic_params["site"] = get_and_format_site(request, city)
-    category = CasesCategory.objects.filter(name=u"施工案例").first()
 
-    basic_params["cases"] = Cases.objects.filter(category=category)
+    basic_params["cases"] = Cases.objects.filter()[:10]
+    basic_params.update({"products_categories": ProductsCategory.objects.filter()})
 
     # 更新产品信息
     prod_page_info, products = get_data_by_page(Products)
@@ -56,8 +57,13 @@ def index(request, city=None):
     basic_params["links"] = links
 
     # 获取新闻信息
-    news_page_info, news = get_data_by_page(News)
-    basic_params["total_news"] = news
+    news_categories = NewsCategory.objects.filter()[:2]
+    news_dict = {}
+    for new_cate in news_categories:
+        _, news = get_data_by_page(News, {"category": new_cate}, reverse=False)
+        news_dict[new_cate] = news
+
+    basic_params["total_news"] = news_dict
 
     lt = LongTailKeywords.objects.filter().first()
 
@@ -109,7 +115,7 @@ def sitemap(request):
     return render_to_response("sitemap.html", basic_params)
 
 
-def get_supply_by_page(request, page=1):
+def get_supply_by_page(request, page=1, cur_city=None):
     """
         分页获取产品信息
 
@@ -130,6 +136,7 @@ def get_supply_by_page(request, page=1):
 
     # 更新产品信息
     prod_page_info, products = get_data_by_page(Products, page=page)
+    products = do_generate_product_name(products, cur_city)
     basic_params["prod_page_info"] = prod_page_info
     basic_params["products"] = products
 
@@ -164,6 +171,7 @@ def sceneImgUpload(request):
             path = "droplets/static/uploads/" + time.strftime("%Y%m%d%H%M%S",time.localtime())
             f = request.FILES["upload"]
             file_name = path + "_" + f.name
+            file_name = file_name.encode("utf-8")
             des_origin_f = open(file_name, "wb+")
             for chunk in f.chunks():
                 des_origin_f.write(chunk)
@@ -171,8 +179,30 @@ def sceneImgUpload(request):
         except Exception, e:
             print e
         url_name = url_path + "_" + f.name
-        res = "<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'/"+url_name+"', '');</script>"
-        print res
+        res = u"<script>window.parent.CKEDITOR.tools.callFunction(%s,'/%s', '');</script>" % (callback, url_name)
+        res = res.encode("utf-8")
         return HttpResponse(res)
     else:
         raise Http404()
+
+
+def supplyproducts(request):
+    """ 二次开发示例 """
+    basic_params = get_basic_params()
+    basic_params.update({"products_categories": ProductsCategory.objects.filter()})
+
+    query_dict = {}
+
+    cur_city = "BeiJing"
+    products_page_info, products = get_data_by_page(Products, query_dict)
+
+    lt = LongTailKeywords.objects.filter().first()
+    pinyin_mapper = generate_pinyin_mapper(lt.cities)
+    products = do_generate_product_name(products, cur_city)
+
+    basic_params.update({"products_page_info": products_page_info,
+                         "cur_city_name": pinyin_mapper.get(cur_city, u"北京"),
+                         "cur_city": cur_city or "BeiJing",
+                         "products": products})
+
+    return render_to_response("supplyproducts/index.html", basic_params)

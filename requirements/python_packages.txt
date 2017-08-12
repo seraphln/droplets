@@ -1,6 +1,5 @@
 # web framework
-graphene
-django
+django==1.10.1
 
 # db driver
 pymysql
@@ -16,3 +15,5 @@ xpinyin
 
 # ckeditor
 django-ckeditor
+
+django-suit

@@ -90,6 +90,17 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "droplets",
+        'USER': "root",
+        'PASSWORD': "jeanpiswonderful",
+        'HOST': "",
+        'PORT': "",
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -136,9 +147,6 @@ MEDIA_PATH = "/uploads/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'droplets/static/uploads')
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'droplets/static')]
-
-print STATICFILES_DIRS
-print MEDIA_ROOT
 
 
 SUIT_CONFIG = {"ADMIN_NAME": u"Droplets网站管理系统",

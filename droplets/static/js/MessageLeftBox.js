@@ -23,6 +23,6 @@ try {
     s += ("<iframe scrolling=no frameborder=0 width=250 height=275 src=/MessageLeftMain.htm></iframe>");
     s += ('</DIV></span>');
     document.write(s);
-    setTimeout('hideDiv(true);', 1000);
+    //setTimeout('hideDiv(true);', 1000);
 } catch (err) { document.write(err); }
 showDiv(true);

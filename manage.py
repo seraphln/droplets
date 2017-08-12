@@ -4,6 +4,10 @@ import os
 import sys
 
 if __name__ == "__main__":
+    # 使用pymysql替代mysqldb
+    import pymysql
+    pymysql.install_as_MySQLdb()
+
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "droplets.settings")
     try:
         from django.core.management import execute_from_command_line
