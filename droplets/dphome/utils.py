@@ -13,17 +13,12 @@ from django.http import HttpResponse
 from droplets.seo.utils import generate_meta
 
 from droplets.dphome.models import SiteConfig
+from droplets.article.models import Articles
 
-from droplets.news.models import News
 from droplets.seo.models import HotKeywords
 
 from droplets.dphome.models import Menus
 from droplets.dphome.models import Banners
-from droplets.dphome.models import CompanyInfo
-
-from droplets.news.models import NewsCategory
-from droplets.products.models import ProductsCategory
-from droplets.products.models import CasesCategory
 
 
 def get_and_format_site(request, city):
@@ -43,22 +38,6 @@ def get_and_format_site(request, city):
     site = generate_meta(request, site, city)
 
     return site
-
-def get_footer(footer):
-
-    case_foot = CasesCategory.objects.filter(parent_cate=footer)
-    if case_foot:
-        return case_foot
-    menus_foot = Menus.objects.filter(parent_cate=footer)
-    if menus_foot:
-        return menus_foot
-    product_foot = ProductsCategory.objects.filter(parent_cate=footer)
-    if product_foot:
-        return product_foot
-    new_foot = NewsCategory.objects.filter(parent_cate=footer)
-    if new_foot:
-        return new_foot
-    return []
 
 
 def format_footer_url(footer, foot_cates):
@@ -88,28 +67,13 @@ def format_footer_url(footer, foot_cates):
 def get_basic_params(city=None):
     """ 获取渲染页面需要的基础数据 """
     site = SiteConfig.objects.filter().first()
-    banners = Banners.objects.filter()
-    news = News.objects.filter()
+    # 最多5张图
+    banners = Articles.objects.filter(is_online=True, is_banner=True)[:5]
     menus = Menus.objects.filter(is_root=True)
-    menus_foot = Menus.objects.filter(is_foot=True)
-    ci = CompanyInfo.objects.filter().first()
-    hot_keywords = HotKeywords.objects.filter()
-    news_categories = NewsCategory.objects.filter()
-    products_categories = ProductsCategory.objects.filter()
-    footers_dict = {}
-    for footer in menus_foot:
-        footers_dict[footer] = format_footer_url(footer, get_footer(footer))
 
     return {"site": site,
             "banners": banners,
-            "news": news,
-            "hot_keywords": hot_keywords,
-            "menus": menus,
-            "menus_foot": menus_foot,
-            "ci": ci,
-            "news_categories":news_categories,
-            "footers_dict": footers_dict,
-            "products_categories":products_categories}
+            "menus": menus}
 
 
 def get_data_by_page(model_cls, query_dict={}, page=1,

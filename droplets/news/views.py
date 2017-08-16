@@ -5,8 +5,6 @@ from django import http
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 
-from droplets.dphome.models import CompanyInfo
-
 from droplets.dphome.models import SiteConfig
 from droplets.news.models import News
 from droplets.news.models import NewsCategory
@@ -69,8 +67,7 @@ def get_news_by_id(request, cid):
                          "news": news,
                          "cur_cate": news.category,
                          "prev_news": prev_news,
-                         "next_news": next_news,
-                         "ci": CompanyInfo.objects.filter().first()})
+                         "next_news": next_news})
 
     return render_to_response("news/news_detail.html", basic_params)
 
@@ -99,7 +96,6 @@ def get_news_by_page(request, dir_name, cate_name, page, per_page=10):
 
         basic_params.update({"news_categories": NewsCategory.objects.filter(),
                                                "news_page_info": page_info,
-                                               "news": news,
-                                               "ci": CompanyInfo.objects.filter().first()})
+                                               "news": news})
 
         return render_to_response("news/news.html", basic_params)

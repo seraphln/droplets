@@ -1,48 +1,61 @@
 <!-- 首页banner -->
-<div class="topbanner">
-  <div class="bannerzhl">
-    <div id="banner_nr">
-      <ul id="banner_img" style="left: -3840px;">
-        {% for banner in banners %}
-          <li style="width: 1920px;"><a href="/" target="_blank"><img src="/{{banner.tfile}}" alt="{{site.name}}" title="{{site.name}}"></a></li>
-        {% endfor %}
-        <div class="clear"></div>
-			</ul>
-			<div id="number" style="display:none;">
-        <ul>
-          <li class="">1</li>
-					<li class="">2</li>
-					<li class="current">3</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-  <script type="text/javascript">
-    var _num=$('#number ul li');
-    var _img=$('#banner_img');
-    var _tarWidth=$(window).width();
-    var _imgLi=$('#banner_img li');
-    _imgLi.css('width',_tarWidth);
-    var _len=_num.length;
-    var _index;
-    var _autoplay;
-    _num.mouseover(function(){
-      _index=_num.index(this);
-      _img.stop().animate({left:-_index*_tarWidth},600);
-      $('#number ul li').removeClass('current').eq(_index).addClass('current');
-
-    }).eq(0).mouseover();
-    $('#banner_nr').hover(function(){
-      clearInterval(autoplay);
-    },function(){
-        autoplay=setInterval(function(){
-        _img.stop().animate({left:-_index*_tarWidth},600);
-        $('#number ul li').removeClass('current').eq(_index).addClass('current');
-        _index++;
-        if(_index==_len){
-          _index=0;
-        }
-      },3000)
-    }).trigger('mouseleave');
-  </script>
+<div class="in-focus" id="slideBox">
+  <ul style="position: absolute; width: 1200px; left: -800px;">
+    {% for banner in banners %}
+      <li style="display: list-item; width: 400px;">
+        <div class="focus-pic">
+          <a href="{{site.url}}/{{banner.category.dir_name}}/{{banner.plural}}.html" title="{{banner.title}}">
+            <img src="{{banner.pic}}" alt="{{banner.title}}">
+          </a>
+        </div>
+        <div class="focus-text">
+          <h1 style="text-align:center;">
+            <a href="{{site.url}}/{{banner.category.dir_name}}/{{banner.plural}}.html" title="{{banner.title}}">{{banner.title}}</a>
+          </h1>
+        </div>
+      </li>
+    {% endfor %}
+    <div class="clear"></div>
+  </ul>
+  <div class="fitem">
+  </div>
 </div>
+
+<script type="text/javascript">
+  $(window).load(function() {
+    var img = new Image();
+    img.src =$("#imgID img").attr("src") ;
+    var w = img.width;
+    var h = img.height;
+    var sWidth = $(".in-focus").width();
+    var sHeight = $(".in-focus li").height();
+    var len = $(".in-focus ul li").length;
+    var index = 0;
+    var picTimer;
+    $(".in-focus ul").attr("style","position:absolute;").css("width",sWidth * (len));
+    $(".in-focus li").show().css("width",sWidth);
+    var btn="";
+    for (var i = 0; i < len; i++) {
+      btn+="<span></span>";
+    };
+    $(".fitem").append(btn);
+    $(".fitem span").css("opacity",0.9).click(function() {
+      index = $(".fitem span").index(this);
+      showPics(index);
+    }).eq(0).trigger("click");
+    $(".in-focus").hover(function() {
+      clearInterval(picTimer);
+    },function() {
+      picTimer = setInterval(function() {
+        showPics(index);
+        index++;
+        if(index == len) {index = 0;}
+      },3000);
+    }).trigger("mouseleave");
+    function showPics(index) {
+      var nowLeft = -index*sWidth;
+      $(".in-focus ul").stop(true,false).animate({"left":nowLeft}, 1000);
+      $(".fitem span").removeClass("on").eq(index).addClass("on"); //为当前的按钮切换到选中的效果
+    }
+  })
+</script>

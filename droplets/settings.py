@@ -41,9 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'droplets.dphome',
-    'droplets.news',
+    'droplets.article',
     'droplets.seo',
-    'droplets.products',
     # ckeditor
     'ckeditor',
 ]
@@ -90,16 +89,16 @@ DATABASES = {
     }
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': "droplets",
-        'USER': "root",
-        'PASSWORD': "jeanpiswonderful",
-        'HOST': "",
-        'PORT': "",
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': "droplets",
+#        'USER': "root",
+#        'PASSWORD': "jeanpiswonderful",
+#        'HOST': "",
+#        'PORT': "",
+#    }
+#}
 
 
 # Password validation
@@ -152,9 +151,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'droplets/static')]
 SUIT_CONFIG = {"ADMIN_NAME": u"Droplets网站管理系统",
                "MENU": ("sites",
                         {"app": "dphome", "label": u"系统设置"},
-                        {"app": "news", 'label': u"新闻管理"},
-                        {"app": "products", 'label': u"产品管理"},
-                        {"app": "seo", "label": u"SEO优化相关设置"})}
+                        {"app": "article", "label": u"新闻管理"},
+                        {"app": "news", 'label': u"文章管理"})}
 
 CKEDITOR_UPLOAD_PATH = "uploads/"  # 他的目录相对与media root 就是 media root + CKEDITOR_UPLOAD_PATH 不能写成"/uploads/"
 CKEDITOR_JQUERY_URL = 'js/jquery.min.js'

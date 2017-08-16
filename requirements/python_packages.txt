@@ -6,6 +6,7 @@ pymysql
 
 # debug tool
 ipdb
+pyflakes
 
 # supervisor
 supervisor

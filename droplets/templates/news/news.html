@@ -1,57 +1,26 @@
-{% extends "base.html" %}
-{% block title %}{{site.name}}{% endblock %}
-{% block body %}
-<!-- 首页banner -->
-{% include "header.html" %}
-<div id="container" class="clearfix">
-	<div class="left">
-		<div class="box sort_menu">
-		  <h3> 案例分类</h3>
-        <ul class="sort">
-         {% for news in news_categories %}
-             <li><a href="/news/{{news.dir_name}}/">{{news.name}}</a></li>
-         {% endfor %}
-        </ul>
-		</div>
-
-  {% include "contract.html" %}
-</div>
-
-<div class="right">
-  <div class="sitemp clearfix">
-    {% if cur_cate %}
-      <h2>{{cur_cate.name}}</h2>
-      <div class="site"><a href="/">首页</a> &gt; <a href="/news/">企业新闻</a> &gt; <a href="/news/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a></div>
-    {% else %}
-      <h2>案例展示</h2>
-      <div class="site"><a href="/">首页</a> &gt; <a href="/news/">企业新闻</a></div>
-    {% endif %}
-   </div>
-<div class="content">
-  <div class="container1">
-       {% for new in news %}
-       <div>
-         <a href="/news/{{new.id}}.html">{{new.title}}</a>
+<div class="in-news">
+  <div class="news-list" style="" id="n0">
+    <ul id="masonry0" class="masonry" style="position: relative; height: {{total_height}}">
+      {% for cur_news in news %}
+      <li class="masonry-brick" style="position: absolute; top: {{cur_news.height}}px; left: 0px;">
+      <div class="pad">
+        <div class="n-pic fl">
+          <a href="/{{cur_news.category.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}"><img src="{{cur_news.pic}}" alt="{{cur_news.title}}"></a>
         </div>
-     {% endfor %}
-     <h6 class="clear"></h6>
-	</div>
+        <div class="n-text fl">
+          <h4><a href="{{cur_news.category.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}">{{cur_news.title}}</a></h4>
+          <div class="n-des">{{cur_news.brief|safe}}</div>
+          <div class="clear"></div>
+          <div class="n-keytime">
+            <div class="time fr">{{cur_news.created_on|date:"Y-m-d"}}</div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div></li>
 
-  {% if news %}
-    <div class="pages">
-      <ul>
-        <li class="previous_s"><a href="/news/{{cur_cate.dir_name}}/News_{{news_page_info.pre_page}}.html">上一页<a></li>
-        <li class="pages_solid">第{{news_page_info.page}}页</li>
-        <li class="next"><a href="/news/{{cur_cate.dir_name}}/News_{{news_page_info.next_page}}.html">下一页</a></li>
-      </ul>
-    </div>
-  {% endif %}
-
+      {% endfor %}
+    </ul>
+    <div class="news-more" id="npage0"><a href="javascript:void(0)" onclick="return false">加载更多...</a></div>
+    <div class="pages"><a href="/news/" class="a1">+ 点击查看更多精彩</a></div>
   </div>
- </div>
-	</div>
 </div>
-<div id="footer_a">
-{% include "footer.html" %}
-  </div>
-{% endblock %}

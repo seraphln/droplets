@@ -27,12 +27,16 @@ class SiteConfig(models.Model):
     tongji_js = models.TextField(verbose_name=u"统计JS", default="", null=True, blank=True)
     qrcode = models.FileField(upload_to="../uploads/", verbose_name=u"网站二维码",
                               blank=True, null=True)
+    slogan = models.FileField(upload_to="../uploads/", verbose_name=u"网站slogan",
+                              blank=True, null=True)
     title = models.CharField(max_length=255, verbose_name=u"网站标题",
                              default="", null=True, blank=True)
     keywords = models.CharField(max_length=255, verbose_name=u"默认关键词",
                                 default="", null=True, blank=True)
     desc = models.CharField(max_length=255, verbose_name=u"默认描述",
                             default="", null=True, blank=True)
+    wap_site = models.CharField(max_length=255, verbose_name=u"移动端网站",
+                                default="", null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -40,36 +44,6 @@ class SiteConfig(models.Model):
     class Meta:
         verbose_name = u"系统设置"
         verbose_name_plural = u"系统设置"
-
-
-class CompanyInfo(models.Model):
-    """ 公司详细信息 """
-    GENDER_CHOICES = ((u"M", u"男"),
-                      (u"U", u"未知"),
-                      (u"F", u"女"))
-
-    username = models.CharField(max_length=128, verbose_name=u"联系人姓名")
-    gender = models.CharField(max_length=2,
-                              choices=GENDER_CHOICES,
-                              verbose_name=u"性别", default="M")
-
-    position = models.CharField(max_length=128, verbose_name=u"职位", null=True, blank=True)
-    telephone = models.CharField(max_length=16, verbose_name=u"电话", null=True, blank=True)
-    mobile = models.CharField(max_length=16, verbose_name=u"手机", null=True, blank=True)
-    fax = models.CharField(max_length=16, verbose_name=u"传真", null=True, blank=True)
-    address = models.CharField(max_length=255, verbose_name=u"地址", null=True, blank=True)
-    postcode = models.CharField(max_length=16, verbose_name=u"邮政编码", null=True, blank=True)
-    url = models.CharField(max_length=255, verbose_name=u"公司主页", null=True, blank=True)
-    email = models.CharField(max_length=255, verbose_name=u"公司邮箱", null=True, blank=True)
-    qq = models.CharField(max_length=16, verbose_name=u"公司QQ", null=True, blank=True)
-    description = models.TextField(verbose_name=u"公司描述", null=True, blank=True)
-
-    def __unicode__(self):
-        return self.username
-
-    class Meta:
-        verbose_name = u"联系方式设置"
-        verbose_name_plural = u"联系方式设置"
 
 
 class Menus(models.Model):
@@ -120,45 +94,3 @@ class Links(models.Model):
         verbose_name = u"友情链接"
         verbose_name_plural = u"友情链接"
 
-
-class Details(models.Model):
-    """详细信息"""
-    name = models.CharField(max_length=128, verbose_name=u"法定代表人/负责人")
-    industry = models.CharField(max_length=128, verbose_name=u"主营行业")
-    enterprise = models.CharField(max_length=128, verbose_name=u"企业类型")
-    operating = models.CharField(max_length=128, verbose_name=u"经营模式")
-    registered = models.CharField(max_length=128, verbose_name=u"注册资本(人民币/万元)")
-    registered_add = models.CharField(max_length=128, verbose_name=u"公司注册地(省份/城市)")
-    address = models.CharField(max_length=128, verbose_name=u"详细地址")
-    employees = models.CharField(max_length=128, verbose_name=u"员工人数")
-    people = models.CharField(max_length=128, verbose_name=u"研发部门人数")
-    workshop = models.CharField(max_length=128, verbose_name=u"厂房面积(平方米)")
-    account = models.CharField(max_length=128, verbose_name=u"开户银行")
-    account_number = models.CharField(max_length=128, verbose_name=u"银行账号")
-    authentication = models.CharField(max_length=128, verbose_name=u"管理体系认证")
-    customer = models.CharField(max_length=128, verbose_name=u"主要客户(如：超市、服装厂、印刷厂)")
-    market = models.CharField(max_length=128, verbose_name=u"主要市场")
-    kepp = models.CharField(max_length=128, verbose_name=u"备案号")
-
-    def __unicode__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = u"详细信息"
-        verbose_name_plural = u"详细信息"
-
-
-class UserMessage(models.Model):
-    """ 用户浏览模块 """
-    username = models.CharField(max_length=128, verbose_name=u"用户名")
-    telephone = models.CharField(max_length=128, verbose_name=u"用户电话")
-    email = models.CharField(max_length=128, verbose_name=u"用户邮箱")
-    content = models.CharField(max_length=128, verbose_name=u"用户留言信息")
-    created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
-
-    def __unicode__(self):
-        return self.username
-
-    class Meta:
-        verbose_name = u"用户留言"
-        verbose_name_plural = u"用户留言"
