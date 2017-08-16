@@ -1,0 +1,22 @@
+<!-- main begin -->
+<div class="fm-index-main">
+  <div class="in-chiefly bg-border">
+    <!--banner图部分-->
+    {% include "banner.html" %}
+    <!--banner图部分-->
+
+    <!--首页banner右边新闻-->
+    {% include "recommand_news.html" %}
+
+    <div class="clear"></div>
+    <!--热门新闻-->
+    {% include "hot_articles.html" %}
+  </div>
+
+  <!--新闻列表-->
+  {% include "news/news.html" %}
+  <div class="clear" id="cl"></div>
+
+  <!--右侧topic-->
+  {% include "in-side.html" %}
+</div>

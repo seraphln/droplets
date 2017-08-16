@@ -1,0 +1,14 @@
+<div class="in-headline">
+  <div class="headline-tit"></div>
+  <div class="headline-list">
+    <ul>
+      {% for rnews in recommand_news %}
+      <li>
+        <h2>
+          <a href="{{rnews.category.dir_name}}{{rnews.plural}}" title="{{rnews.title}}">{{rnews.title}}</a>
+        </h2>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
