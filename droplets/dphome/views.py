@@ -9,6 +9,8 @@
 import time
 import datetime
 
+from xpinyin import Pinyin
+
 from django import http
 from django.shortcuts import render
 from django.shortcuts import Http404
@@ -40,6 +42,29 @@ from droplets.dphome.utils import get_data_by_page
 from droplets.seo.utils import do_generate_product_name
 
 
+def get_cur_city(city):
+    """
+        根据传入的city，获取city的name和city
+    """
+    lt = LongTailKeywords.objects.filter().first()
+
+    cities = lt.cities.split(",")
+    default_city = cities[0] if len(cities) else ""
+
+    cur_city_name, cur_city = "", ""
+
+    pinyin = Pinyin()
+    cur_pinyin = pinyin.get_pinyin(default_city)
+    cur_city = "".join(map(lambda x: x.capitalize(), cur_pinyin.split("-")))
+
+    pinyin_mapper = generate_pinyin_mapper(getattr(lt, "cities", ""))
+
+    cur_city = city or cur_city
+    cur_city_name = pinyin_mapper.get(cur_city, u"")
+
+    return cur_city_name, cur_city
+
+
 def index(request, city=None):
     """ 渲染网站首页 """
     basic_params = get_basic_params()
@@ -67,11 +92,14 @@ def index(request, city=None):
 
     lt = LongTailKeywords.objects.filter().first()
 
-    # 处理多站
+    cur_city_name, cur_city = get_cur_city(city)
     pinyin_mapper = generate_pinyin_mapper(lt.cities)
-    basic_params["subsites"] = pinyin_mapper
-    basic_params["cur_city_name"] = pinyin_mapper.get(city, u"北京")
-    basic_params["cur_city"] = city or "BeiJing"
+
+    basic_params.update({"subsites": pinyin_mapper,
+                         "cur_city_name": cur_city_name,
+                         "cur_city": cur_city})
+
+    # 处理多站
     return render_to_response("index.html", basic_params)
 
 

@@ -1,0 +1,6 @@
+{% for ad in ads %}
+<div>
+  <h2><a href="/supply_{{cur_city}}/{{ad.id}}.html"><img src="/{{ad.pic}}" title="{{ad.title}}" alt="{{ad.category}}" height="150" width="150"></a></h2>
+  <h3><a href="/supply_{{cur_city}}/{{ad.id}}.html">{{ad.title}}</a></h3>
+</div>
+{% endfor %}

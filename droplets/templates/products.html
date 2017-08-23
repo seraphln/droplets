@@ -6,10 +6,18 @@
         <div class="content">
           <ul class="sort1">
             <li class="layery" id="teshu">
-            <a href="http://{{site.url}}/supply/" class="topnewb list_item">{{cur_city_name}}产品中心</a>
+            {% if cur_city_name %}
+              <a href="http://{{site.url}}/supply/" class="topnewb list_item">{{cur_city_name}}产品中心</a>
+            {% else %}
+              <a href="http://{{site.url}}/supply/" class="topnewb list_item">产品中心</a>
+            {% endif %}
             </li>
            {% for product in products_categories %}
-           <li><a href="/supply_{{cur_city}}/Products_{{product.dir_name}}/">{{cur_city_name}}{{product.name}}</a></li>
+            {% if cur_city %}
+             <li><a href="/supply_{{cur_city}}/Products_{{product.dir_name}}/">{{cur_city_name}}{{product.name}}</a></li>
+            {% else %}
+             <li><a href="/supply/Products_{{product.dir_name}}/">{{product.name}}</a></li>
+            {% endif %}
            {% endfor %}
           </ul>
           <script type="text/javascript">
@@ -62,20 +70,36 @@
     </div>
     <div class="cpzs fr">
       <h2 class="tongy">产品中心
-        <a href="http://{{site.url}}/supply_{{cur_city}}/">更多&gt;&gt;</a>
+        {% if cur_city %}
+          <a href="http://{{site.url}}/supply_{{cur_city}}/">更多&gt;&gt;</a>
+        {% else %}
+          <a href="http://{{site.url}}/supply/">更多&gt;&gt;</a>
+        {% endif %}
       </h2>
       <div class="content">
         <ul class="product_list1 clearfix">
           {% for product in products %}
             <li>
-            <a href="/supply_{{cur_city}}/{{product.id}}.html" class="img">
+            {% if cur_city %}
+              <a href="/supply_{{cur_city}}/{{product.id}}.html" class="img">
+            {% else %}
+              <a href="/supply/{{product.id}}.html" class="img">
+            {% endif %}
                 <img src="{{product.pic}}" alt="{{product.title}}" title="{{product.title}}">
               </a>
               <h3>
-                <a href="/supply_{{cur_city}}/{{product.id}}.html">{{product.title}}</a>
+                {% if cur_city %}
+                  <a href="/supply_{{cur_city}}/{{product.id}}.html">{{product.title}}</a>
+                {% else %}
+                  <a href="/supply/{{product.id}}.html">{{product.title}}</a>
+                {% endif %}
               </h3>
               <div class="tub1">
-                <a href="/supply_{{cur_city}}/{{product.id}}.html">
+                {% if cur_city %}
+                  <a href="/supply_{{cur_city}}/{{product.id}}.html">
+                {% else %}
+                  <a href="/supply/{{product.id}}.html">
+                {% endif %}
                   <img src="/static/images/tb1.jpg"></a></div>
             </li>
           {% endfor %}

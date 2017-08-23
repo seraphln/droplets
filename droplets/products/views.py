@@ -16,7 +16,10 @@ from droplets.products.models import ProductsCategory
 
 from droplets.dphome.utils import get_basic_params
 from droplets.dphome.utils import get_data_by_page
+from droplets.dphome.utils import get_and_format_site
 from droplets.dphome.utils import get_prev_and_next_page
+
+from droplets.dphome.views import get_cur_city
 
 from droplets.seo.models import LongTailKeywords
 from droplets.seo.utils import generate_pinyin_mapper
@@ -37,6 +40,7 @@ def products(request, cur_city=None, dir_name=None):
     """
 
     basic_params = get_basic_params()
+    basic_params["site"] = get_and_format_site(request, cur_city)
     basic_params.update({"products_categories": ProductsCategory.objects.filter()})
 
     if dir_name:
@@ -47,14 +51,13 @@ def products(request, cur_city=None, dir_name=None):
         query_dict = {}
 
     products_page_info, products = get_data_by_page(Products, query_dict)
-
-    lt = LongTailKeywords.objects.filter().first()
-    pinyin_mapper = generate_pinyin_mapper(lt.cities)
     products = do_generate_product_name(products, cur_city)
 
+    cur_city_name, cur_city = get_cur_city(cur_city)
+
     basic_params.update({"products_page_info": products_page_info,
-                         "cur_city_name": pinyin_mapper.get(cur_city, u"北京"),
-                         "cur_city": cur_city or "BeiJing",
+                         "cur_city_name": cur_city_name,
+                         "cur_city": cur_city,
                          "products": products})
 
     return render_to_response("products/products.html", basic_params)
@@ -109,6 +112,7 @@ def get_products_by_id(request, cid, cur_city=None):
     """
 
     basic_params = get_basic_params()
+    basic_params["site"] = get_and_format_site(request, cur_city)
 
     products = Products.objects.filter(id=int(cid)).first()
     prev_prod, next_prod = get_prev_and_next_page(Products, cid)
@@ -116,15 +120,15 @@ def get_products_by_id(request, cid, cur_city=None):
     next_prod = do_generate_product_name([next_prod, ], cur_city)[0]
     products = do_generate_product_name([products,], cur_city)[0]
 
-    lt = LongTailKeywords.objects.filter().first()
-    pinyin_mapper = generate_pinyin_mapper(lt.cities)
+    cur_city_name, cur_city = get_cur_city(cur_city)
+
     basic_params.update({"products_categories": ProductsCategory.objects.filter(),
                          "products": products,
                          "cur_cate": products.category,
                          "prev_prod": prev_prod,
                          "next_prod": next_prod,
-                         "cur_city_name": pinyin_mapper.get(cur_city, u"北京"),
-                         "cur_city": cur_city or "BeiJing",
+                         "cur_city_name": cur_city_name,
+                         "cur_city": cur_city,
                          "ci": CompanyInfo.objects.filter().first()})
 
     return render_to_response("products/products_detail.html", basic_params)
@@ -235,14 +239,14 @@ def get_products_by_page(request, dir_name, cate_name=None, page=1, per_page=10,
                                            per_page=int(per_page))
 
     lt = LongTailKeywords.objects.filter().first()
-    pinyin_mapper = generate_pinyin_mapper(lt.cities)
-    products = do_generate_product_name(products, cur_city)
+
+    cur_city_name, cur_city = get_cur_city(cur_city)
 
     basic_params.update({"products_categories": ProductsCategory.objects.filter(),
                          "products_page_info": page_info,
                          "products": products,
-                         "cur_city_name": pinyin_mapper.get(cur_city, u"北京"),
-                         "cur_city": cur_city or "BeiJing",
+                         "cur_city_name": cur_city_name,
+                         "cur_city": cur_city,
                          "ci": CompanyInfo.objects.filter().first()})
 
     return render_to_response("products/products.html", basic_params)

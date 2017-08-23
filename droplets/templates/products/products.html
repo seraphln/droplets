@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{site.name}}{% endblock %}
+{% block title %}{{site.title}}{% endblock %}
 {% block body %}
 <!-- 首页banner -->
 {% include "header.html" %}
@@ -9,7 +9,11 @@
 		  <h3>产品分类</h3>
         <ul class="sort">
          {% for product in products_categories %}
-         <li><a href="/supply_{{cur_city}}/{{product.dir_name}}/">{{product.name}}</a></li>
+         {% if cur_city %}
+           <li><a href="/supply_{{cur_city}}/{{product.dir_name}}/">{{product.name}}</a></li>
+         {% else %}
+           <li><a href="/supply/{{product.dir_name}}/">{{product.name}}</a></li>
+         {% endif %}
          {% endfor %}
         </ul>
 		</div>
@@ -53,6 +57,7 @@
  </div>
 	</div>
 </div>
+{% include "show_ads.html" %}
 <div id="footer_a">
 {% include "footer.html" %}
   </div>

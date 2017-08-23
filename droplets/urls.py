@@ -36,6 +36,8 @@ from droplets.products.views import products
 from droplets.products.views import get_products_by_id
 from droplets.products.views import get_products_by_page
 
+from droplets.ads.views import ads
+
 from droplets.news.views import news
 from droplets.news.views import get_news_by_id
 from droplets.news.views import get_news_by_page
@@ -67,6 +69,7 @@ urlpatterns = [
     #url(r'^supply/Products_(?P<page>\d+).html$', get_products_by_page),
     url(r'^supply_(?P<cur_city>\w+)/Products_(?P<page>\d+).html$', get_products_by_page),
     url(r'^supply_(?P<cur_city>\w+)/(?P<dir_name>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html$', get_products_by_page),
+    url(r'^supply_(?P<cur_city>\w+)/$', products),
     url(r'^supply_(?P<cur_city>\w+)/(?P<dir_name>\w+)/$', products),
     url(r'^supply/$', products),
 
@@ -83,6 +86,9 @@ urlpatterns = [
 
     # 后台管理
     url(r'^admin/', admin.site.urls),
+
+    # 广告相关
+    url(r'^ads/', ads),
 
     # 留言管理
     url(r'^MessageLeftMain.htm', message),

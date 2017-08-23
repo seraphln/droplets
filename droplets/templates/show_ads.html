@@ -1,0 +1,17 @@
+<div class="content">
+  <div class="container1">
+    <div class="pro_b" id="ads">
+
+    <h6 class="clear"></h6>
+    </div>
+  </div>
+</div>
+
+<script>
+$.ajax ({
+    url: "/ads/",
+    success: function(data) {
+      $("#ads").html(data);
+    }
+  })
+</script>

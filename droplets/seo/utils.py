@@ -25,11 +25,13 @@ def do_generate_product_name(products, city):
     """
     lt = LongTailKeywords.objects.filter().first()
     # 没有设置长尾词，直接返回
+    cities = lt.cities.split(",")
+    default_city = cities[0] if len(cities) else ""
 
     pinyin_mapper = generate_pinyin_mapper(getattr(lt, "cities", ""))
 
     # 取不到就是北京
-    suffix_keyword = pinyin_mapper.get(city, u"北京")
+    suffix_keyword = pinyin_mapper.get(city, default_city)
     for product in products:
         if product:
             product.title = u"%s%s" % (suffix_keyword, product.title)
@@ -52,6 +54,10 @@ def do_generate_meta(keyword, site):
         >>> keyword = u"北京"
         site.title = keyword + site.title + site.name
     """
+    lt = LongTailKeywords.objects.filter().first()
+    cities = lt.cities.split(",")
+    default_city = cities[0] if len(cities) else ""
+    keyword = keyword or default_city
 
     # 生成标题meta
     site_keyword_lst = site.keywords.split(",")
@@ -109,7 +115,7 @@ def generate_meta(request, site, city):
     pinyin_mapper = generate_pinyin_mapper(lt.cities)
 
     # 取不到就是北京
-    suffix_keyword = pinyin_mapper.get(city, u"北京")
+    suffix_keyword = pinyin_mapper.get(city, u"")
     return do_generate_meta(suffix_keyword, site)
 
 
