@@ -1,55 +1,17 @@
-<div id="footer">
-  <ul class="navv clearfix">
-    {% for foot in footers_dict.items %}
-    <li><a href="{{foot.0.dir_name}}">{{foot.0}}</a>
-       <div class="secc">
-        {% for i in foot.1 %}
-          <a href="{{i.url}}">{{i}}</a>
-        {% endfor %}
-        </div>
-        </li>
-    {% endfor %}
-    <li class="last" style="width:292px;"><a href="http://{{site.url}}/about9.html/">联系我们</a>
-      <div class="secc">
-        <table data-sort="sortDisabled">
-          <tbody>
-            <tr class="firstRow">
-              <td rowspan="2" colspan="1" valign="top">
-                <img src="/static/images/1449741338263645.png" title="1449741338263645.png" alt="tubiao_11.png">
-              </td>
-              <td style="word-break: break-all;" valign="top">
-                <span style="font-size: 14px;">
-                  <strong>{{ci.telephone}}</strong>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td style="word-break: break-all;" valign="top">
-                <strong><span style="font-family: 宋体, SimSun; font-size: 14px;">7*24小时服务热线</span></strong>
-              </td>
-            </tr>
-            <tr>
-              <td rowspan="2" colspan="1" valign="top">
-                <img src="/static/images/1449741348782158.png" title="1449741348782158.png" alt="tubiao_14.png">
-              </td>
-              <td style="word-break: break-all;" valign="top">在线咨询</td>
-            </tr>
-            <tr><td style="word-break: break-all;" valign="top">7*24小时热线</td></tr></tbody></table>
+<!-- footer begin -->
+<footer style="">
+  <div class="fm-footer">
+    <div class="foot-logo fl"><a href="#"><img src="/static/img/logo-bw.png"></a></div>
+    <div class="foot-text fl">
+      <div class="copyright">&nbsp;版权所有 京ICP备16056511号</div>
+      <div class="about">
+        <ul>
+          <li><a href="/about/copyright/" target="_blank">版权声明</a></li>
+          <div class="clear"></div>
+        </ul>
       </div>
-    </li>
-    <li class="last" style="padding-top:10px;">
-      <p>
-      <img src="/{{site.qrcode}}" title="{{site.qrcode.name}}" alt="二维码.png">
-      </p>
-    </li>
-  </ul>
-  <div class="nav_foot">
-    <p>
-      <a href="http://{{site.url}}">网站首页</a> |
-      <a href="http://{{site.url}}/about/">关于我们</a> |
-      <a href="http://{{site.url}}/supply/">产品中心</a> |
-      <a href="http://{{site.url}}/news/">新闻中心</a> |
-      <a href="http://{{site.url}}/about/about9.html">联系我们</a></p>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
   </div>
-  <div class="copyright"> Copyright&nbsp;http://{{site.url}}&nbsp;{{site.name}}专业生产等产品，欢迎来电订购. </div>
-</div>
+</footer>

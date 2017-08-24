@@ -168,3 +168,5 @@ def get_prev_and_next_page(model_cls, cid):
     next_data = model_cls.objects.filter(id__gt=cid).first()
 
     return prev_data, next_data
+
+

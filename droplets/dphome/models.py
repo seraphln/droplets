@@ -57,6 +57,7 @@ class Menus(models.Model):
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     is_root = models.BooleanField(default=False, verbose_name=u"是否是顶级分类")
     is_foot = models.BooleanField(default=False, verbose_name=u"是否是加入底边框")
+    is_inside = models.BooleanField(default=False, verbose_name=u"是否是加入右边框")
 
     def __unicode__(self):
         return self.name
@@ -64,6 +65,18 @@ class Menus(models.Model):
     class Meta:
         verbose_name = u"导航设置"
         verbose_name_plural = u"导航设置"
+
+    def save(self, *args, **kwargs):
+        """ 重写save方法，自动添加/ """
+        dir_name = self.dir_name
+        if not dir_name.startswith("/"):
+            dir_name = "/" + dir_name
+
+        if not dir_name.endswith("/"):
+            dir_name = dir_name + "/"
+
+        self.dir_name = dir_name
+        super(Menus, self).save(*args, **kwargs)
 
 
 class Banners(models.Model):

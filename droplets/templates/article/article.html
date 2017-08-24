@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- title和keywords -->
+    <title>{{ site.title }}</title>
+    <meta name="Keywords" content="{{ site.keywords }}">
+    <meta name="Description" content="{{ site.desc }}">
+
+    <!-- 通用meta配置 -->
+    <meta http-equiv="mobile-agent" content="format=xhtml; url={{ site.wap_site }}">
+    <meta http-equiv="mobile-agent" content="format=html5; url={{ site.wap_site }}">
+
+    <!-- 通用css -->
+    <link rel="stylesheet" type="text/css" href="/static/css/index-two.css">
+
+    <!-- 通用js -->
+    <script src="/static/js/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <!--首页header-->
+    {% include "header.html" %}
+
+    <!--首页main-->
+    <!-- main begin -->
+    <div class="fm-index-main">
+      <div class="show-left">
+        <div class="fm-show">
+          <div class="infor">
+            <div class="fl"><span class="location"><a href="/">{{site.name}}</a> &gt; <a href="{{article.category.dir_name}}">{{article.category.name}}</a> &gt;  正文</span></div>
+            <div class="tag">
+              <span>{{article.created_on}}　来源：{{article.source}}</span>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <hgroup>
+            <h1>{{article.title}}</h1>
+          </hgroup>
+           <div class="text">
+            <article>
+              <div id="fm_article">
+                {{ article.content|safe }}
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    <div class="clear" id="cl"></div>
+
+    <!--右侧topic-->
+    {% include "in-side.html" %}
+
+    </div>
+    {% include "footer.html" %}
+
+  </body>
+</html>
+

@@ -11,7 +11,7 @@ from droplets.article.models import ArticlesCategory
 
 class ArticlesAdmin(admin.ModelAdmin):
     """ 新闻管理 """
-    list_display = ("id", "title", "category", "keywords", "created_on", "modified_on")
+    list_display = ("id", "title", "keywords", "created_on", "modified_on")
 
 
 class HotArticlesAdmin(admin.ModelAdmin):
@@ -20,7 +20,7 @@ class HotArticlesAdmin(admin.ModelAdmin):
 
 class ArticlesCategoryAdmin(admin.ModelAdmin):
     """ 新闻分类管理 """
-    list_display = ("id", "name", "dir_name")
+    list_display = ("id", "name")
 
 
 admin.site.register(Articles, ArticlesAdmin)

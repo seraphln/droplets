@@ -9,9 +9,17 @@
     <div class="in-nav">
       <ul>
         <map>
-          <li class="index"><a href="{{site.url}}">首页</a></li>
+          {% if cate %}
+            <li><a href="/">首页</a></li>
+          {% else %}
+            <li class="index"><a href="/">首页</a></li>
+          {% endif %}
           {% for menu in menus %}
-          <li><a href="{{menu.dir_name}}"><span>{{menu.name}}</span></a></li>
+            {% if cate.name == menu.name %}
+              <li class="index"><a href="{{menu.dir_name}}"><span>{{menu.name}}</span></a></li>
+            {% else %}
+              <li><a href="{{menu.dir_name}}"><span>{{menu.name}}</span></a></li>
+            {% endif %}
           {% endfor %}
         </map>
         <div class="clear"></div>

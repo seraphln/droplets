@@ -14,26 +14,7 @@ from django.utils import timezone
 from ckeditor.fields import RichTextField
 from droplets.dphome.models import Menus
 
-
-class ArticlesCategory(models.Model):
-    """ 文章类别 """
-    # 分类名称
-    name = models.CharField(max_length=255, verbose_name=u"文章类别")
-    # 分类的url
-    dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
-    # 父分类
-    parent_cate = models.ForeignKey(Menus, null=True, blank=True, verbose_name=u"上级分类")
-    # 是否在右侧显示
-    is_inside = models.BooleanField(default=False, verbose_name=u"是否在右侧显示")
-    # 是否显示图片
-    is_pic = models.BooleanField(default=False, verbose_name=u"是否显示图片")
-
-    def __unicode__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = u"文章分类"
-        verbose_name_plural = u"文章分类"
+from droplets.article.utils import generate_plural
 
 
 class Articles(models.Model):
@@ -41,9 +22,9 @@ class Articles(models.Model):
     # 文章标题
     title = models.CharField(max_length=255, verbose_name=u"文章标题")
     # 文章的url
-    plural = models.CharField(max_length=255, verbose_name=u"文章的url")
+    plural = models.CharField(max_length=255, null=True, blank=True, verbose_name=u"文章的url")
     # 文章分类
-    category = models.ForeignKey(ArticlesCategory, verbose_name=u"类别")
+    category = models.ForeignKey(Menus, verbose_name=u"类别")
     # 文章封面图
     pic = models.FileField(upload_to="../uploads/", verbose_name=u"文章图片", blank=True, null=True)
     # 关键词
@@ -69,6 +50,11 @@ class Articles(models.Model):
         verbose_name = u"文章"
         verbose_name_plural = u"文章"
 
+    def save(self, *args, **kwargs):
+        """ 重写save方法，需要自动生成对应的文章url """
+        self.plural = generate_plural(self.title)
+        super(Articles, self).save(*args, **kwargs)
+
 
 class HotArticles(models.Model):
     """ 首页显示需要的热门新闻列表 """
@@ -83,3 +69,24 @@ class HotArticles(models.Model):
     class Meta:
         verbose_name = u"热门新闻"
         verbose_name_plural = u"热门新闻"
+
+
+class ArticlesCategory(models.Model):
+    """ 文章类别 """
+    # 分类名称
+    name = models.CharField(max_length=255, verbose_name=u"栏目类别")
+    # 是否在右侧显示
+    is_inside = models.BooleanField(default=False, verbose_name=u"是否在右侧显示")
+    # 是否显示图片
+    is_pic = models.BooleanField(default=False, verbose_name=u"是否显示图片")
+    # 文章列表
+    articles = models.ManyToManyField(Articles, verbose_name=u"文章列表")
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = u"文章分类"
+        verbose_name_plural = u"文章分类"
+
+

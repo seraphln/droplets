@@ -93,3 +93,6 @@ ENV/
 *.sqlite3
 
 *.pid
+
+*.jpg
+*.out

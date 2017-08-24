@@ -26,6 +26,7 @@ from django.conf.urls.static import static
 from droplets.dphome.views import index
 
 from droplets.dphome.views import sitemap
+from droplets.dphome.views import page_router
 from droplets.dphome.views import sceneImgUpload
 
 
@@ -35,8 +36,7 @@ urlpatterns = [
     # 站点地图
     url(r'^sitemap/$', sitemap),
 
-    # 首页以及多站点配置
-    url(r'^index_(?P<city>\w+).html', index),
+    # 首页
     url(r'^$', index),
 
     # 后台管理
@@ -44,6 +44,7 @@ urlpatterns = [
 
     # uploads
     url(r'^upload_image', sceneImgUpload),
+
 ]
 
 if settings.DEBUG:
@@ -52,3 +53,6 @@ if settings.DEBUG:
 
     urlpatterns += static(settings.MEDIA_PATH,
                           document_root=settings.MEDIA_ROOT)
+
+
+urlpatterns += [url(r'^(?P<dir_name>.*)/(?P<plural>.*)', page_router)]
