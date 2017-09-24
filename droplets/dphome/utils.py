@@ -77,7 +77,7 @@ def get_basic_params(city=None):
 
 
 def get_data_by_page(model_cls, query_dict={}, page=1,
-                     per_page=10, order_by="created_on", reverse=True):
+                     per_page=10, order_by="created_on", reverse=False):
     """
         分页获取传入的对象的数据
 

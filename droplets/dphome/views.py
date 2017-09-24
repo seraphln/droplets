@@ -21,6 +21,8 @@ from droplets.article.models import Articles
 from droplets.article.models import HotArticles
 from droplets.article.models import ArticlesCategory
 
+default_height = 182
+
 
 def get_inside_news():
     """
@@ -39,12 +41,14 @@ def get_inside_news():
 def index(request, city=None):
     """ 渲染网站首页 """
     basic_params = get_basic_params()
-    _, recommand_news = get_data_by_page(Articles, {"is_recommend": True, "is_online": True})
+    _, recommand_news = get_data_by_page(Articles,
+                                         {"is_recommend": True,
+                                          "is_online": True},
+                                         per_page=8)
     _, hot_news = get_data_by_page(HotArticles, per_page=4)
 
     # 处理新闻列表
     _, news = get_data_by_page(Articles, {"is_online": True})
-    default_height = 182
 
     basic_params.update({"recommand_news": recommand_news,
                          "hot_news": hot_news,
@@ -122,6 +126,7 @@ def page_router(request, dir_name=None, plural=None):
             return render_to_response("article/article.html", basic_params)
     else:
         _, articles = get_data_by_page(Articles, query_dict)
-        basic_params["articles"] = articles
+        basic_params.update({"articles": articles,
+                             "total_height": default_height*len(articles)})
         return render_to_response("article/article_list.html", basic_params)
 
