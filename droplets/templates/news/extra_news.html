@@ -1,0 +1,10 @@
+<div class="content">
+  <div class="container1">
+       {% for new in news %}
+       <div>
+         <a href="/news/{{new.id}}.html">{{new.title}}</a>
+        </div>
+     {% endfor %}
+     <h6 class="clear"></h6>
+	</div>
+</div>

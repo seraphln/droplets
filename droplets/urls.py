@@ -65,9 +65,8 @@ urlpatterns = [
     # 产品相关接口
     #url(r'^supply/(?P<cid>\d+).html', get_products_by_id),
     url(r'^supply_(?P<cur_city>\w+)/(?P<cid>\d+).html', get_products_by_id),
+    url(r'^supply_(?P<cur_city>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html$', get_products_by_page),
     url(r'^supply_(?P<cur_city>\w+)/(?P<cate_name>\w+)_(?P<dir_name>\w+)/$', get_products_by_page),
-    #url(r'^supply/Products_(?P<page>\d+).html$', get_products_by_page),
-    url(r'^supply_(?P<cur_city>\w+)/Products_(?P<page>\d+).html$', get_products_by_page),
     url(r'^supply_(?P<cur_city>\w+)/(?P<dir_name>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html$', get_products_by_page),
     url(r'^supply_(?P<cur_city>\w+)/$', products),
     url(r'^supply_(?P<cur_city>\w+)/(?P<dir_name>\w+)/$', products),

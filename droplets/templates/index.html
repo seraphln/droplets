@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <!-- title和keywords -->
-  <title>{{ site.title }}</title>
+  <title>{{ site.title|truncatechars:10 }}</title>
   <meta name="Keywords" content="{{ site.keywords }}">
   <meta name="Description" content="{{ site.desc }}">
 
@@ -21,8 +21,24 @@
   <script src="/static/js/jquery.js"></script>
   <script src="/static/js/mobile.js"></script>
 </head>
-
 <body>
+
+      行业动态的hydt_news显示
+        <div class="cjwt fl">
+          <ul class="tab clearfix">
+            <li><a href="javascript:void(0);">{{news.category.name}}</a></li>
+          </ul>
+          <div class="tab_content">
+            <div class="tt" id="tab1">
+              <ul class="list1">
+                {% for news in hydt_news %}
+                  <li><a href="/news/{{news.id}}.html">{{news.title}}</a>
+                  <span>{{news.created_on|date:"Y-m-d"}}</span> </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
   <!-- 首页banner -->
   {% include "header.html" %}
 
@@ -34,7 +50,6 @@
     {% include "cases.html" %}
     <!-- 工程案例 -->
   </div>
-
   <div id="container">
     <!-- 产品展示 -->
     {% include "products.html" %}
@@ -44,7 +59,6 @@
   <div class="gsys">
     {% include "gsys.html" %}
   </div>
-
   <div class="jjbj">
     <div class="gsjj">
         <h2 class="tongy2">公司简介<br><span>ABOUT US</span></h2>
@@ -70,6 +84,8 @@
   </div>
   <div class="tongy2 c2">资讯中心<br><span>NEWS CENTER</span></div>
     <div class="underbox clearfix">
+
+
       {% for cate, news in total_news.items %}
         <div class="cjwt fl">
           <ul class="tab clearfix">
@@ -92,6 +108,7 @@
     </div>
 
     {% include "friends.html" %}
+    {% include "show_ads.html" %}
   <div id="footer_a">
     {% include "footer.html" %}
   </div>

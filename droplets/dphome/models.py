@@ -21,6 +21,8 @@ class SiteConfig(models.Model):
     url = models.CharField(max_length=128, verbose_name=u"公司URL地址")
     logo = models.FileField(upload_to="../uploads/", verbose_name=u"网站LOGO",
                             blank=True, null=True)
+    pic = models.FileField(upload_to="../uploads/", verbose_name=u"首页图片",
+                           blank=True, null=True)
     intro = RichTextField(blank=True,null=True, verbose_name="首页公司概况")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"公司创建时间")
     cnzz = models.TextField(verbose_name=u"站长统计编号", default="", null=True, blank=True)

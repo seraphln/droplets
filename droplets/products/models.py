@@ -56,7 +56,9 @@ class ProductsCategory(models.Model):
     """ 产品类别 """
     name = models.CharField(max_length=255, verbose_name=u"产品类别")
     dir_name = models.CharField(max_length=255, verbose_name=u"产品目录")
-    parent_cate = models.ForeignKey(Menus, null=True, blank=True, verbose_name=u"上级分类")
+    is_root = models.BooleanField(default=False, verbose_name=u"是否是根节点")
+    parent_cate = models.ForeignKey(Menus, null=True, blank=True, verbose_name=u"上级导航分类")
+    parent_product_cate = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级产品分类")
 
     def __unicode__(self):
         return self.name

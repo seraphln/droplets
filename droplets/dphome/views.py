@@ -39,6 +39,7 @@ from droplets.dphome.utils import get_basic_params
 from droplets.dphome.utils import get_and_format_site
 from droplets.dphome.utils import get_data_by_page
 
+
 from droplets.seo.utils import do_generate_product_name
 
 
@@ -71,7 +72,9 @@ def index(request, city=None):
     basic_params["site"] = get_and_format_site(request, city)
 
     basic_params["cases"] = Cases.objects.filter()[:10]
-    basic_params.update({"products_categories": ProductsCategory.objects.filter()})
+
+    from droplets.products.views import get_products_categories
+    basic_params.update({"products_categories": get_products_categories()})
 
     # 更新产品信息
     prod_page_info, products = get_data_by_page(Products)
@@ -88,6 +91,9 @@ def index(request, city=None):
         _, news = get_data_by_page(News, {"category": new_cate}, reverse=False)
         news_dict[new_cate] = news
 
+    news_cate = NewsCategory.objects.filter(dir_name="hydt").first()
+    _, hydt_news = get_data_by_page(News, {"category": news_cate}, reverse=False)
+
     basic_params["total_news"] = news_dict
 
     lt = LongTailKeywords.objects.filter().first()
@@ -97,6 +103,7 @@ def index(request, city=None):
 
     basic_params.update({"subsites": pinyin_mapper,
                          "cur_city_name": cur_city_name,
+                         "hydt_news": hydt_news,
                          "cur_city": cur_city})
 
     # 处理多站

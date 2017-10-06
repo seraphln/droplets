@@ -26,6 +26,16 @@ from droplets.seo.utils import generate_pinyin_mapper
 from droplets.seo.utils import do_generate_product_name
 
 
+def get_products_categories():
+    """ 获取产品的分类列表 """
+    cate_dict = {}
+    categories = ProductsCategory.objects.filter(is_root=True)
+    for cate in categories:
+        cate_dict[cate] = ProductsCategory.objects.filter(parent_product_cate=cate)
+
+    return cate_dict
+
+
 def products(request, cur_city=None, dir_name=None):
     """
         获取产品展示页面
@@ -41,7 +51,7 @@ def products(request, cur_city=None, dir_name=None):
 
     basic_params = get_basic_params()
     basic_params["site"] = get_and_format_site(request, cur_city)
-    basic_params.update({"products_categories": ProductsCategory.objects.filter()})
+    basic_params.update({"products_categories": get_products_categories()})
 
     if dir_name:
         cate = ProductsCategory.objects.filter(dir_name=dir_name).first()
@@ -122,7 +132,8 @@ def get_products_by_id(request, cid, cur_city=None):
 
     cur_city_name, cur_city = get_cur_city(cur_city)
 
-    basic_params.update({"products_categories": ProductsCategory.objects.filter(),
+    products_categories = get_products_categories()
+    basic_params.update({"products_categories": products_categories,
                          "products": products,
                          "cur_cate": products.category,
                          "prev_prod": prev_prod,
@@ -215,23 +226,24 @@ def get_case_by_page(request, cate_name, page, per_page=10, dir_name=None):
         return render_to_response("cases/cases.html", basic_params)
 
 
-def get_products_by_page(request, dir_name, cate_name=None, page=1, per_page=10, cur_city=None):
+def get_products_by_page(request, dir_name=None, cate_name=None, page=1, per_page=10, cur_city=None):
     """
         分页获取产品信息
     """
+
     cate_mapper = {"Products": Products,
                     "Cases": Cases}
 
     site = SiteConfig.objects.filter().first()
+    basic_params = get_basic_params()
 
     if dir_name:
         cate = ProductsCategory.objects.filter(dir_name=dir_name).first()
+        query_dict = {"category": cate.id}
+        basic_params["cur_cate"] = cate
     else:
-        cate = ProductsCategory.objects.filter().first()
-
-    basic_params = get_basic_params()
-    query_dict = {"category": cate.id}
-    basic_params["cur_cate"] = cate
+        cate = None
+        query_dict = {}
 
     page_info, products = get_data_by_page(cate_mapper.get(cate_name),
                                            query_dict,
@@ -242,7 +254,8 @@ def get_products_by_page(request, dir_name, cate_name=None, page=1, per_page=10,
 
     cur_city_name, cur_city = get_cur_city(cur_city)
 
-    basic_params.update({"products_categories": ProductsCategory.objects.filter(),
+    products_categories = get_products_categories()
+    basic_params.update({"products_categories": products_categories,
                          "products_page_info": page_info,
                          "products": products,
                          "cur_city_name": cur_city_name,

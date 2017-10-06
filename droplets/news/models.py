@@ -43,7 +43,7 @@ class News(models.Model):
                                       verbose_name=u"百度推送",
                                       default=0)
     url = models.CharField(max_length=255, verbose_name=u"新闻页面的URL", blank=True, null=True)
-    desc = models.TextField(null=True, blank=True, verbose_name=u"新闻标题")
+    desc = models.TextField(null=True, blank=True, verbose_name=u"新闻描述")
     content = RichTextField(blank=True, null=True, verbose_name="新闻正文")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")

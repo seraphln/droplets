@@ -96,6 +96,12 @@ def get_basic_params(city=None):
     hot_keywords = HotKeywords.objects.filter()
     news_categories = NewsCategory.objects.filter()
     products_categories = ProductsCategory.objects.filter()
+
+    root_dict = {}
+    for menu in menus:
+        root_dict[menu] = format_footer_url(menu,
+                                            Menus.objects.filter(parent_cate=menu))
+
     footers_dict = {}
     for footer in menus_foot:
         footers_dict[footer] = format_footer_url(footer, get_footer(footer))
@@ -106,6 +112,7 @@ def get_basic_params(city=None):
             "hot_keywords": hot_keywords,
             "menus": menus,
             "menus_foot": menus_foot,
+            "root_dict": root_dict,
             "ci": ci,
             "news_categories":news_categories,
             "footers_dict": footers_dict,
