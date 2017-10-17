@@ -28,6 +28,7 @@ from droplets.dphome.views import index
 from droplets.dphome.views import sitemap
 from droplets.dphome.views import page_router
 from droplets.dphome.views import sceneImgUpload
+from droplets.dphome.views import get_article_by_page
 
 
 urlpatterns = [
@@ -45,6 +46,7 @@ urlpatterns = [
     # uploads
     url(r'^upload_image', sceneImgUpload),
 
+    url(r'^get_article_by_page', get_article_by_page),
 ]
 
 if settings.DEBUG:

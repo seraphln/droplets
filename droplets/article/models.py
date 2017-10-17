@@ -8,6 +8,8 @@
 
 from __future__ import unicode_literals
 
+from uuid import uuid4
+
 from django.db import models
 from django.utils import timezone
 
@@ -24,7 +26,8 @@ class Articles(models.Model):
     # 文章的url
     plural = models.CharField(max_length=255, null=True, blank=True, verbose_name=u"文章的url")
     # 文章分类
-    category = models.ForeignKey(Menus, verbose_name=u"类别")
+    #category = models.ForeignKey(Menus, verbose_name=u"类别")
+    categories = models.ManyToManyField(Menus, verbose_name=u"类别")
     # 文章封面图
     pic = models.FileField(upload_to="../uploads/", verbose_name=u"文章图片", blank=True, null=True)
     # 关键词
@@ -52,7 +55,9 @@ class Articles(models.Model):
 
     def save(self, *args, **kwargs):
         """ 重写save方法，需要自动生成对应的文章url """
-        self.plural = generate_plural(self.title)
+        #self.plural = generate_plural(self.title)
+        if not self.plural:
+            self.plural = "%s.html" % (uuid4().hex)
         super(Articles, self).save(*args, **kwargs)
 
 
@@ -60,6 +65,8 @@ class HotArticles(models.Model):
     """ 首页显示需要的热门新闻列表 """
 
     article = models.ForeignKey(Articles, verbose_name=u"热门新闻列表")
+    # 是否在线
+    is_online = models.BooleanField(default=True, verbose_name=u"是否上线")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
 

@@ -5,7 +5,7 @@
       {% for rnews in recommand_news %}
       <li>
         <h2>
-          <a href="{{rnews.category.dir_name}}{{rnews.plural}}" title="{{rnews.title}}">{{rnews.title}}</a>
+          <a href="{{rnews.categories.all.0.dir_name}}{{rnews.plural}}" title="{{rnews.title}}">{{rnews.title}}</a>
         </h2>
       </li>
       {% endfor %}

@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- title和keywords -->
-    <title>{{ site.title }}</title>
+    <title>{{article.title}} - {{ site.title }}</title>
     <meta name="Keywords" content="{{ site.keywords }}">
     <meta name="Description" content="{{ site.desc }}">
 
@@ -25,12 +25,16 @@
     <!--首页main-->
     <!-- main begin -->
     <div class="fm-index-main">
-      <div class="show-left">
+      <div class="show-left" style="min-height: 2520px">
         <div class="fm-show">
           <div class="infor">
-            <div class="fl"><span class="location"><a href="/">{{site.name}}</a> &gt; <a href="{{article.category.dir_name}}">{{article.category.name}}</a> &gt;  正文</span></div>
+            <div class="fl"><span class="location"><a href="/">{{site.name}}</a> &gt; <a href="{{article.categories.all.0.dir_name}}">{{article.categories.all.0.name}}</a> &gt;  正文</span></div>
             <div class="tag">
-              <span>{{article.created_on}}　来源：{{article.source}}</span>
+              {% if article.source %}
+                <span>{{article.created_on}}　来源：{{article.source}}</span>
+              {% else %}
+                <span>{{article.created_on}}</span>
+              {% endif %}
             </div>
             <div class="clear"></div>
           </div>
@@ -52,8 +56,7 @@
     {% include "in-side.html" %}
 
     </div>
+  </div>
     {% include "footer.html" %}
-
   </body>
 </html>
-

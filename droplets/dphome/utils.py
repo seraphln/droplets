@@ -106,13 +106,18 @@ def get_data_by_page(model_cls, query_dict={}, page=1,
     # 更新每页信息
     per_page = [per_page, 10][per_page < 1]
 
+    if "is_online" not in query_dict:
+        query_dict["is_online"] = True
     data = model_cls.objects.filter(**query_dict)
     total_count = data.count()
 
     page_sum, rem = divmod(total_count, per_page)
     page_sum += [1, 0][rem == 0]
 
-    page = [page, 1][page < 1 or page > page_sum]
+    if page < 1:
+        page = 1
+    else:
+        page = page
 
     order_by = order_by if reverse else "-%s" % order_by
     data = data.order_by(order_by)
@@ -168,5 +173,3 @@ def get_prev_and_next_page(model_cls, cid):
     next_data = model_cls.objects.filter(id__gt=cid).first()
 
     return prev_data, next_data
-
-

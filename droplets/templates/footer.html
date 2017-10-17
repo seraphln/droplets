@@ -1,17 +1,18 @@
 <!-- footer begin -->
 <footer style="">
   <div class="fm-footer">
-    <div class="foot-logo fl"><a href="#"><img src="/static/img/logo-bw.png"></a></div>
+    <div class="foot-logo fl"><a href="#"><img src="{{site.logo}}"></a></div>
     <div class="foot-text fl">
-      <div class="copyright">&nbsp;版权所有 京ICP备16056511号</div>
+      <div class="copyright">&nbsp;版权所有 {{site.icp_info}}</div>
       <div class="about">
         <ul>
-          <li><a href="/about/copyright/" target="_blank">版权声明</a></li>
+          <!-- <li><a href="/about/copyright/" target="_blank">版权声明</a></li> -->
           <div class="clear"></div>
         </ul>
       </div>
       <div class="clear"></div>
     </div>
     <div class="clear"></div>
+    {{site.tongji_js|safe}}
   </div>
 </footer>

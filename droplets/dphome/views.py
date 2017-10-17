@@ -24,6 +24,17 @@ from droplets.article.models import ArticlesCategory
 default_height = 182
 
 
+def _format_dir_name(dir_name):
+    """ 格式化给定的dir_name """
+    if not dir_name.startswith("/"):
+        dir_name = "/" + dir_name
+
+    if not dir_name.endswith("/"):
+        dir_name = dir_name + "/"
+
+    return dir_name
+
+
 def get_inside_news():
     """
         获取首页右侧的新闻列表
@@ -32,7 +43,9 @@ def get_inside_news():
     inside_categories = Menus.objects.filter(is_inside=True)
 
     for category in inside_categories:
-        _, news = get_data_by_page(Articles, {"category": category, "is_online": True})
+        _, news = get_data_by_page(Articles,
+                                   {"categories": category, "is_online": True},
+                                   per_page=category.show_limit)
         inside_dct[category] = news
 
     return inside_dct
@@ -92,7 +105,26 @@ def sceneImgUpload(request):
         raise Http404()
 
 
-def page_router(request, dir_name=None, plural=None):
+def get_article_by_page(request):
+    """
+        根据分页信息获取article列表
+        :return:
+    """
+    dir_name = request.GET.get("dir_name")
+    page = int(request.GET.get("page", "1"))
+    per_page = int(request.GET.get("per_page", "10"))
+    cate = Menus.objects.filter(dir_name=_format_dir_name(dir_name)).first()
+
+    if not dir_name or not cate:
+        raise Http404()
+    else:
+        query_dict = {"categories": cate}
+
+    _, articles = get_data_by_page(Articles, query_dict, page=page, per_page=per_page)
+    return render_to_response("article/ajax_article_list.html", {"articles": articles})
+
+
+def page_router(request, dir_name=None, plural=None, page=1, per_page=10):
     """
     获取url的匹配
     """
@@ -100,22 +132,13 @@ def page_router(request, dir_name=None, plural=None):
     inside_dct = get_inside_news()
     basic_params["inside_dct"] = inside_dct
 
-    def _format_dir_name(dir_name):
-        if not dir_name.startswith("/"):
-            dir_name = "/" + dir_name
-
-        if not dir_name.endswith("/"):
-            dir_name = dir_name + "/"
-
-        return dir_name
-
     cate = Menus.objects.filter(dir_name=_format_dir_name(dir_name)).first()
     basic_params["cate"] = cate
     # 根据dir_name无法查询到对应的分类
     if not dir_name or not cate:
         raise Http404()
     else:
-        query_dict = {"category": cate}
+        query_dict = {"categories": cate}
 
     if plural:
         article = Articles.objects.filter(plural=plural).first()

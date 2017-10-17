@@ -4,13 +4,13 @@
     {% for banner in banners %}
       <li style="display: list-item; width: 400px;">
         <div class="focus-pic">
-          <a href="{{site.url}}/{{banner.category.dir_name}}/{{banner.plural}}.html" title="{{banner.title}}">
+          <a href="{{banner.categories.all.0.dir_name}}{{banner.plural}}" title="{{banner.title}}">
             <img src="{{banner.pic}}" alt="{{banner.title}}">
           </a>
         </div>
         <div class="focus-text">
           <h1 style="text-align:center;">
-            <a href="{{site.url}}/{{banner.category.dir_name}}/{{banner.plural}}.html" title="{{banner.title}}">{{banner.title}}</a>
+            <a href="{{banner.categories.all.0.dir_name}}{{banner.plural}}" title="{{banner.title}}">{{banner.title}}</a>
           </h1>
         </div>
       </li>

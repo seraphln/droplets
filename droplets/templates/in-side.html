@@ -1,27 +1,28 @@
 <div class="in-side">
   {% for inside_category, inside_news in inside_dct.items %}
-    <div class="side-top">
-      <div class="side-ad"> </div>
-    </div>
-    <div class="plate">
-      <div class="plate-tit"><a>{{inside_category.name}}</a></div>
-      <div class="wemedia">
-        <ul>
-          {% for cur_news in inside_news %}
-          {% if inside_category.is_pic %}
-            <li>
-            <div class="pic fl"><a href="/{{inside_category.dir_name}}/{{cur_news.plural}}" target="_blank"><img src="{{cur_news.pic}}"></a></div>
-            <div class="text fl"><a href="/{{inside_category.dir_name}}/{{cur_news.plural}}" target="_blank">{{cur_news.title}}</a></div>
-            <div class="clear"></div>
-            </li>
-          {% else %}
-            <li><a href="/{{inside_category.dir_name}}/{{cur_news.plural}}" target="_blank">{{cur_news.title}}</a></li>
-          {% endif %}
-          {% endfor %}
-        </ul>
+    {% if inside_news %}
+      <div class="side-top">
+        <div class="side-ad"> </div>
       </div>
+      <div class="plate">
+        <div class="plate-tit"><a>{{inside_category.name}}</a></div>
+        <div class="wemedia">
+          <ul>
+            {% for cur_news in inside_news %}
+            {% if inside_category.is_pic %}
+              <li>
+              <div class="pic fl"><a href="{{inside_category.dir_name}}{{cur_news.plural}}" target="_blank"><img src="{{cur_news.pic}}"></a></div>
+              <div class="text fl"><a href="{{inside_category.dir_name}}{{cur_news.plural}}" target="_blank">{{cur_news.title}}</a></div>
+              <div class="clear"></div>
+              </li>
+            {% else %}
+              <li><a href="{{inside_category.dir_name}}{{cur_news.plural}}" target="_blank">{{cur_news.title}}</a></li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+    {% endfor %}
+    <div class="side-ad">
     </div>
-  {% endfor %}
-  <div class="side-ad">
-  </div>
-</div>

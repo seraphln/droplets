@@ -35,6 +35,8 @@ class SiteConfig(models.Model):
                                 default="", null=True, blank=True)
     desc = models.CharField(max_length=255, verbose_name=u"默认描述",
                             default="", null=True, blank=True)
+    icp_info = models.CharField(max_length=128, verbose_name=u"备案号",
+                                default="", null=True, blank=True)
     wap_site = models.CharField(max_length=255, verbose_name=u"移动端网站",
                                 default="", null=True, blank=True)
 
@@ -53,6 +55,7 @@ class Menus(models.Model):
     dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
     description = models.CharField(max_length=255, verbose_name=u"描述", blank=True, null=True)
     parent_cate = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级分类")
+    show_limit = models.IntegerField(default=5, verbose_name=u"右侧导航最大长度限制")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     is_root = models.BooleanField(default=False, verbose_name=u"是否是顶级分类")

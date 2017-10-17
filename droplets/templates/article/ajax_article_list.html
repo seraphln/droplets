@@ -1,0 +1,18 @@
+{% for cur_news in articles %}
+<li class="masonry-brick" style="left: 0px; overflow: hidden">
+<div class="pad">
+  <div class="n-pic fl">
+    <a href="/{{cur_news.categories.all.0.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}"><img src="{{cur_news.pic}}" alt="{{cur_news.title}}"></a>
+  </div>
+  <div class="n-text fl">
+    <h4><a href="{{cur_news.categories.all.0.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}">{{cur_news.title}}</a></h4>
+    <div class="n-des">{{cur_news.brief|safe}}</div>
+    <div class="clear"></div>
+    <div class="n-keytime">
+      <div class="time fr">{{cur_news.created_on|date:"Y-m-d"}}</div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+</li>
+{% endfor %}

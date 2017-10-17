@@ -5,10 +5,10 @@
       <li class="masonry-brick" style="left: 0px; overflow: hidden">
       <div class="pad">
         <div class="n-pic fl">
-          <a href="{{cur_news.category.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}"><img src="{{cur_news.pic}}" alt="{{cur_news.title}}"></a>
+          <a href="{{cur_news.categories.all.0.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}"><img src="{{cur_news.pic}}" alt="{{cur_news.title}}"></a>
         </div>
         <div class="n-text fl">
-          <h4><a href="{{cur_news.category.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}">{{cur_news.title}}</a></h4>
+          <h4><a href="{{cur_news.categories.all.0.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}">{{cur_news.title}}</a></h4>
           <div class="n-des">{{cur_news.brief|safe}}</div>
           <div class="clear"></div>
           <div class="n-keytime">
@@ -21,6 +21,6 @@
       {% endfor %}
     </ul>
     <div class="news-more" id="npage0"><a href="javascript:void(0)" onclick="return false">加载更多...</a></div>
-    <div class="pages"><a href="/news/" class="a1">+ 点击查看更多精彩</a></div>
+    <div class="pages"><a href="/nvshen/" class="a1">+ 点击查看更多精彩</a></div>
   </div>
 </div>
