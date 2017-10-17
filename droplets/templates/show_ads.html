@@ -9,7 +9,7 @@
 
 <script>
 $.ajax ({
-    url: "/ads/",
+    url: "/ads/?ad_type=news",
     success: function(data) {
       $("#ads").html(data);
     }
