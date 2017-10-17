@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset= utf-8" />
+	 <title>{{ site.title }}</title>
+    <meta name="Keywords" content="{{ site.keywords }}">
+    <meta name="Description" content="{{ site.desc }}">
+    <link type="text/css" rel="stylesheet" href="/static/css/purple001-1.css" >
+    <link rel="stylesheet" type="text/css" media="screen and (max-width: 479px)" href="/3g/template/style/pic320.css" />
+    <link rel="stylesheet" type="text/css" href="/static/static/css/swiper-shouji.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/css-shouji.css">
+		<script type="text/javascript" src="/static/js/nav-shouji.js"></script>
+        <script type="text/javascript" src="/static/js/swiper-shouji.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-1-shouji.11.2.min.js"></script>
+        <script type="text/javascript" src="/static/js/common-shouji.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	
+</head>
+<body>
+    <header class="all clear-fix" id="head">
+			<div class="top all clear-fix">
+				<a class="cbtn-nav iconfont menu_but second" href="#rightnav"><img src="/static/images/ico2.png"></a>
+				<a class="btn-search" href="#"><img src="/static/images/ico.png"></a>
+				<span class="logo"><img src="/{{site.logo}}"></span>
+			</div>
+		    <form class="search-form" action="<?php echo get_option('home'); ?>" method="get">
+            <input class="search-textbox" type="text" name="s" value="输入关键字" />
+            <input class="search-btn"  type="submit" value="搜索" />
+            </form>
+</header>	
+<section class="all clear-fix" id="contont">
+  
+
+  {% include "m/nav.html" %}
+
+</section>		
+<section class="all clear-fix">
+         <div class="conBodyBox">
+				<div class="pproPosition">
+					新闻资讯 <span> new </span>
+					
+				</div>
+			
+				<div class="conBodyContent clear-fix">
+                		<div class="cdtl-picBox">
+                                <h3 class="cdtl-tl">{{news.title}}</h3>
+                                
+                        </div>	
+                        <div class="cdtl-txt">
+                                <p>
+	　                            {{ news.content | safe }}
+                                </p>
+                        </div>   
+                        <div class="pgListView clear-fix">
+                    	  {% if next_news %}
+                                               <div>下一条：<a href="/mobile/news/{{next_news.id}}.html">{{ next_news.title }}</a></div>
+  {% endif %}
+                        						<a href="/mobile/news/" title="返回列表" class="backList">返回列表  &gt; </a>
+					    </div>  
+                </div>
+                  
+                		
+			
+	      </div>	
+         
+</section>	  
+<footer class="all clear-fix" id="footer"> <a href="tel:{{ci.telephone}} "><div id="yptel">
+									<span class="icon tel"></span>
+									<span class="text">电话</span>
+								</div></a>
+               <a href="sms:{{ ci.mobile }}" class="iconfont one-order"></a> 
+				
+                                <a href="/mobile/about/about9.html"><div id="share">
+									<span class="icon share"></span>
+									<span class="text">联系</span>
+								</div></a>
+				<a href="/mobile/about/about9.html"><div id="map">
+									<span class="icon map"></span>
+									<span class="text">地图</span>
+								</div></a> 
+			</footer>
+<div class="cbtn-top"><a href="javascript:;">
+         <span class="iconfont"><img src="/static/images/icon.png"></span></a>
+</div>
+	{% include "m/rightnav.html" %}
+        <script src="/static/js/jquery-shouji.js"></script><div style="display: none;" id="pageslide"></div> 
+		<script>
+		       $(".first").pageslide();
+		       $(".second").pageslide({ direction: "left", modal: true });
+		</script>
+
+</body>
+</html>
+

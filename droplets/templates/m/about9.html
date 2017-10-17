@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset= utf-8" />
+	 <title>{{ site.title }}</title>
+    <meta name="Keywords" content="{{ site.keywords }}">
+    <meta name="Description" content="{{ site.desc }}">
+    <link type="text/css" rel="stylesheet" href="/static/css/purple001-1.css" >
+    <link rel="stylesheet" type="text/css" media="screen and (max-width: 479px)" href="/3g/template/style/pic320.css" />
+    <link rel="stylesheet" type="text/css" href="/static/static/css/swiper-shouji.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/css-shouji.css">
+		<script type="text/javascript" src="/static/js/nav-shouji.js"></script>
+        <script type="text/javascript" src="/static/js/swiper-shouji.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-1-shouji.11.2.min.js"></script>
+        <script type="text/javascript" src="/static/js/common-shouji.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	
+</head>
+<body>
+    <header class="all clear-fix" id="head">
+			<div class="top all clear-fix">
+				<a class="cbtn-nav iconfont menu_but second" href="#rightnav"><img src="/static/images/ico2.png"></a>
+				<a class="btn-search" href="#"><img src="/static/images/ico.png"></a>
+				<span class="logo"><img src="/{{site.logo}}"></span>
+			</div>
+		    <form class="search-form" action="<?php echo get_option('home'); ?>" method="get">
+            <input class="search-textbox" type="text" name="s" value="输入关键字" />
+            <input class="search-btn"  type="submit" value="搜索" />
+            </form>
+</header>	
+<section class="all clear-fix" id="contont">
+  
+
+  {% include "m/nav.html" %}
+
+</section>	
+<section class="all clear-fix">
+         <div class="conBodyBox">
+				<div class="pproPosition">
+					走进我们
+				</div>
+				<div class="conBodyContent">
+					  　
+                           
+<div class="cdtl-txt clear-fix">　
+ <p>{{site.name}}</p>
+  <p>联系人：{{ ci.username }}</p>
+  <p>手机：{{ ci.mobile }}</p>
+  <p>电话：{{ci.telephone}}</p>
+  <p>公司地址：{{ci.address}}</p>
+  <p>传真：{{ci.fax}}</p>
+  <p>销售地址：{{ci.address}}</p>
+  <p>网址：{{site.url}}</p>
+  <p>&nbsp;</p><p><br/></p>
+</div>
+
+　         <script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(125.27643,43.908451);//定义一个中心点坐标
+        map.centerAndZoom(point,17);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+	map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"长春市维用环保科技有限公司",content:"长春市维用环保科技有限公司",point:"125.276448|43.908425",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+		 ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+			
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+				    this.openInfoWindow(_iw);
+			    });
+			    _iw.addEventListener("open",function(){
+				    _marker.getLabel().hide();
+			    })
+			    _iw.addEventListener("close",function(){
+				    _marker.getLabel().show();
+			    })
+				label.addEventListener("click",function(){
+				    _marker.openInfoWindow(_iw);
+			    })
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>           　
+				</div>
+	      </div>	
+          <!--<div class="navFootBox clear-fix">
+              <ul class="navFoot clear-fix">
+                  <?php wp_nav_menu( array('theme_location' =>'top_nav','container' => '','depth' =>1,'menu_class'  => 'navi' )); ?> 
+              </ul>
+          </div>-->
+ 
+</section>	 
+ <footer class="all clear-fix" id="footer">
+                                       <a href="tel:{{ci.telephone}}"><div id="yptel">
+									<span class="icon tel"></span>
+									<span class="text">电话</span>
+								</div></a>
+                                  <a href="sms:{{ ci.mobile }}" class="iconfont one-order"></a> 
+				
+                                     <a href="/mobile/about/about9.html"><div id="share">
+									<span class="icon share"></span>
+									<span class="text">联系</span>
+								</div></a>
+				<a href="/mobile/about/about9.html"><div id="map">
+									<span class="icon map"></span>
+									<span class="text">地图</span>
+								</div></a> 
+			</footer>
+
+<div class="cbtn-top"><a href="javascript:;">
+         <span class="iconfont"><img src="/images/icon.png"></span></a>
+</div>
+	{% include "m/rightnav.html" %}
+        <script src="/static/js/jquery-shouji.js"></script><div style="display: none;" id="pageslide"></div> 
+		<script>
+		       $(".first").pageslide();
+		       $(".second").pageslide({ direction: "left", modal: true });
+		</script>
+
+
+</body>
+</html>
+
