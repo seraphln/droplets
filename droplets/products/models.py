@@ -21,6 +21,8 @@ class CasesCategory(models.Model):
     name = models.CharField(max_length=255, verbose_name=u"案例类别")
     dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
     parent_cate = models.ForeignKey(Menus, null=True, blank=True, verbose_name=u"上级分类")
+    is_root = models.BooleanField(default=False, verbose_name=u"是否是根节点")
+    parent_case_cate = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级案例分类")
 
     def __unicode__(self):
         return self.name

@@ -26,6 +26,16 @@ from droplets.seo.utils import generate_pinyin_mapper
 from droplets.seo.utils import do_generate_product_name
 
 
+def get_case_categories():
+    """ 获取案例的分类列表 """
+    cate_dict = {}
+    categories = CasesCategory.objects.filter(is_root=True)
+    for cate in categories:
+        cate_dict[cate] = CasesCategory.objects.filter(parent_product_cate=cate)
+
+    return cate_dict
+
+
 def get_products_categories():
     """ 获取产品的分类列表 """
     cate_dict = {}

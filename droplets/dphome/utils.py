@@ -44,6 +44,7 @@ def get_and_format_site(request, city):
 
     return site
 
+
 def get_footer(footer):
 
     case_foot = CasesCategory.objects.filter(parent_cate=footer)
@@ -90,7 +91,7 @@ def get_basic_params(city=None):
     site = SiteConfig.objects.filter().first()
     banners = Banners.objects.filter()
     news = News.objects.filter()
-    menus = Menus.objects.filter(is_root=True)
+    menus = Menus.objects.filter(is_root=True).order_by("customized_seq")
     menus_foot = Menus.objects.filter(is_foot=True)
     ci = CompanyInfo.objects.filter().first()
     hot_keywords = HotKeywords.objects.filter()

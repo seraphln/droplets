@@ -94,6 +94,47 @@ class Menus(models.Model):
         verbose_name_plural = u"导航设置"
 
 
+class Channels(models.Model):
+    """ 站点菜单导航栏设置 """
+    name = models.CharField(max_length=128, verbose_name=u"导航名称")
+    seq = models.IntegerField(default=0, verbose_name=u"序号")
+    dir_name = models.CharField(max_length=255, verbose_name=u"目录名称，如果指定文件则返回文件")
+    description = models.CharField(max_length=255, verbose_name=u"描述", blank=True, null=True)
+    parent_channel = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级导航")
+    is_root = models.BooleanField(default=False, verbose_name=u"是否是顶级分类")
+    is_footer = models.BooleanField(default=False, verbose_name=u"是否是加入footer")
+
+    # 创建时间和修改时间
+    created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
+    modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = u"菜单导航设置"
+        verbose_name_plural = u"菜单导航设置"
+
+    def save(self, *args, **kwargs):
+        """ 重写save方法，如果没有设置seq的话，就跟id一致 """
+        if not self.seq:
+            self.seq = 0
+
+        # 更新修改时间
+        self.modified_on = timezone.now()
+
+        if self.dir_name:
+            if not self.dir_name.startswith("/"):
+                self.dir_name = "/" + self.dir_name
+
+            if not self.dir_name.endswith(".html") and not self.dir_name.endswith("/"):
+                self.dir_name = self.dir_name + "/"
+        super(Channels, self).save(*args, **kwargs)
+        if not self.seq:
+            self.seq = self.id
+            self.save()
+
+
 class Banners(models.Model):
     """ banner图管理 """
     ttype = models.CharField(max_length=128, verbose_name=u"图片类型")

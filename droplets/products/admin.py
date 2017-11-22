@@ -10,6 +10,8 @@ from droplets.products.models import CasesCategory
 from droplets.products.models import Products
 from droplets.products.models import ProductsCategory
 
+from droplets.dphome.models import Menus
+
 # Register your models here.
 
 
@@ -27,6 +29,14 @@ class ProductsAdmin(admin.ModelAdmin):
 class CasesCategoryAdmin(admin.ModelAdmin):
     """ 案例分类管理 """
     list_display = ("id", "name", "dir_name")
+
+    def queryset(self, request):
+        qs = super(
+        qs = super(ShopAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        return qs.filter(username=request.user.username,boss_verified=True)
 
 
 class ProductsCategoryAdmin(admin.ModelAdmin):
