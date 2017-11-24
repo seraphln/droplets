@@ -16,18 +16,13 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from droplets.dphome.models import Menus
 
 
-class CasesCategory(models.Model):
+class CasesCategory(Menus):
     """ 案例类别 """
-    name = models.CharField(max_length=255, verbose_name=u"案例类别")
-    dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
-    parent_cate = models.ForeignKey(Menus, null=True, blank=True, verbose_name=u"上级分类")
-    is_root = models.BooleanField(default=False, verbose_name=u"是否是根节点")
-    parent_case_cate = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级案例分类")
-
     def __unicode__(self):
         return self.name
 
     class Meta:
+        proxy = True
         verbose_name = u"案例分类"
         verbose_name_plural = u"案例分类"
 
@@ -54,18 +49,13 @@ class Cases(models.Model):
         verbose_name_plural = u"案例介绍"
 
 
-class ProductsCategory(models.Model):
+class ProductsCategory(Menus):
     """ 产品类别 """
-    name = models.CharField(max_length=255, verbose_name=u"产品类别")
-    dir_name = models.CharField(max_length=255, verbose_name=u"产品目录")
-    is_root = models.BooleanField(default=False, verbose_name=u"是否是根节点")
-    parent_cate = models.ForeignKey(Menus, null=True, blank=True, verbose_name=u"上级导航分类")
-    parent_product_cate = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级产品分类")
-
     def __unicode__(self):
         return self.name
 
     class Meta:
+        proxy = True
         verbose_name = u"产品分类"
         verbose_name_plural = u"产品分类"
 

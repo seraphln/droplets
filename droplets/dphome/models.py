@@ -77,6 +77,10 @@ class CompanyInfo(models.Model):
 class Menus(models.Model):
     """ 站点导航栏设置 """
     name = models.CharField(max_length=128, verbose_name=u"导航名称")
+    ename = models.CharField(max_length=128, verbose_name=u"英文名称",
+                             default="", null=True, blank=True)
+    pic = models.FileField(upload_to="../uploads/", verbose_name=u"导航图片",
+                           blank=True, null=True)
     customized_seq = models.IntegerField(default=0, verbose_name=u"序号")
     dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
     description = models.CharField(max_length=255, verbose_name=u"描述", blank=True, null=True)
@@ -93,32 +97,10 @@ class Menus(models.Model):
         verbose_name = u"导航设置"
         verbose_name_plural = u"导航设置"
 
-
-class Channels(models.Model):
-    """ 站点菜单导航栏设置 """
-    name = models.CharField(max_length=128, verbose_name=u"导航名称")
-    seq = models.IntegerField(default=0, verbose_name=u"序号")
-    dir_name = models.CharField(max_length=255, verbose_name=u"目录名称，如果指定文件则返回文件")
-    description = models.CharField(max_length=255, verbose_name=u"描述", blank=True, null=True)
-    parent_channel = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级导航")
-    is_root = models.BooleanField(default=False, verbose_name=u"是否是顶级分类")
-    is_footer = models.BooleanField(default=False, verbose_name=u"是否是加入footer")
-
-    # 创建时间和修改时间
-    created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
-    modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
-
-    def __unicode__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = u"菜单导航设置"
-        verbose_name_plural = u"菜单导航设置"
-
     def save(self, *args, **kwargs):
         """ 重写save方法，如果没有设置seq的话，就跟id一致 """
-        if not self.seq:
-            self.seq = 0
+        if not self.customized_seq:
+            self.customized_seq = 0
 
         # 更新修改时间
         self.modified_on = timezone.now()
@@ -129,9 +111,9 @@ class Channels(models.Model):
 
             if not self.dir_name.endswith(".html") and not self.dir_name.endswith("/"):
                 self.dir_name = self.dir_name + "/"
-        super(Channels, self).save(*args, **kwargs)
-        if not self.seq:
-            self.seq = self.id
+        super(Menus, self).save(*args, **kwargs)
+        if not self.customized_seq:
+            self.customized_seq = self.id
             self.save()
 
 

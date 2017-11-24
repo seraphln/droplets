@@ -49,7 +49,7 @@ def get_cur_city(city):
     """
     lt = LongTailKeywords.objects.filter().first()
 
-    cities = lt.cities.split(",")
+    cities = getattr(lt, "cities", "").split(",")
     default_city = cities[0] if len(cities) else ""
 
     cur_city_name, cur_city = "", ""
@@ -99,7 +99,7 @@ def index(request, city=None):
     lt = LongTailKeywords.objects.filter().first()
 
     cur_city_name, cur_city = get_cur_city(city)
-    pinyin_mapper = generate_pinyin_mapper(lt.cities)
+    pinyin_mapper = generate_pinyin_mapper(getattr(lt, "cities", ""))
 
     basic_params.update({"subsites": pinyin_mapper,
                          "cur_city_name": cur_city_name,

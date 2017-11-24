@@ -25,7 +25,7 @@ def do_generate_product_name(products, city):
     """
     lt = LongTailKeywords.objects.filter().first()
     # 没有设置长尾词，直接返回
-    cities = lt.cities.split(",")
+    cities = getattr(lt, "cities", "").split(",")
     default_city = cities[0] if len(cities) else ""
 
     pinyin_mapper = generate_pinyin_mapper(getattr(lt, "cities", ""))

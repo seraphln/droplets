@@ -6,7 +6,6 @@ from django.contrib import admin
 from droplets.dphome.models import Links
 from droplets.dphome.models import Menus
 from droplets.dphome.models import Banners
-from droplets.dphome.models import Channels
 from droplets.dphome.models import SiteConfig
 from droplets.dphome.models import CompanyInfo
 from droplets.dphome.models import Details
@@ -26,15 +25,6 @@ class CompanyInfoAdmin(admin.ModelAdmin):
 class MenusAdmin(admin.ModelAdmin):
     """ 导航栏管理 """
     list_display = ("name", "customized_seq", "dir_name", "description")
-
-
-class ChannelsAdmin(admin.ModelAdmin):
-    """ 频道管理 """
-
-    # 设置列表显示的内容
-    list_display = ("id", "seq", "name", "dir_name",
-                    "description", "is_root", "is_footer",
-                    "created_on", "modified_on")
 
 
 class BannersAdmin(admin.ModelAdmin):
@@ -67,4 +57,3 @@ admin.site.register(Banners, BannersAdmin)
 admin.site.register(CompanyInfo, CompanyInfoAdmin)
 admin.site.register(Details, DetailsAdmin)
 admin.site.register(UserMessage, UserMessageAdmin)
-admin.site.register(Channels, ChannelsAdmin)

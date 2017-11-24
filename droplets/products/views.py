@@ -39,9 +39,10 @@ def get_case_categories():
 def get_products_categories():
     """ 获取产品的分类列表 """
     cate_dict = {}
-    categories = ProductsCategory.objects.filter(is_root=True)
+    par_cate = ProductsCategory.objects.filter(name=u"产品中心").first()
+    categories = ProductsCategory.objects.filter(parent_cate=par_cate)
     for cate in categories:
-        cate_dict[cate] = ProductsCategory.objects.filter(parent_product_cate=cate)
+        cate_dict[cate] = ProductsCategory.objects.filter(parent_cate=cate)
 
     return cate_dict
 
@@ -248,6 +249,7 @@ def get_products_by_page(request, dir_name=None, cate_name=None, page=1, per_pag
     basic_params = get_basic_params()
 
     if dir_name:
+        print dir_name
         cate = ProductsCategory.objects.filter(dir_name=dir_name).first()
         query_dict = {"category": cate.id}
         basic_params["cur_cate"] = cate

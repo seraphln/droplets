@@ -9,6 +9,7 @@ from django.contrib import admin
 from droplets.seo.models import Robots
 from droplets.seo.models import SiteKey
 from droplets.seo.models import HotKeywords
+from droplets.seo.models import DownloadUrls
 from droplets.seo.models import LongTailKeywords
 
 
@@ -30,6 +31,12 @@ class SiteKeyAdmin(admin.ModelAdmin):
 class RobotsKeyAdmin(admin.ModelAdmin):
     """ SEO站长提交密钥管理 """
     list_display = ("id", "content")
+
+
+@admin.register(DownloadUrls)
+class DownloadUrlsAdmin(admin.ModelAdmin):
+    """ 下载 """
+    list_display = ("id", "title")
 
 admin.site.register(SiteKey, SiteKeyAdmin)
 admin.site.register(Robots, RobotsKeyAdmin)

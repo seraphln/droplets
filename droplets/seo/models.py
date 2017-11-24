@@ -65,3 +65,17 @@ class Robots(models.Model):
         with open(robots_path, "w") as fp:
             fp.write(self.content.encode("utf8"))
         super(Robots, self).save(*args, **kwargs)
+
+
+class DownloadUrls(models.Model):
+    """ 下载的url文件 """
+    title = models.CharField(max_length=255, verbose_name=u"文件名称")
+    name = models.FileField(upload_to="../uploads/", verbose_name=u"下载文件",
+                            blank=True, null=True)
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = u"下载链接"
+        verbose_name_plural = u"下载链接"
