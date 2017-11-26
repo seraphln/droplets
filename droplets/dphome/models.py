@@ -84,6 +84,7 @@ class Menus(models.Model):
     customized_seq = models.IntegerField(default=0, verbose_name=u"序号")
     dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
     description = models.CharField(max_length=255, verbose_name=u"描述", blank=True, null=True)
+    content = RichTextField(blank=True,null=True, verbose_name="分类详情信息")
     parent_cate = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级分类")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")

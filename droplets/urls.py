@@ -25,7 +25,6 @@ from django.conf.urls.static import static
 from droplets.dphome.views import index
 from droplets.dphome.views import about
 from droplets.dphome.views import message
-from droplets.dphome.views import supplyproducts
 
 # 案例相关接口
 from droplets.products.views import cases
@@ -63,7 +62,6 @@ urlpatterns = [
     url(r'^news/$', news),
 
     # 产品相关接口
-    #url(r'^supply/(?P<cid>\d+).html', get_products_by_id),
     url(r'^supply_(?P<cur_city>\w+)/(?P<cid>\d+).html', get_products_by_id),
     url(r'^supply_(?P<cur_city>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html$', get_products_by_page),
     url(r'^supply_(?P<cur_city>\w+)/(?P<cate_name>\w+)_(?P<dir_name>\w+)/$', get_products_by_page),
@@ -101,9 +99,6 @@ urlpatterns = [
 
     # uploads
     url(r'^upload_image', sceneImgUpload),
-
-    # 二次开发示例
-    url(r'^supplyproducts', supplyproducts),
 ]
 
 if settings.DEBUG:

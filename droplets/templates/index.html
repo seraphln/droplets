@@ -82,7 +82,8 @@
                 {% for cur_news in news|slice:"1:" %}
                   这里是id{{ news.0.id }}
                   <li><a href="/news/{{cur_news.id}}.html">{{cur_news.title}}</a>
-                  <span>{{cur_news.created_on|date:"Y-m-d"}}</span>
+                  <span>{{cur_news.created_on|date:"m-d"}}</span>
+                  <span>{{cur_news.created_on|date:"Y"}}</span>
                 </li>
                 {% endfor %}
               </ul>

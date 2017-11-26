@@ -118,14 +118,14 @@ def about(request, dir_name=None):
     cur_menu = Menus.objects.filter(name=u"产品中心", is_root=True).first()
     cates = Menus.objects.filter(parent_cate=cur_menu)
 
-    basic_params["cates"] = cates
-
     target_dir = "/about"
 
     if dir_name:
         target_dir = "%s/%s" %(target_dir, dir_name)
 
-    if Menus.objects.filter(dir_name=target_dir).first():
+    menu = Menus.objects.filter(dir_name=target_dir).first()
+    basic_params.update({"cates": cates, "menu": menu})
+    if menu:
         if dir_name:
             template_names = target_dir
             template_name = template_names.split("/")[2]
