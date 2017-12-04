@@ -25,27 +25,8 @@ from droplets.seo.models import LongTailKeywords
 from droplets.seo.utils import generate_pinyin_mapper
 from droplets.seo.utils import do_generate_product_name
 
-
-def get_case_categories():
-    """ 获取案例的分类列表 """
-    cate_dict = {}
-    par_cate = CasesCategory.objects.filter(name=u"案例中心").first()
-    categories = ProductsCategory.objects.filter(parent_cate=par_cate)
-    for cate in categories:
-        cate_dict[cate] = ProductsCategory.objects.filter(parent_cate=cate)
-
-    return cate_dict
-
-
-def get_products_categories():
-    """ 获取产品的分类列表 """
-    cate_dict = {}
-    par_cate = ProductsCategory.objects.filter(name=u"产品中心").first()
-    categories = ProductsCategory.objects.filter(parent_cate=par_cate)
-    for cate in categories:
-        cate_dict[cate] = ProductsCategory.objects.filter(parent_cate=cate)
-
-    return cate_dict
+from droplets.products.utils import get_case_categories
+from droplets.products.utils import get_products_categories
 
 
 def products(request, cur_city=None, dir_name=None):

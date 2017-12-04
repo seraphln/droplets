@@ -7,7 +7,6 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 
-from droplets.scripts.batch_genenrate_static_files import backend as generate_static_files
 
 # Create your models here.
 
@@ -112,6 +111,7 @@ class GenStatics(models.Model):
 
     def save(self, *args, **kwargs):
         # 生成静态页面
+        from droplets.scripts.batch_generate_static_files import backend as generate_static_files
         generate_static_files()
         # 保存记录
         super(Menus, self).save(*args, **kwargs)

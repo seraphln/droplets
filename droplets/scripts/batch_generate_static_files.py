@@ -38,7 +38,7 @@ from droplets.seo.models import LongTailKeywords
 from droplets.seo.utils import generate_pinyin_mapper
 
 
-BASE_DIR = "%s/droplets/scripts/html/" % settings.BASE_DIR
+BASE_DIR = "%s/droplets/templates/html/" % settings.BASE_DIR
 
 
 def generate_index():

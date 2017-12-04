@@ -104,3 +104,5 @@ ENV/
 */*/uploads/*
 
 *.sql
+
+*/templates/html/*

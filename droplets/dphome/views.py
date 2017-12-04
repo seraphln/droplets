@@ -39,8 +39,11 @@ from droplets.dphome.utils import get_basic_params
 from droplets.dphome.utils import get_and_format_site
 from droplets.dphome.utils import get_data_by_page
 
+from droplets.products.utils import get_products_categories
 
 from droplets.seo.utils import do_generate_product_name
+
+from droplets.utils.decorators import check_static_files
 
 
 def get_cur_city(city):
@@ -66,6 +69,7 @@ def get_cur_city(city):
     return cur_city_name, cur_city
 
 
+@check_static_files
 def index(request, city=None):
     """ 渲染网站首页 """
     basic_params = get_basic_params()
@@ -73,7 +77,6 @@ def index(request, city=None):
 
     basic_params["cases"] = Cases.objects.filter()[:10]
 
-    from droplets.products.views import get_products_categories
     basic_params.update({"products_categories": get_products_categories()})
 
     # 更新产品信息
