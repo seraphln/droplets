@@ -62,8 +62,7 @@ def check_static_files(function=None):
         """ """
         fname = function.func_name
         flag, ret = function_mapper[fname](request, args, kwargs)
-        if flag:
-            print "GOT IT"
+        if flag and settings.USE_STATIC_HTML:
             return ret
         else:
             return function(request, *args, **kwargs)
