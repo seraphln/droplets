@@ -8,5 +8,5 @@ from django.apps import AppConfig
 
 
 class ProductsConfig(AppConfig):
-    name = u'产品管理'
+    name = u'products'
     verbose_name = u'产品管理'

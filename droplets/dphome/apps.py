@@ -8,4 +8,5 @@ from django.apps import AppConfig
 
 
 class DphomeConfig(AppConfig):
-    name = u"首页"
+    name = u"dphome"
+    verbose_name = u"首页"

@@ -11,7 +11,7 @@
   <div class="sitemp clearfix">
     {% if cur_cate %}
       <h2>{{cur_cate.name}}</h2>
-      <div class="site"><a href="/">首页</a> &gt; <a href="/supply/">产品中心</a> &gt; <a href="/supply/Products_{{cur_cate.dir_name}}/">{{cur_cate.name}}</a></div>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/supply/">产品中心</a> &gt; <a href="/supply/Products_{{cur_cate.dir_name|cut:"/"}}/">{{cur_cate.name}}</a></div>
     {% else %}
       <h2>案例展示</h2>
       <div class="site"><a href="/">首页</a> &gt; <a href="/supply/">产品中心</a></div>

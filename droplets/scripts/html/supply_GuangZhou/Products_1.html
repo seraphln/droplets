@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!-- title和keywords -->
+  <title>测试公司就是好</title>
+  <meta name="Keywords" content="测试,测试1,测试2">
+  <meta name="Description" content="测试描述">
+
+  <!-- 通用meta配置 -->
+  <meta http-equiv="mobile-agent" content="format=xhtml; url=">
+  <meta http-equiv="mobile-agent" content="format=html5; url=">
+
+  <!-- 通用css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/model.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+  <!-- 通用js -->
+  <script src="/static/js/jquery-1.js"></script>
+  <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/mobile.js"></script>
+</head>
+
+<body>
+
+<!-- 首页banner -->
+<!-- 公共头部包含 -->
+<div id="header_a">
+  <div id="header">
+    <div class="tou clearfix">
+      <div class="wel fl"><p>欢迎您光临测试公司！</p></div>
+          <div class="fenx fl"></div>
+          <div class="k1 fr"><a href="/sitemap">站点地图</a></div>
+      </div>
+      <div class="top clearfix">
+        <div class="logo"><a href=><img src="/" alt="测试公司" title="测试公司"></a></div>
+      </div>
+      <!-- 导航栏包含 -->
+      <div id="menu">
+      <ul class="nav clearfix">
+          
+              <li><a href="/news/xwdt/">新闻动态</a>
+              <div style="height: 0px; overflow: hidden;" class="sec"> </div>
+              <ul>
+                
+              </ul>
+            </li>
+          
+              <li><a href="/supply/">产品中心</a>
+              <div style="height: 0px; overflow: hidden;" class="sec"> </div>
+              <ul>
+                
+                <li><a href="/csfl/">测试产品分类1</a></li>
+                
+              </ul>
+            </li>
+          
+              <li><a href="/csfl/">测试产品分类1</a>
+              <div style="height: 0px; overflow: hidden;" class="sec"> </div>
+              <ul>
+                
+              </ul>
+            </li>
+          
+              <li><a href="/cases/">产品案例</a>
+              <div style="height: 0px; overflow: hidden;" class="sec"> </div>
+              <ul>
+                
+                <li><a href="/cases/csal/">测试案例1</a></li>
+                
+              </ul>
+            </li>
+          
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+    $(function(){
+      $('.nav > li').hover(function(){
+        var sec_count  = $(this).find('.sec a').length;
+        var a_height   = $(this).find('.sec a').eq(0).height();
+        var sec_height =  sec_count * a_height;
+        $(this).find('.sec').stop().animate({height:sec_height},300);
+      },function(){
+        $(this).find('.sec').stop().animate({height:0},300);
+      });
+    });
+    </script>
+
+    </div>
+  </div>
+
+  <!-- 首页banner -->
+  <!-- 首页banner -->
+<div class="topbanner">
+  <div class="bannerzhl">
+    <div id="banner_nr">
+      <ul id="banner_img" style="left: -3840px;">
+        
+        <div class="clear"></div>
+			</ul>
+			<div id="number" style="display:none;">
+        <ul>
+          <li class="">1</li>
+					<li class="">2</li>
+					<li class="current">3</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+  <script type="text/javascript">
+    var _num=$('#number ul li');
+    var _img=$('#banner_img');
+    var _tarWidth=$(window).width();
+    var _imgLi=$('#banner_img li');
+    _imgLi.css('width',_tarWidth);
+    var _len=_num.length;
+    var _index;
+    var _autoplay;
+    _num.mouseover(function(){
+      _index=_num.index(this);
+      _img.stop().animate({left:-_index*_tarWidth},600);
+      $('#number ul li').removeClass('current').eq(_index).addClass('current');
+
+    }).eq(0).mouseover();
+    $('#banner_nr').hover(function(){
+      clearInterval(autoplay);
+    },function(){
+        autoplay=setInterval(function(){
+        _img.stop().animate({left:-_index*_tarWidth},600);
+        $('#number ul li').removeClass('current').eq(_index).addClass('current');
+        _index++;
+        if(_index==_len){
+          _index=0;
+        }
+      },3000)
+    }).trigger('mouseleave');
+  </script>
+</div>
+
+
+
+
+<div id="container" class="clearfix">
+	<div class="left">
+		<div class="box sort_menu">
+		  <h3>产品分类</h3>
+        <ul class="sort">
+         
+         
+           <li><a href="/supply//csfl//">测试产品分类1</a></li>
+         
+         <ul>
+          
+         </ul>
+         
+        </ul>
+		</div>
+
+  <div class="box n_contact">
+  <h3>联系我们</h3>
+  <p class="content">
+  <p>联系:</p>
+  <p>手机:</p>
+  <p>电话:</p>
+  <p>传真:</p>
+  <p>邮箱:<a href="mailto:"></a></p>
+  <p>网址:</p>
+  <p>地址:</p>
+</div>
+
+
+</div>
+
+
+<div class="right">
+  <div class="sitemp clearfix">
+    
+      <h2>案例展示</h2>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/supply/">产品中心</a></div>
+    
+   </div>
+   
+<div class="content">
+  <div class="container1">
+    <div class="pro_b">
+      
+      <div>
+        <h2><a href="/supply_BeiJing/1.html"><img src="/" title="北京测试标题" alt="测试产品分类1" height="150" width="150"></a></h2>
+        <h3><a href="/supply_BeiJing/1.html">北京测试标题</a></h3>
+      </div>
+      
+      <h6 class="clear"></h6>
+    </div>
+
+    
+    <div class="pages">
+      <ul>
+        
+          <li class="previous_s"><a href="/supply_BeiJing/Products_1.html">上一页<a></li>
+        
+          <li class="pages_solid">第1页</li>
+        
+          <li class="next"><a href="/supply_BeiJing/Products_1.html">下一页</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</div>
+
+	</div>
+</div>
+<div class="content">
+  <div class="container1">
+    <div class="pro_b" id="ads">
+
+    <h6 class="clear"></h6>
+    </div>
+  </div>
+</div>
+
+<script>
+$.ajax ({
+    url: "/ads/?ad_type=news",
+    success: function(data) {
+      $("#ads").html(data);
+    }
+  })
+</script>
+
+<div id="footer_a">
+<div id="footer">
+  <ul class="navv clearfix">
+    
+    <li class="last" style="width:292px;"><a href="http://180.76.149.212:8084/about9.html/">联系我们</a>
+      <div class="secc">
+        <table data-sort="sortDisabled">
+          <tbody>
+            <tr class="firstRow">
+              <td rowspan="2" colspan="1" valign="top">
+                <img src="/static/images/1449741338263645.png" title="1449741338263645.png" alt="tubiao_11.png">
+              </td>
+              <td style="word-break: break-all;" valign="top">
+                <span style="font-size: 14px;">
+                  <strong></strong>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td style="word-break: break-all;" valign="top">
+                <strong><span style="font-family: 宋体, SimSun; font-size: 14px;">7*24小时服务热线</span></strong>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="2" colspan="1" valign="top">
+                <img src="/static/images/1449741348782158.png" title="1449741348782158.png" alt="tubiao_14.png">
+              </td>
+              <td style="word-break: break-all;" valign="top">在线咨询</td>
+            </tr>
+            <tr><td style="word-break: break-all;" valign="top">7*24小时热线</td></tr></tbody></table>
+      </div>
+    </li>
+    <li class="last" style="padding-top:10px;">
+      <p>
+      <img src="/" title="" alt="二维码.png">
+      </p>
+    </li>
+  </ul>
+  <div class="nav_foot">
+    <p>
+      <a href="http://180.76.149.212:8084">网站首页</a> |
+      <a href="http://180.76.149.212:8084/about/">关于我们</a> |
+      <a href="http://180.76.149.212:8084/supply/">产品中心</a> |
+      <a href="http://180.76.149.212:8084/news/">新闻中心</a> |
+      <a href="http://180.76.149.212:8084/about/about9.html">联系我们</a></p>
+  </div>
+  <div class="copyright"> Copyright&nbsp;http://180.76.149.212:8084&nbsp;测试公司专业生产等产品，欢迎来电订购. </div>
+</div>
+  </div>
+
+</body>
+</html>

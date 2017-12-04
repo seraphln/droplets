@@ -7,5 +7,5 @@ from django.apps import AppConfig
 
 
 class NewsConfig(AppConfig):
-    #name = 'news'
-    name = u'新闻管理'
+    name = 'news'
+    verbose_name = u'新闻管理'

@@ -29,9 +29,10 @@ from droplets.seo.utils import do_generate_product_name
 def get_case_categories():
     """ 获取案例的分类列表 """
     cate_dict = {}
-    categories = CasesCategory.objects.filter(is_root=True)
+    par_cate = CasesCategory.objects.filter(name=u"案例中心").first()
+    categories = ProductsCategory.objects.filter(parent_cate=par_cate)
     for cate in categories:
-        cate_dict[cate] = CasesCategory.objects.filter(parent_product_cate=cate)
+        cate_dict[cate] = ProductsCategory.objects.filter(parent_cate=cate)
 
     return cate_dict
 
@@ -65,6 +66,10 @@ def products(request, cur_city=None, dir_name=None):
     basic_params.update({"products_categories": get_products_categories()})
 
     if dir_name:
+        if not dir_name.startswith("/"):
+            dir_name = "/" + dir_name
+        if not dir_name.endswith("/"):
+            dir_name = dir_name + "/"
         cate = ProductsCategory.objects.filter(dir_name=dir_name).first()
         basic_params["cur_cate"] = cate
         query_dict = {"category": cate.id}
@@ -249,7 +254,10 @@ def get_products_by_page(request, dir_name=None, cate_name=None, page=1, per_pag
     basic_params = get_basic_params()
 
     if dir_name:
-        print dir_name
+        if not dir_name.startswith("/"):
+            dir_name = "/" + dir_name
+        if not dir_name.endswith("/"):
+            dir_name = dir_name + "/"
         cate = ProductsCategory.objects.filter(dir_name=dir_name).first()
         query_dict = {"category": cate.id}
         basic_params["cur_cate"] = cate

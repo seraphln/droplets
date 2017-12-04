@@ -36,9 +36,12 @@ def news(request, dir_name=None):
         cate = NewsCategory.objects.filter(dir_name=dir_name).first()
     else:
         # 默认使用公司动态
-        cate = NewsCategory.objects.filter(name=u"公司动态").first()
+        cate = NewsCategory.objects.filter().first()
 
-    query_dict = {"category": cate.id}
+    if cate:
+        query_dict = {"category": cate.id}
+    else:
+        query_dict = {}
     basic_params["cur_cate"] = cate
 
     news_page_info, news = get_data_by_page(News, query_dict)

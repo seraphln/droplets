@@ -93,3 +93,14 @@ ENV/
 *.sqlite3
 
 *.pid
+
+*.out
+*.jpg
+*.png
+*.gif
+*.mp4
+*.pdf
+
+*/*/uploads/*
+
+*.sql

@@ -6,8 +6,10 @@ from django.contrib import admin
 
 # Register your models here.
 
+from droplets.seo.models import Videos
 from droplets.seo.models import Robots
 from droplets.seo.models import SiteKey
+from droplets.seo.models import GenStatics
 from droplets.seo.models import HotKeywords
 from droplets.seo.models import DownloadUrls
 from droplets.seo.models import LongTailKeywords
@@ -37,6 +39,17 @@ class RobotsKeyAdmin(admin.ModelAdmin):
 class DownloadUrlsAdmin(admin.ModelAdmin):
     """ 下载 """
     list_display = ("id", "title")
+
+@admin.register(Videos)
+class VideosAdmin(admin.ModelAdmin):
+    """ 视频 """
+    list_display = ("id", "title")
+
+
+@admin.register(GenStatics)
+class GenStaticsAdmin(admin.ModelAdmin):
+    """ 静态页面记录 """
+    list_display = ("id", "name", "created_on")
 
 admin.site.register(SiteKey, SiteKeyAdmin)
 admin.site.register(Robots, RobotsKeyAdmin)

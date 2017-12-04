@@ -14,16 +14,14 @@ from django.utils import timezone
 from ckeditor.fields import RichTextField
 from droplets.dphome.models import Menus
 
-class NewsCategory(models.Model):
-    """ 新闻类别 """
-    name = models.CharField(max_length=255, verbose_name=u"新闻类别")
-    dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
-    parent_cate = models.ForeignKey(Menus, null=True, blank=True, verbose_name=u"上级分类")
 
+class NewsCategory(Menus):
+    """ 新闻类别 """
     def __unicode__(self):
         return self.name
 
     class Meta:
+        proxy = True
         verbose_name = u"新闻分类"
         verbose_name_plural = u"新闻分类"
 

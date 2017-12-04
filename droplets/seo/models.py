@@ -5,6 +5,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.utils import timezone
+
+from droplets.scripts.batch_genenrate_static_files import backend as generate_static_files
 
 # Create your models here.
 
@@ -79,3 +82,36 @@ class DownloadUrls(models.Model):
     class Meta:
         verbose_name = u"下载链接"
         verbose_name_plural = u"下载链接"
+
+
+class Videos(models.Model):
+    """ 页面视频 """
+    title = models.CharField(max_length=255, verbose_name=u"视频文件名称")
+    name = models.FileField(upload_to="../uploads/", verbose_name=u"视频文件",
+                            blank=True, null=True)
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = u"视频文件"
+        verbose_name_plural = u"视频文件"
+
+
+class GenStatics(models.Model):
+    """ 一键生成静态页面 """
+    name = models.CharField(max_length=255, verbose_name=u"任务名称")
+    created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = u"生成静态页面记录"
+        verbose_name_plural = u"生成静态页面记录"
+
+    def save(self, *args, **kwargs):
+        # 生成静态页面
+        generate_static_files()
+        # 保存记录
+        super(Menus, self).save(*args, **kwargs)

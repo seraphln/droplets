@@ -19,6 +19,7 @@ Including another URLconf
 
 from django.conf import settings
 from django.conf.urls import url
+from django.conf.urls import include
 from django.contrib import admin
 from django.conf.urls.static import static
 
@@ -99,6 +100,7 @@ urlpatterns = [
 
     # uploads
     url(r'^upload_image', sceneImgUpload),
+
 ]
 
 if settings.DEBUG:

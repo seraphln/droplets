@@ -227,3 +227,5 @@ CKEDITOR_CONFIGS = {
             ]),
     }
 }
+
+#FREEZE_INCLUDE_STATIC = True
