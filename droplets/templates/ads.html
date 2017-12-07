@@ -1,14 +1,38 @@
 {% if products %}
   {% for ad in products %}
-  <div>
-    <h2><a href="/supply_{{cur_city}}/{{ad.id}}.html"><img src="/{{ad.pic}}" title="{{ad.title}}" alt="{{ad.category}}" height="150" width="150"></a></h2>
-    <h3><a href="/supply_{{cur_city}}/{{ad.id}}.html">{{ad.title}}</a></h3>
-  </div>
+ <dd>
+   	
+        <div class="img">
+
+
+        <a href="/supply_{{cur_city}}/{{ad.id}}.html" title="{{ad.title}}">
+
+
+        <img src="/{{ad.pic}}" title="{{ad.title}}" alt="{{ad.category}}" /></a></div>
+
+
+            <div class="txt"> <a href="/supply_{{cur_city}}/{{ad.id}}.html" title="{{ad.title}}"> {{ad.title}}</a></div>
+
+   </dd>
   {% endfor %}
 {% else %}
-  {% for ad in news %}
-  <div>
-    <h3><a href="/news/{{ad.id}}.html">{{ad.title}}</a></h3>
+
+  <div class="zklist-C">
+        <ul>
+            {% for ad in news %}
+             <li><a href="/news/{{ad.id}}.html" title="{{ad.title}}">{{ad.title}}</a> </li>
+     {% endfor %}
+  </ul>
   </div>
-  {% endfor %}
+
+ 
 {% endif %}
+
+
+
+
+
+
+       
+
+      

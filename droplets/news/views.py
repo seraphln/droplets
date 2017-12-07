@@ -15,6 +15,10 @@ from droplets.dphome.utils import get_basic_params
 from droplets.dphome.utils import get_data_by_page
 from droplets.dphome.utils import get_prev_and_next_page
 
+from droplets.dphome.utils import format_dir_name
+
+from droplets.utils.models import get_categories
+
 
 def news(request, dir_name=None):
     """
@@ -30,9 +34,10 @@ def news(request, dir_name=None):
     """
 
     basic_params = get_basic_params()
-    basic_params.update({"news_categories": NewsCategory.objects.filter()})
+    basic_params.update({"news_categories": get_categories("news")})
 
     if dir_name:
+        dir_name = format_dir_name(dir_name)
         cate = NewsCategory.objects.filter(dir_name=dir_name).first()
     else:
         # 默认使用公司动态
@@ -68,7 +73,7 @@ def get_news_by_id(request, cid):
     news = News.objects.filter(id=cid).first()
     prev_news, next_news = get_prev_and_next_page(News, cid)
 
-    basic_params.update({"news_categories": NewsCategory.objects.filter(),
+    basic_params.update({"news_categories": get_categories("news"),
                          "news": news,
                          "cur_cate": news.category,
                          "prev_news": prev_news,
@@ -87,6 +92,7 @@ def get_news_by_page(request, dir_name, cate_name, page, per_page=10):
         return http.HttpResponseRedirect(site.url)
     else:
         if dir_name:
+            dir_name = format_dir_name(dir_name)
             cate = NewsCategory.objects.filter(dir_name=dir_name).first()
         else:
             cate = NewsCategory.objects.filter(name=u"公司动态").first()
@@ -100,7 +106,7 @@ def get_news_by_page(request, dir_name, cate_name, page, per_page=10):
                                                page=int(page),
                                                per_page=int(per_page))
 
-        basic_params.update({"news_categories": NewsCategory.objects.filter(),
+        basic_params.update({"news_categories": get_categories("news"),
                                                "news_page_info": page_info,
                                                "news": news,
                                                "ci": CompanyInfo.objects.filter().first()})

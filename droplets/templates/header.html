@@ -12,14 +12,9 @@
       <!-- 导航栏包含 -->
       <div id="menu">
       <ul class="nav clearfix">
-          {% for rm in root_dict.items %}
-              <li><a href="{{rm.0.dir_name}}">{{rm.0.name}}</a>
+          {% for menu in menus %}
+              <li><a href="{{menu.dir_name}}">{{menu.name}}</a>
               <div style="height: 0px; overflow: hidden;" class="sec"> </div>
-              <ul>
-                {% for sm in rm.1 %}
-                <li><a href="{{sm.url}}">{{sm}}</a></li>
-                {% endfor %}
-              </ul>
             </li>
           {% endfor %}
       </ul>

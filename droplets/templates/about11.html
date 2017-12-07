@@ -1,0 +1,126 @@
+	   {% include "top.html" %}
+     {% include "nav.html" %}
+  <script src="/static/js/outjs.js"></script> 
+  <div id="focus"> 
+   <ul> 
+    <li>  <img src="/static/images/about_banner.jpg" alt="公司简介" title="公司简介" /> </li> 
+   </ul> 
+  </div> 
+  <input type="hidden" id="cid" value="23" /> 
+  <input type="hidden" id="tid" value="22" /> 
+  <div class="clear"> 
+  </div> 
+  <div class="main"> 
+   <div class="search_con"> 
+    <div class="hotkey"> 
+     <span>关键词：</span>
+      {% for hk in hot_keywords %}
+     <a href="" title="{{ hk.name }}">{{ hk.name }}</a> 
+    {% endfor %}
+    </div> 
+    <div class="form"> 
+     <input type="text" onblur="if (value ==''){value='请输入关键字'}" onclick="if(this.value=='请输入关键字')this.value=''" value="请输入关键字" class="search-t" id="keywords" name="keywords" onkeydown="if(event.keyCode==13){SiteSearchkwf('#keywords');return false};" /> 
+     <button type="submit" class="search-s" onclick="SiteSearchkwf('#keywords');"> 搜索</button> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="clear"> 
+  </div> 
+  <script>
+    eval(decode('""""&*fqewogpv+0tgcf{*hwpevkqp"*+"}""""""""xct"mwtn"?"ykpfqy0nqecvkqp0jtgh0tgrnceg*$jvvr<11$."))+=""""""""xct"v3"?"mwtn0ncuvKpfgzQh*)0)+=""""""""xct"v4"?"mwtn0ncuvKpfgzQh*)1)+=""""""""xct"ikf"?"mwtn0uwduvtkpi*v4"-"3."v3+=""""""""xct"&yekf"?"&*$%ekf$+0xcn*+=""""""""xct"&yvkf"?"&*$%vkf$+0xcn*+=""""""""kh"*&*$0r$"-"&yekf+0ku*$ff$++"}""""""""""""&*$0ecvgu$+0hkpf*$fv$+0gcej*hwpevkqp"*+"}""""""""""""""""kh"*&*vjku+0cvvt*$encuu$+"??"&*$0r$"-"&yekf+0cvvt*$hp$++"}""""""""""""""""""""&*vjku+0cffEncuu*$icqnkcpi$+=""""""""""""""""""""xct"v"?"&*vjku+0cvvt*$encuu$+0urnkv*$"$+]2_0tgrnceg*$r$."$$+="""""""""""""""""""""kh"*&*$0$"-"ikf+0ngpivj"@"2+"}""""""""""""""""""""""""&*$0$"-"ikf+0cffEncuu*$cpqvjgt$+="""""""""""""""""""""""""""""""""""""""gnug"kh"*&*$0$"-"&yekf+0ngpivj"@"2+"}""""""""""""""""""""""""&*$0$"-"&yekf+0cffEncuu*$cpqvjgt$+=""""""""""""""""""""""""""""""""""""""""gnug"kh"*&*$0$"-"v+0ngpivj"@"2+"}""""""""""""""""""""""""&*$0$"-"v+0cffEncuu*$cpqvjgt$+="""""""""""""""""""""gnug"}""""""""""""""""""""""""&*$0$"-"&yvkf+0cffEncuu*$cpqvjgt$+=""""""""""""""""""""""""""""""""""""""""""""""""+=""""""""""""&*$0r$"-"&yekf+0cffEncuu*$icqnkcpi$+="""""""""gnug"}""""""""""""&*$0r$"-"&yekf+0cffEncuu*$icqnkcpi$+0ukdnkpiu*+0tgoqxgEncuu*$icqnkcpi$+=""""""""""""kh"*&*$0$"-"ikf+0ngpivj"@"2+"}""""""""""""""""&*$0$"-"ikf+0cffEncuu*$cpqvjgt$+=""""""""""""""""""""""""gnug"kh"*&*$0$"-"&yekf+0ngpivj"@"2+"}""""""""""""""""&*$0$"-"&yekf+0cffEncuu*$cpqvjgt$+=""""""""""""""""""""""""""gnug"}""""""""""""""""&*$0$"-"&yvkf+0cffEncuu*$cpqvjgt$+="""""""""""""""""""""""""+='));
+    </script> 
+  <div class="all"> 
+   <div class="main"> 
+    <div class="main_left"> 
+     <div class="leftitem"> 
+      <div class="tit">
+        网站导航 
+      </div> 
+      <div class="cates"> 
+       <dl> 
+        <dt class="p23"> 
+         <a href="/about/" title="公司简介">公司简介</a> 
+        </dt> 
+       
+        <dt class="p52"> 
+         <a href="/about/about9.html" title="联系裕华">联系裕华</a> 
+        </dt> 
+       </dl> 
+      </div> 
+     </div> 
+     <div class="leftitem"> 
+      <div class="tit">
+        热门新闻 
+      </div> 
+      <div class="lianxi"> 
+       <dl> 
+        <dd> 
+           {% for new in news %}
+          {% if new.category.name  != "客户见证" %}
+       <a href="/news/{{new.id}}.html" title="{{new.title}}">{{new.title}}</a>
+          {% endif %}
+            {% endfor %}
+
+        </dd> 
+       </dl> 
+      </div> 
+     </div> 
+   
+     <div class="leftitem"> 
+      <div class="tit">
+        联系我们 
+      </div> 
+      <div class="lianxi"> 
+       <dl> 
+        <dt> 
+         <div>
+           咨询热线
+         </div> 
+         <div class="tel">
+          {{ ci.mobile }}
+         </div> 
+        </dt> 
+        <!--大类--> 
+        <dd>
+          全国售后热线： 
+         <br /> {{ ci.mobile }}
+         <br /> 邮箱：{{ci.email}}
+         <br /> 地址：{{ci.address}} 
+        </dd> 
+       </dl> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="main_right"> 
+     <div class="sitemap">
+       当前位置：
+      <a href="/">首页</a>&nbsp;&gt;&nbsp;
+      <a href="http://jiangnanxingye.xyz/about/">公司简介</a>&nbsp;&gt;&nbsp;
+      <a href="http://jiangnanxingye.xyz/about/about10.html">联系我们</a>&nbsp;&nbsp; 
+     </div> 
+     <div class="content"> 
+       <a href="/static/uploads/20171117063429_123.pdf">文档</a>
+      
+      <!-- <p><img alt="" src="/static/imags/shfw.jpg" />&nbsp;</p> -->
+     </div> 
+     <div class="cateslist"> 
+      <dl> 
+       <dt>
+        相关推荐
+       </dt> 
+        {% include "show_ads.html" %}
+      
+      
+      </dl> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+
+  <!--  footer begin  --> 
+ 
+  {% include "footer.html" %}
+  <!--  footer end  --> 
+ 
+ </body>
+</html>

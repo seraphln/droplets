@@ -7,14 +7,14 @@
           <ul class="sort1">
             <li class="layery" id="teshu">
             {% if cur_city_name %}
-              <a href="http://{{site.url}}/supply/" class="topnewb list_item">{{cur_city_name}}产品中心</a>
+              <a href="{{site.url}}/supply/" class="topnewb list_item">{{cur_city_name}}产品中心</a>
             {% else %}
-              <a href="http://{{site.url}}/supply/" class="topnewb list_item">产品中心</a>
+              <a href="{{site.url}}/supply/" class="topnewb list_item">产品中心</a>
             {% endif %}
             </li>
            {% for product in products_categories %}
             {% if cur_city %}
-             <li><a href="/supply_{{cur_city}}/Products_{{product.dir_name|cut:"/"}}/">{{cur_city_name}}{{product.name}}</a></li>
+             <li><a href="/supply_{{cur_city}}/Products_{{product.dir_name}}/">{{cur_city_name}}{{product.name}}</a></li>
             {% else %}
              <li><a href="/supply/Products_{{product.dir_name}}/">{{product.name}}</a></li>
             {% endif %}
@@ -71,9 +71,9 @@
     <div class="cpzs fr">
       <h2 class="tongy">产品中心
         {% if cur_city %}
-          <a href="http://{{site.url}}/supply_{{cur_city}}/">更多&gt;&gt;</a>
+          <a href="{{site.url}}/supply_{{cur_city}}/">更多&gt;&gt;</a>
         {% else %}
-          <a href="http://{{site.url}}/supply/">更多&gt;&gt;</a>
+          <a href="{{site.url}}/supply/">更多&gt;&gt;</a>
         {% endif %}
       </h2>
       <div class="content">

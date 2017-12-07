@@ -106,3 +106,5 @@ ENV/
 *.sql
 
 */templates/html/*
+
+*.bak

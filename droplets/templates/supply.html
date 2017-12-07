@@ -1,73 +1,466 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>走进我们 - {{ site.name }}</title>
-    <meta name="Keywords" content="[field:keywords]">
-    <meta name="Description" content="[field:description]">
-    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/model.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-    <script src="/static/js/jquery-1.js"></script>
-    <script src="/static/js/jquery.js"></script>
-    <script src="/static/js/mobile.js"></script>
-  </head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <meta name="Copyright" content="All Rights Reserved btoe.cn" /> 
+  <title>{{ site.title }}</title> 
+  <meta name="keywords" content="{{ site.keywords }}" /> 
+  <meta name="description" content="{{ site.desc }}" /> 
+  <link href="/static/css/css.css" rel="stylesheet" type="text/css" /> 
+  <link href="/static/css/css_con.css" rel="stylesheet" type="text/css" /> 
+     <link href="/static/css/prod.css" rel="stylesheet" type="text/css" /> 
+  <script type="text/javascript" src="/static/js/jquery-1.8.2.min.js"></script> 
+ </head> 
+ <body> 
+  <script type="text/javascript" src="/static/js/base.js"></script> 
+  <div class="top_bgk"> 
+   <div class="mainall"> 
+    <div class="top_zi">
+     欢迎您进入{{site.name}}！
+    </div> 
+    <div class="top_sw"> 
+     <a href="{{site.site}}/sitemap" title="网站地图">网站地图</a> 
+    
+     <a href="/about/about9.html" title="联系我们">联系我们</a> 
+   
+    </div> 
+    <div class="clearboth"></div> 
+   </div> 
+  </div> 
+  <div class="top_bg"> 
+   <div class="mainall1"> 
+    <div class="logo"> 
+     <h1><a href="/" title="{{site.site}}"><img src="/{{site.logo}}" alt="{{site.site}}" title="{{site.site}}" /></a></h1> 
+    </div> 
+    <div class="biaoyu"> 
+     <p> <span>十八年</span>倾心专注</p> 
+     <p><span>各种工程机械产品</span>经营专家</p> 
+     <p>国内外知名品牌省级总代理</p> 
+    </div> 
+    <div class="iphone"> 
+     <span>全国服务热线</span> 
+     <div>
+     {{ ci.mobile }}
+      <p>{{ ci.mobile }}</p>
+     </div> 
+    </div> 
+   </div> 
+   <div class="clearboth"></div> 
+  </div> 
 
-  <body>
-  <!-- 首页banner -->
-  {% include "header.html" %}
-  <div id="container" class="clearfix">
-    <div class="left">
-      <div class="box sort_menu">
-        <h3> 产品分类</h3>
-        <ul class="sort">
-          {% for b in a %}
-          <li> <a href="{{b.dir_name}}">{{b.name}}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
+{% include "nav.html" %}
 
-      <div class="box n_contact">
-        <h3>联系我们</h3>
-        <p class="content">
-        <p>联系:{{ ci.username }}</p>
-        <p>手机: {{ ci.mobile }}</p>
-        <p>电话: {{ci.telephone}}</p>
-        <p>传真: {{ci.fax}}</p>
-        <p>邮箱: <a href="mailto:{{ci.email}}">{{ci.email}}</a></p>
-        <p>网址: {{site.url}}</p>
-        <p>地址: {{ci.address}}</p>
-      </div>
-    </div>
-    <div class="right">
-      <div class="sitemp clearfix">
-        <h2>产品展示</h2>
-        <div class="site"><a href="/">首页</a> &gt; <a href="/supply/">供应产品</a> &gt; <a href="/supply/cpzx/">产品中心</a></div>
-      </div>
-      <div class="content">
-        <div class="container1">
-          <div class="pro_b">
-            {% for product in products %}
-            <div>
-              <h2><a href="/supply/{{product.id}}.html" target=""><img src="{{product.pic}}" title="{{product.title}}" alt="{{product.category}}" height="150" width="150"></a></h2>
-              <h3><a href="/supply/{{product.id}}.html" target="">{{product.title}}</a></h3>
+ 
+    <script src="/static/js/outjs.js"></script>
+<div id="focus">
+    <ul>
+        
+      <li>
+        <a href="/supply/" title="产品中心">
+          <img src="/static/images/pro_banner.jpg" alt="产品中心" title="产品中心" /></a>
+      </li>
+    
+    </ul>
+</div>
+<input type="hidden" id="cid" value="68" />
+<input type="hidden" id="tid" value="30" />
+<div class="clear">
+</div>
+{% include "list_key.html" %}
+    <div class="main">
+        <div class="main_left">
+            <div class="leftitem">
+                <div class="tit">
+                    网站导航
+                </div>
+                <div class="cates">
+                    <dl>
+                        
+
+
+           {% for product in products_categories.items %}
+{% if cur_city %}
+              <dt class="p36"><a href="/supply_{{cur_city}}/{{product.0.dir_name}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt>
+
+ {% else %}
+            <dt class="p36"><a href="/supply/{{product.0.dir_name}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt> 
+                      {% endif %}
+              <!--大类-->
+  {% for sp in product.1 %}
+                <dd class="p47" fn="p36">
+
+
+                  <a href="/supply_{{cur_city}}/{{sp.dir_name}}/" title="{{sp.name}}">{{sp.name}}</a>
+
+
+                </dd>
+ {% endfor %}
+               
+ {% endfor %}
+
+
+            
+                    </dl>
+                </div>
             </div>
-            {% endfor %}
-            <h6 class="clear"></h6>
-          </div>
-          <div class="pages">
-            <ul>
-              <li class="previous_s"><a href="/supply/Products_{{prod_page_info.pre_page}}.html">上一页<a></li>
-              <li class="pages_solid">第{{prod_page_info.page}}页</li>
-              <li class="next"><a href="/supply/Products_{{prod_page_info.next_page}}.html">下一页</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+           
+
+            <div class="leftitem">
+    <div class="tit">
+        热门新闻
     </div>
+    <div class="lianxi">
+        <dl>
+            <dd>
+                 
+
+
+ {% for new in news %} {% if new.category.name  != "客户见证" %}
+
+			         <a href="/news/{{new.id}}.html" title="{{new.title}}"> {{new.title}}</a>
+              {% endif %}
+ {% endfor %}
+
+            </dd>
+        </dl>
+    </div>
+</div>
+
+            <div class="leftitem">
+    <div class="tit">
+        联系我们
+    </div>
+    <div class="lianxi">
+        <dl>
+            <dt>
+                <div>
+                    咨询热线</div>
+                <div class="tel">
+                   {{ ci.mobile }}</div>
+            </dt>
+            <!--大类-->
+            <dd>
+                全国售后热线：
+                <br />
+            {{ ci.mobile }}
+                <br />
+                邮箱：{{ci.email}}
+                <br />
+                地址：{{ci.address}}
+            </dd>
+        </dl>
+    </div>
+</div>
+
+        </div>
+     <div class="main_right">
+            <div class="sitemap">
+                当前位置：<a href="/">首页</a>&nbsp;>&nbsp;<a href="/supply/">产品中心</a>&nbsp;>&nbsp;
+                {% if cur_cate.parent_product_cate %}
+                    <a href="/supply_{{cur_city}}/{{cur_cate.parent_product_cate.dir_name}}/">{{cur_cate.parent_product_cate.name}}</a>&nbsp;>&nbsp;<a href="/supply_{{cur_cate}}/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a>&nbsp;&nbsp;
+                {% else %}
+                    <a href="/supply_{{cur_city}}/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a>&nbsp;&nbsp;
+                {% endif %}
+            </div>
+            <script type="text/javascript" src="/static/js/pro.js"></script>
+
+<div class="prohead">
+
+  <div class="hleft">
+
+    <div class="proimg zoom-small-image">
+
+      <a href="#" class="cloud-zoom" id="zoom1" rel="adjustX:10, adjustY:-4">
+
+        <img src="{{products.pic}}" /></a>
+
+    </div>
+    
+    <div class="smallimg">
+
+      <dl>
+
+        <dt class="prev"><a href="javascript:scrollBox(-1);" title="向左">
+
+                    <img src="/static/images/jqs-left.gif" title="向左" /></a></dt>
+
+        <dd id="scrollBox">
+
+          <ul>
+
+            
+
+
+
+              <li>
+
+
+
+                <a href="/supply_{{cur_city}}/{{product.id}}.html" class="cloud-zoom-gallery" rel="useZoom: &#39;zoom1&#39;, smallImage: &#39;/uploads/image/20170428/20170428173437_3533.jpg&#39;" onclick="return false"> 
+                  <img class="zoom-tiny-image" bimg="{{products.pic}}" src="{{products.pic}}" /></a>
+
+
+
+              </li>
+
+
+
+            
+
+          </ul>
+
+        </dd>
+
+        <dt class="next"><a href="javascript:scrollBox(1);" title="向右">
+
+                    <img src="/static/images/jqs-right.gif" title="向右" /></a></dt>
+
+      </dl>
+
+    </div>
+
+    <div class="btns bdsharebuttonbox">
+
+      <a href="/supply_{{cur_city}}/{{product.id}}.html" rel="img_group" class="b1" title="查看大图">查看大图</a> <span>
+
+                 <a href="/supply_{{cur_city}}/{{product.id}}.html" rel="img_group"></a> 
+
+            </span><!--<a href="javascript:AddFavorite();" class="b2" title="加入收藏夹">加入收藏夹</a> <a href="javascript:docscroll('#zixun');" class="b3" title="我要评价">我要评价</a> <a href="javascript:;" class="b4" data-cmd="copy" title="告诉朋友">告诉朋友</a>-->
+
+      <script>
+
+        with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+
+      </script>
+
+    </div>
+
   </div>
-  <div id="footer_a">
-    {% include "footer.html" %}
+
+  <div class="hright">
+
+    <div class="proinfo">
+
+      <h1>{{products.title}}</h1>
+
+      <p>
+
+        发布时间：{{products.created_on|date:"Y-m-d"}}
+
+      </p>
+
+      <!--<p> 品牌： </p>-->
+
+      <p>
+
+    </p></div>
+
+    <div class="tels">
+
+      联系电话：<span style="font-size: 22px;">{{ ci.mobile }}</span>
+      
+
+    </div>
+
+    <div class="btns">
+
+      <div id="ckepop">
+
+        <span class="jiathis_txt">分享到：</span>
+
+        <a class="jiathis_button_qzone"></a>
+
+        <a class="jiathis_button_tqq">
+
+        </a>
+
+        <a class="jiathis_button_tsina"></a>
+
+        <a class="jiathis_button_renren"></a>
+
+        <a class="jiathis_button_douban">
+
+        </a>
+
+        <a class="jiathis_button_taobao"></a>
+
+        <a class="jiathis_button_ujian"></a>
+
+        <a class="jiathis_button_fav">
+
+        </a><a class="jiathis_button_copy">复制</a> <a href="http://www.jiathis.com/share/?uid=90225" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">
+
+                    更多</a>
+
+        <a class="jiathis_counter_style"></a>
+
+      </div>
+
+      <script type="text/javascript">
+
+        var jiathis_config = {
+
+
+
+          data_track_clickback: true
+
+
+
+        };
+
+      </script>
+
+      <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js?uid=1336353133859589" charset="utf-8"></script>
+
+    </div>
+
+    <div class="btns1">
+
+     <!-- <a href="javascript:docscroll('#zixun');" title="立即资讯">
+
+        <img src="/static/images/btn-order.png" title="马上订购" /></a>-->
+
+      <a href="http://wpa.qq.com/msgrd?v=3&site=qq&menu=yes&uin=281848068" target="_blank" title="立即咨询">
+
+        <img src="/static/images/btn-online.png" title="立即咨询" /></a>
+
+    </div>
+
   </div>
-  </body>
+
+  <div class="clear">
+
+  </div>
+
+</div>
+
+
+<div class="procontent" id="procontent">
+
+  <div class="tit" id="probar">
+
+    <dl>
+
+      <dt>产品介绍</dt>
+
+      <dd class="online">
+
+        <a href="http://wpa.qq.com/msgrd?v=3&site=qq&menu=yes&uin=281848068" title="立即咨询" target="_blank">立即咨询</a></dd>
+
+      <dd id="saoyisao">
+
+        手机扫一扫
+
+        <div id="code" style="display: none">
+
+        </div>
+
+      </dd>
+
+    </dl>
+
+  </div>
+
+  <div class="detail">
+
+    
+{{ products.content | safe }}
+
+    <div class="pagess">
+
+      <ul>
+  {% if prev_prod %}
+        <li>上一篇:<a href="/supply_{{cur_city}}/{{prev_prod.id}}.html" title="{{ prev_prod.title }}">{{ prev_prod.title }}</a></li> {% endif %}
+{% if next_prod %}
+        <li>下一篇:<a href="/supply_{{cur_city}}/{{next_prod.id}}.html" title="{{ next_prod.title }}">{{ next_prod.title }}</a></li>
+  {% endif %}
+      </ul>
+
+    </div>
+
+    
+  </div>
+
+</div>
+
+<!--<div class="tantou">
+
+  
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&site=qq&menu=yes&uin=281848068" target="_blank" title="	方舟门业立即咨询"><img src="/uploads/image/20161014/20161014084134_9708.jpg" alt="	方舟门业立即咨询" /></a>
+
+
+
+  
+
+</div>-->
+
+
+<div class="cateslist">
+
+  <dl>
+
+    <dt>相关产品</dt>
+
+    
+
+
+
+     {% include "show_ads.html" %}
+
+
+
+    
+
+  </dl>
+
+</div>
+
+<div class="zklist">
+
+  <div class="zklist-T">
+
+    相关新闻
+
+  </div>
+
+  <div class="zklist-C">
+
+    <ul>
+
+      
+    {% include "show_news_ads.html" %}
+
+
+      
+
+    </ul>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+        </div>
+    </div>
+   
+
+<!--  footer begin  -->
+
+
+
+{% include "footer.html" %}
+
+
+<!--  footer end  -->
+
+
+
+</body>
 </html>

@@ -12,13 +12,16 @@ from droplets.products.models import CasesCategory
 from droplets.products.models import ProductsCategory
 
 
-def get_case_categories():
+def get_case_categories(name=None):
     """ 获取案例的分类列表 """
     cate_dict = {}
-    par_cate = CasesCategory.objects.filter(name=u"案例中心").first()
-    categories = ProductsCategory.objects.filter(parent_cate=par_cate)
+    if not name:
+        par_cate = CasesCategory.objects.filter(name=u"工程案例").first()
+    else:
+        par_cate = CasesCategory.objects.filter(name=name).first()
+    categories = CasesCategory.objects.filter(parent_cate=par_cate)
     for cate in categories:
-        cate_dict[cate] = ProductsCategory.objects.filter(parent_cate=cate)
+        cate_dict[cate] = CasesCategory.objects.filter(parent_cate=cate)
 
     return cate_dict
 

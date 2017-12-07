@@ -91,17 +91,18 @@ def get_basic_params(city=None):
     site = SiteConfig.objects.filter().first()
     banners = Banners.objects.filter()
     news = News.objects.filter()
-    menus = Menus.objects.filter(is_root=True).order_by("customized_seq")
+    menus = Menus.objects.filter(is_root=True).order_by("-customized_seq")
     menus_foot = Menus.objects.filter(is_foot=True)
     ci = CompanyInfo.objects.filter().first()
     hot_keywords = HotKeywords.objects.filter()
     news_categories = NewsCategory.objects.filter()
     products_categories = ProductsCategory.objects.filter()
 
-    root_dict = {}
+    root_dict = []
     for menu in menus:
-        root_dict[menu] = format_footer_url(menu,
-                                            Menus.objects.filter(parent_cate=menu))
+        root_dict.append((menu,
+                          format_footer_url(menu,
+                                            Menus.objects.filter(parent_cate=menu))))
 
     footers_dict = {}
     for footer in menus_foot:
@@ -212,3 +213,16 @@ def get_prev_and_next_page(model_cls, cid):
     next_data = model_cls.objects.filter(id__gt=cid).first()
 
     return prev_data, next_data
+
+
+def format_dir_name(dir_name):
+    """
+        格式化dir_name
+    """
+    if not dir_name.startswith("/"):
+        dir_name = "/" + dir_name
+    if not dir_name.endswith("/"):
+        dir_name = dir_name + "/"
+
+    return dir_name
+

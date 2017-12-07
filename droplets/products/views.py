@@ -25,8 +25,9 @@ from droplets.seo.models import LongTailKeywords
 from droplets.seo.utils import generate_pinyin_mapper
 from droplets.seo.utils import do_generate_product_name
 
-from droplets.products.utils import get_case_categories
-from droplets.products.utils import get_products_categories
+from droplets.utils.models import get_categories
+
+from droplets.dphome.utils import format_dir_name
 
 
 def products(request, cur_city=None, dir_name=None):
@@ -44,13 +45,10 @@ def products(request, cur_city=None, dir_name=None):
 
     basic_params = get_basic_params()
     basic_params["site"] = get_and_format_site(request, cur_city)
-    basic_params.update({"products_categories": get_products_categories()})
+    basic_params.update({"products_categories": get_categories("supply")})
 
     if dir_name:
-        if not dir_name.startswith("/"):
-            dir_name = "/" + dir_name
-        if not dir_name.endswith("/"):
-            dir_name = dir_name + "/"
+        dir_name = format_dir_name(dir_name)
         cate = ProductsCategory.objects.filter(dir_name=dir_name).first()
         basic_params["cur_cate"] = cate
         query_dict = {"category": cate.id}
@@ -84,14 +82,19 @@ def cases(request, dir_name=None):
     """
     basic_params = get_basic_params()
 
-    basic_params.update({"case_categories": CasesCategory.objects.filter(),
+    basic_params.update({"case_categories": get_categories("case"),
                          "ci": CompanyInfo.objects.filter().first()})
 
     # 有dir_name的时候，用dir_name来获取分类信息
     if dir_name:
+        dir_name = format_dir_name(dir_name)
         cate = CasesCategory.objects.filter(dir_name=dir_name).first()
-        query_dict = {"category": cate.id}
-        basic_params["cur_cate"] = cate
+
+        if cate:
+            query_dict = {"category": cate.id}
+            basic_params["cur_cate"] = cate
+        else:
+            query_dict = {}
     else:
         query_dict = {}
 
@@ -129,7 +132,7 @@ def get_products_by_id(request, cid, cur_city=None):
 
     cur_city_name, cur_city = get_cur_city(cur_city)
 
-    products_categories = get_products_categories()
+    products_categories = get_categories("supply")
     basic_params.update({"products_categories": products_categories,
                          "products": products,
                          "cur_cate": products.category,
@@ -159,7 +162,7 @@ def get_case_by_id(request, cid):
     case = Cases.objects.filter(id=int(cid)).first()
     prev_case, next_case = get_prev_and_next_page(Cases, cid)
 
-    basic_params.update({"case_categories": CasesCategory.objects.filter(),
+    basic_params.update({"case_categories": get_categories("case"),
                          "case": case,
                          "cur_cate": case.category,
                          "prev_case": prev_case,
@@ -215,7 +218,7 @@ def get_case_by_page(request, cate_name, page, per_page=10, dir_name=None):
 
         #cases = do_generate_product_name(cases, cur_city)
 
-        basic_params.update({"case_categories": CasesCategory.objects.filter(),
+        basic_params.update({"case_categories": get_categories("case"),
                              "case_page_info": page_info,
                              "cases": cases,
                              "ci": CompanyInfo.objects.filter().first()})
@@ -255,7 +258,7 @@ def get_products_by_page(request, dir_name=None, cate_name=None, page=1, per_pag
 
     cur_city_name, cur_city = get_cur_city(cur_city)
 
-    products_categories = get_products_categories()
+    products_categories = get_categories("supply")
     basic_params.update({"products_categories": products_categories,
                          "products_page_info": page_info,
                          "products": products,

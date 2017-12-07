@@ -1,59 +1,127 @@
-{% extends "base.html" %}
-{% block title %}{{site.name}}{% endblock %}
-{% block body %}
-<!-- 首页banner -->
-{% include "header.html" %}
-<div id="container" class="clearfix">
-	<div class="left">
-		<div class="box sort_menu">
-		  <h3> 案例分类</h3>
-        <ul class="sort">
-         {% for case in case_categories %}
-             <li><a href="/cases/{{case.dir_name}}/">{{case.name}}</a></li>
-         {% endfor %}
-        </ul>
-		</div>
+{% include "top.html" %}
+  {% include "nav.html" %}
+  <script src="/static/js/outjs.js"></script> 
+  <div id="focus"> 
+   <ul> 
+    <li> <a href="/ryzz/index.html" title="荣誉资质"> <img src="/static/images/case_banner.jpg" alt="荣誉资质" title="荣誉资质" /></a> </li> 
+   </ul> 
+  </div> 
+  <input type="hidden" id="cid" value="40" /> 
+  <input type="hidden" id="tid" value="40" /> 
+  <div class="clear"> 
+  </div> 
+  {% include "list_key.html" %}
+  <div class="main"> 
+   <div class="main_left"> 
+    <div class="leftitem"> 
+     <div class="tit">
+       网站导航 
+     </div> 
+     <div class="cates"> 
+      <dl> 
+       {% for case in case_categories %}
+       <dt class="p36"> 
+        <a href="/cases/{{case.dir_name}}/" title="{{case.name}}">{{case.name}}</a> 
+       </dt> 
+        {% endfor %}
+      </dl> 
+     </div> 
+    </div> 
+   
+    <div class="leftitem"> 
+     <div class="tit">
+       热门新闻 
+     </div> 
+     <div class="lianxi"> 
+      <dl> 
+       <dd> 
+         
+ {% for new in news %}
+          <a href="/news/{{new.id}}.html">{{new.title}}</a>
+          {% endfor %}
+       </dd> 
+      </dl> 
+     </div> 
+    </div> 
+    <div class="leftitem"> 
+     <div class="tit">
+       联系我们 
+     </div> 
+     <div class="lianxi"> 
+      <dl> 
+       <dt> 
+        <div>
+          咨询热线
+        </div> 
+        <div class="tel">
+         {{ ci.mobile }}
+        </div> 
+       </dt> 
+       <!--大类--> 
+       <dd>
+         全国售后热线： 
+        <br />{{ ci.mobile }}
+        <br /> 邮箱：{{ci.email}}
+        <br /> 地址：{{ci.address}}
+       </dd> 
+      </dl> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="main_right"> 
+    <div class="sitemap">
+      当前位置：
+     <a href="/">首页</a>&nbsp;&gt;&nbsp;
+     <a href="/ryzz/index.html">荣誉资质</a>&nbsp;&nbsp; 
+    </div> 
+    <div class="content"> 
+     <div class="news_xaingxi">
+       {{case.title}} 
+     </div> 
+     <div class="news_author">
+      发布日期：{{case.created_on|date:"Y-m-d"}}
+     
+     </div> 
+     <div class="news_content"> 
+      {{ case.content | safe }}
+     </div> 
+     <div class="pagess"> 
+      <ul> 
+        {% if prev_case %}
+       <li>上一篇:<a href="/cases/{{prev_case.id}}.html" title="{{ prev_case.title }}">{{ prev_case.title }}</a></li> {% endif %}
+      {% if next_case %}
+        <li>下一篇:<a href="/cases/{{next_case.id}}.html" title="{{ next_case.title }}">{{ next_case.title }}</a></li>  {% endif %}
 
-  {% include "contract.html" %}
-</div>
+      </ul> 
+     </div> 
+    
+    </div> 
+    <div class="cateslist"> 
+     <dl> 
+      <dt>
+       相关产品
+      </dt> 
+     {% include "show_ads.html" %}
+     </dl> 
+    </div> 
+    <div class="zklist"> 
+     <div class="zklist-T">
+       相关新闻 
+     </div> 
+     <div class="zklist-C"> 
+      <ul> 
+       {% include "show_news_ads.html" %}
+      </ul> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
 
-<div class="right">
-  <div class="sitemp clearfix">
-    {% if cur_cate %}
-      <h2>{{cur_cate.name}}</h2>
-      <div class="site"><a href="/">首页</a> &gt; <a href="/cases/">公司案例</a> &gt; <a href="/cases/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a></div>
-    {% else %}
-      <h2>案例展示</h2>
-      <div class="site"><a href="/">首页</a> &gt; <a href="/cases/">公司案例</a></div>
-    {% endif %}
-   </div>
-<div class="content">
-  <div class="container1">
-    <div class="content1">
-      <h3>{{case.title}}</h3>
-      <div class="container2" id="zoom">
-        {{ case.content | safe }}
-      </div>
-    </div>
-	</div>
-  </div>
+  <!--  footer begin  --> 
+ {% include "footer.html" %}
+  <!--  footer end  --> 
 
-  {% if prev_case %}
-  <div>
-    <p><a href="/cases/{{prev_case.id}}.html">上一页：{{ prev_case.title }}</a></p>
-  </div>
-  {% endif %}
+  
 
-  {% if next_case %}
-  <div>
-    <p><a href="/cases/{{next_case.id}}.html">下一页：{{ next_case.title }}</a></p>
-  </div>
-  {% endif %}
-
- </div>
-	</div>
-</div>
-<div id="footer_a">
-{% include "footer.html" %}
-  </div>
-{% endblock %}
+ </body>
+</html>

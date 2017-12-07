@@ -1,28 +1,148 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <!-- title和keywords -->
-  <title>{% block title %}{% endblock %}</title>
-  <meta name="Keywords" content="{{ site.keywords }}">
-  <meta name="Description" content="{{ site.desc }}">
+{% include "top.html" %}
+{% include "nav.html" %}
 
-  <!-- 通用meta配置 -->
-  <meta http-equiv="mobile-agent" content="format=xhtml; url={{ site.wap_site }}">
-  <meta http-equiv="mobile-agent" content="format=html5; url={{ site.wap_site }}">
 
-  <!-- 通用css -->
-  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
-  <link rel="stylesheet" type="text/css" href="/static/css/model.css">
-  <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+ 
+    <script src="/static/js/outjs.js"></script>
+<div id="focus">
+    <ul>
+        
+      <li>
+        <a href="/cpzs/index.html" title="产品中心">
+          <img src="/static/images/pro_banner.jpg" alt="产品中心" title="产品中心" /></a>
+      </li>
+    
+    </ul>
+</div>
+<input type="hidden" id="cid" value="30" />
+<input type="hidden" id="tid" value="30" />
+<div class="clear">
+</div>
+{% include "list_key.html" %}
 
-  <!-- 通用js -->
-  <script src="/static/js/jquery-1.js"></script>
-  <script src="/static/js/jquery.js"></script>
-  <script src="/static/js/mobile.js"></script>
-</head>
+    <div class="main">
+        <div class="main_left">
+            <div class="leftitem">
+                <div class="tit">
+                    网站导航
+                </div>
+                <div class="cates">
+                    <dl>
+                        
+{% for product in products_categories.items %}
+{% if cur_city %}
+              <dt class="p36"><a href="/supply_{{cur_city}}/{{product.0.dir_name}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt>
 
-<body>
-{% block body %}{% endblock %}
+ {% else %}
+            <dt class="p36"><a href="/supply/{{product.0.dir_name}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt> 
+                      {% endif %}
+              <!--大类-->
+  {% for sp in product.1 %}
+                <dd class="p47" fn="p36">
+
+
+                  <a href="/supply_{{cur_city}}/{{sp.dir_name}}/" title="{{sp.name}}">{{sp.name}}</a>
+
+
+                </dd>
+ {% endfor %}
+               
+ {% endfor %}
+
+   
+
+
+              <!--大类-->
+
+            
+                    </dl>
+                </div>
+            </div>
+            <div class="leftitem">
+    <div class="tit">
+        热门新闻
+    </div>
+    <div class="lianxi">
+        <dl>
+          
+          <dd>
+                 
+
+ {% for new in news %}
+
+			         <a href="/news/{{new.id}}.html" title="{{new.title}}">  {{new.title}}</a>
+
+
+
+			     {% endfor %}
+
+
+
+			    
+
+
+			    
+            </dd>
+        </dl>
+    </div>
+</div>
+
+            <div class="leftitem">
+    <div class="tit">
+        联系我们
+    </div>
+    <div class="lianxi">
+        <dl>
+            <dt>
+                <div>
+                    咨询热线</div>
+                <div class="tel">
+                    {{ ci.mobile }}</div>
+            </dt>
+            <!--大类-->
+            <dd>
+                全国售后热线：
+                <br />
+          {{ ci.mobile }}
+                <br />
+                邮箱：{{ci.email}}
+                <br />
+                地址：{{ci.address}}
+            </dd>
+        </dl>
+    </div>
+</div>
+
+        </div>
+        <div class="main_right">
+            <div class="sitemap">
+                当前位置：<a href="/">首页</a>&nbsp;>&nbsp;<a href="/cpzs/index.html">产品中心</a>&nbsp;&nbsp;
+            </div>
+           
+            {% block content %}{% endblock %}
+            <div class="cateslist">
+    <dl>
+        <dt>相关推荐</dt>
+        
+
+{% include "show_ads.html" %}
+
+       
+    </dl>
+</div>
+
+        </div>
+    </div>
+  
+<!--  footer begin  -->
+
+
+ {% include "footer.html" %}
+
+
+
+
+<!--  footer end  -->
+
 </body>
 </html>

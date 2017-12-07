@@ -1,45 +1,141 @@
-{% extends "base.html" %}
-{% block body %}
+   {% include "top.html" %}
+     {% include "nav.html" %}
+  <script src="/static/js/outjs.js"></script> 
+  <div id="focus"> 
+   <ul> 
+    <li> <a href="/about/index.html#" title="公司简介"> <img src="/static/images/about_banner.jpg" alt="公司简介" title="公司简介" /></a> </li> 
+   </ul> 
+  </div> 
+  <input type="hidden" id="cid" value="23" /> 
+  <input type="hidden" id="tid" value="22" /> 
+  <div class="clear"> 
+  </div> 
+  <div class="main"> 
+   <div class="search_con"> 
+    <div class="hotkey"> 
+     <span>关键词：</span>
+      {% for hk in hot_keywords %}
+     <a href="" title="{{ hk.name }}">{{ hk.name }}</a> 
+    {% endfor %}
+    </div> 
+    <div class="form"> 
+     <input type="text" onblur="if (value ==''){value='请输入关键字'}" onclick="if(this.value=='请输入关键字')this.value=''" value="请输入关键字" class="search-t" id="keywords" name="keywords" onkeydown="if(event.keyCode==13){SiteSearchkwf('#keywords');return false};" /> 
+     <button type="submit" class="search-s" onclick="SiteSearchkwf('#keywords');"> 搜索</button> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="clear"> 
+  </div> 
+  <script>
+    eval(decode('""""&*fqewogpv+0tgcf{*hwpevkqp"*+"}""""""""xct"mwtn"?"ykpfqy0nqecvkqp0jtgh0tgrnceg*$jvvr<11$."))+=""""""""xct"v3"?"mwtn0ncuvKpfgzQh*)0)+=""""""""xct"v4"?"mwtn0ncuvKpfgzQh*)1)+=""""""""xct"ikf"?"mwtn0uwduvtkpi*v4"-"3."v3+=""""""""xct"&yekf"?"&*$%ekf$+0xcn*+=""""""""xct"&yvkf"?"&*$%vkf$+0xcn*+=""""""""kh"*&*$0r$"-"&yekf+0ku*$ff$++"}""""""""""""&*$0ecvgu$+0hkpf*$fv$+0gcej*hwpevkqp"*+"}""""""""""""""""kh"*&*vjku+0cvvt*$encuu$+"??"&*$0r$"-"&yekf+0cvvt*$hp$++"}""""""""""""""""""""&*vjku+0cffEncuu*$icqnkcpi$+=""""""""""""""""""""xct"v"?"&*vjku+0cvvt*$encuu$+0urnkv*$"$+]2_0tgrnceg*$r$."$$+="""""""""""""""""""""kh"*&*$0$"-"ikf+0ngpivj"@"2+"}""""""""""""""""""""""""&*$0$"-"ikf+0cffEncuu*$cpqvjgt$+="""""""""""""""""""""""""""""""""""""""gnug"kh"*&*$0$"-"&yekf+0ngpivj"@"2+"}""""""""""""""""""""""""&*$0$"-"&yekf+0cffEncuu*$cpqvjgt$+=""""""""""""""""""""""""""""""""""""""""gnug"kh"*&*$0$"-"v+0ngpivj"@"2+"}""""""""""""""""""""""""&*$0$"-"v+0cffEncuu*$cpqvjgt$+="""""""""""""""""""""gnug"}""""""""""""""""""""""""&*$0$"-"&yvkf+0cffEncuu*$cpqvjgt$+=""""""""""""""""""""""""""""""""""""""""""""""""+=""""""""""""&*$0r$"-"&yekf+0cffEncuu*$icqnkcpi$+="""""""""gnug"}""""""""""""&*$0r$"-"&yekf+0cffEncuu*$icqnkcpi$+0ukdnkpiu*+0tgoqxgEncuu*$icqnkcpi$+=""""""""""""kh"*&*$0$"-"ikf+0ngpivj"@"2+"}""""""""""""""""&*$0$"-"ikf+0cffEncuu*$cpqvjgt$+=""""""""""""""""""""""""gnug"kh"*&*$0$"-"&yekf+0ngpivj"@"2+"}""""""""""""""""&*$0$"-"&yekf+0cffEncuu*$cpqvjgt$+=""""""""""""""""""""""""""gnug"}""""""""""""""""&*$0$"-"&yvkf+0cffEncuu*$cpqvjgt$+="""""""""""""""""""""""""+='));
+    </script> 
+  <div class="all"> 
+   <div class="main"> 
+    <div class="main_left"> 
+     <div class="leftitem"> 
+      <div class="tit">
+        网站导航 
+      </div> 
+      <div class="cates"> 
+       <dl> 
+        <dt class="p23"> 
+         <a href="/about/index.html" title="公司简介">公司简介</a> 
+        </dt> 
+        <dt class="p44"> 
+         <a href="/cpyc/index.html" title="诚聘英才">诚聘英才</a> 
+        </dt> 
+        <dt class="p52"> 
+         <a href="/lxaj/index.html" title="联系方舟">联系裕华</a> 
+        </dt> 
+       </dl> 
+      </div> 
+     </div> 
+     <div class="leftitem"> 
+      <div class="tit">
+        热门新闻 
+      </div> 
+      <div class="lianxi"> 
+       <dl> 
+        <dd> 
+          
+ {% for new in news %}
+         <a href="/news/{{new.id}}.html" title="{{new.title}}"> {{new.title}}</a> 
+       {% endfor %}
+        </dd> 
+       </dl> 
+      </div> 
+     </div> 
+     <div class="leftitem"> 
+      <div class="tit">
+        热门推荐 
+      </div> 
+      <div class="hot"> 
+       <ul> 
+         {% for ad in ads %}
+        <li> 
+         <div class="img"> 
+          <a href="/supply_{{cur_city}}/{{ad.id}}.html" title="{{ad.title}}"> <img src="/{{ad.pic}}" title="{{ad.title}}" alt="{{ad.category}}" /></a>
+         </div> 
+         <div class="txt"> 
+          <a href="/supply_{{cur_city}}/{{ad.id}}.html" title="{{ad.title}}">{{ad.title}}</a>
+         </div> </li> 
+         {% endfor %} 
+       </ul> 
+      </div> 
+     </div> 
+     <div class="leftitem"> 
+      <div class="tit">
+        联系我们 
+      </div> 
+      <div class="lianxi"> 
+       <dl> 
+        <dt> 
+         <div>
+           咨询热线
+         </div> 
+         <div class="tel">
+           133&nbsp;0971&nbsp;8608
+         </div> 
+        </dt> 
+        <!--大类--> 
+        <dd>
+          全国售后热线： 
+         <br /> 132&nbsp;9971&nbsp;2225 
+         <br /> 邮箱：281848068@qq.com 
+         <br /> 地址：西宁市城北区门源路50号 
+        </dd> 
+       </dl> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="main_right"> 
+     <div class="sitemap">
+       当前位置：
+      <a href="/">首页</a>&nbsp;&gt;&nbsp;
+      <a href="http://{{site.url}}/about/">公司简介</a>&nbsp;&gt;&nbsp;
+      <a href="http://{{site.url}}/about/">公司简介</a>&nbsp;&nbsp; 
+     </div> 
+     <div class="content"> 
+      <p style="text-indent:2em;"> <br /> </p> 
+      <p style="text-align:center;"> <img src="/static/images/about.png" alt="" width="400" height="283" title="" align="" /> </p> 
+     {{ ci.description }}
+     </div> 
+     <div class="cateslist"> 
+      <dl> 
+       <dt>
+        相关推荐
+       </dt> 
+       {% include "show_ads.html" %}
+      </dl> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
 
-{% include "headers.html" %}
-  <div id="container" class="clearfix">
-    <div class="left">
-      <div class="box sort_menu">
-        <h3> 精彩展示</h3>
-        <ul class="sort">
-          <li><a href="http://{{site.url}}/about/">走进我们</a></li>
-          <li> <a href="http://{{site.url}}/about/about9.html">联系我们</a></li>
-          <li> <a href="http://{{site.url}}/about/about10.html">产品介绍</a> </li>
-        </ul>
-      </div>
-      <div class="box n_contact">
-        <h3>联系我们</h3>
-        <p>联系:{{site.contact_user}}</p>
-        <p>手机: {{site.mobile}}</p>
-        <p>电话: {{site.phone}}</p>
-        <p>传真: {{site.fax}}</p>
-        <p>邮箱: <a href="mailto:{{site.email}}">{{site.email}}</a></p>
-        <p>网址:{{site.url}}</p>
-        <p>地址: {{site.address}}</p>
-      </div>
-    </div>
-    <div class="right">
-      <div class="sitemp clearfix">
-        <h2>详细信息</h2>
-        <div class="site">
-          <a href="{{site.url}}">首页</a> &gt; <a href="http://{{site.url}}/about/">走进我们</a>
-        </div>
-      </div>
-      <div class="content">
-        <div class="container1">
-          <div class="content1">
-            <h3>走进我们</h3>
-            <div class="container2" id="zoom">
-              {{ cate.content }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endlbock %}
+  <!--  footer begin  --> 
+ 
+  {% include "../footer.html" %}
+  <!--  footer end  --> 
+ 
+ </body>
+</html>

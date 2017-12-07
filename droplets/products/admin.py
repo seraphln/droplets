@@ -36,7 +36,7 @@ class CasesCategoryAdmin(admin.ModelAdmin):
     list_display = ("id", "customized_seq", "name", "dir_name")
 
     def get_queryset(self, request):
-        cate_channel = Menus.objects.filter(name=u"产品案例").first()
+        cate_channel = Menus.objects.filter(name=u"工程案例").first()
         return Menus.objects.filter(parent_cate=cate_channel)
 
 

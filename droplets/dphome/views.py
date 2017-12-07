@@ -39,7 +39,7 @@ from droplets.dphome.utils import get_basic_params
 from droplets.dphome.utils import get_and_format_site
 from droplets.dphome.utils import get_data_by_page
 
-from droplets.products.utils import get_products_categories
+from droplets.utils.models import get_categories
 
 from droplets.seo.utils import do_generate_product_name
 
@@ -77,7 +77,7 @@ def index(request, city=None):
 
     basic_params["cases"] = Cases.objects.filter()[:10]
 
-    basic_params.update({"products_categories": get_products_categories()})
+    basic_params.update({"products_categories": get_categories("supply")})
 
     # 更新产品信息
     prod_page_info, products = get_data_by_page(Products)
@@ -121,10 +121,10 @@ def about(request, dir_name=None):
     cur_menu = Menus.objects.filter(name=u"产品中心", is_root=True).first()
     cates = Menus.objects.filter(parent_cate=cur_menu)
 
-    target_dir = "/about"
+    target_dir = "/about/"
 
     if dir_name:
-        target_dir = "%s/%s" %(target_dir, dir_name)
+        target_dir = "%s%s" %(target_dir, dir_name)
 
     menu = Menus.objects.filter(dir_name=target_dir).first()
     basic_params.update({"cates": cates, "menu": menu})
@@ -136,6 +136,7 @@ def about(request, dir_name=None):
             template_name = "about.html"
         return render_to_response(template_name, basic_params)
     else:
+        site = basic_params.get("site")
         return http.HttpResponseRedirect(site.url)
 
 

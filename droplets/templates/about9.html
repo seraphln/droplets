@@ -1,65 +1,182 @@
-<!DOCTYPE html>
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>走进我们 - {{ site.name }}</title>
-<meta name="Keywords" content="[field:keywords]">
-<meta name="Description" content="[field:description]">
-<link rel="stylesheet" type="text/css" href="/static/css/base.css">
-<link rel="stylesheet" type="text/css" href="/static/css/model.css">
-<link rel="stylesheet" type="text/css" href="/static/css/main.css">
-<script src="/static/js/jquery-1.js"></script>
-<script src="/static/js/jquery.js"></script>
-<script src="/static/js/mobile.js"></script>
-</head>
-<body>
-<!-- 首页banner -->
-{% include "header.html" %}
+{% include "top.html" %}
 
-<div id="container" class="clearfix">
-  <div class="left">
-    <div class="box sort_menu">
-      <h3> 精彩展示</h3>
-      <ul class="sort">
-        {% for b in a %}
-            <li> <a href="{{b.dir_name}}">{{b.name}}</a></li>
-        {% endfor %}
-      </ul>
+
+{% include "nav.html" %}
+
+ 
+    <script src="/static/js/outjs.js"></script>
+<div id="focus">
+    <ul>
+        
+      <li>
+        <a href="" title="公司简介">
+          <img src="/static/images/about_banner.jpg" alt="公司简介" title="公司简介" /></a>
+      </li>
+    
+    </ul>
+</div>
+<input type="hidden" id="cid" value="52" />
+<input type="hidden" id="tid" value="22" />
+<div class="clear">
+</div>
+{% include "list_key.html" %}
+
+    <div class="all">
+        <div class="main">
+            <div class="main_left">
+                <div class="leftitem">
+                    <div class="tit">
+                        网站导航
+                    </div>
+                    <div class="cates">
+                        <dl>
+                            
+
+
+
+                <dt class="p23">
+
+
+
+                  <a href="/about/" title="公司简介">公司简介</a>
+
+
+
+                </dt>
+
+
+                <dt class="p52">
+
+
+
+                  <a href="/about/about9.html" title="联系裕华">联系裕华</a>
+
+
+
+                </dt>
+
+
+
+              
+                        </dl>
+                    </div>
+                </div>
+                <div class="leftitem">
+    <div class="tit">
+        热门新闻
     </div>
-    <div class="box n_contact">
-      <h3>联系我们</h3>
-      <p>联系:{{ ci.username }}</p>
-      <p>手机:{{ ci.mobile }}</p>	
-      <p>电话:{{ci.telephone}}</p>
-      <p>传真:{{ci.fax}}</p>
-      <p>邮箱:<a href="mailto:{{ci.email}}">{{ci.email}}</a></p>
-      <p>网址:{{site.url}}</p>	
-      <p>地址:{{ci.address}}</p>
+    <div class="lianxi">
+        <dl>
+            <dd>
+                 
+ {% for new in news %}
+{% if new.category.name != "客户见证" %}
+
+  <a href="/news/{{new.id}}.html">{{new.title}}</a>
+{% endif %}
+		     {% endfor %}	    
+            </dd>
+        </dl>
     </div>
-  </div>
-  <div class="right">
-    <div class="sitemp clearfix">
-      <h2>详细信息</h2>
-      <div class="site">
-        <a href="/">首页</a> &gt; <a href="/about/">走进我们</a></div>
-      </div>
-      <div class="content">
-        <div class="container1">	
-          <div class="content1">
-            <h3>联系我们</h3>
-	    <div class="container2" id="zoom">
-              <p>名称:{{ site.name }}</p>
-              <p>电话:{{ci.telephone}}</p>
-              <p>手机:{{ ci.mobile }}</p>
-              <p>邮箱:<a href="mailto:{{ci.email}}">{{ci.email}}</a></p>
-              <p>地址:北京大兴西红门镇工业园</p>
+</div>
+
+             
+
+                <div class="leftitem">
+    <div class="tit">
+        联系我们
+    </div>
+    <div class="lianxi">
+        <dl>
+            <dt>
+                <div>
+                    咨询热线</div>
+                <div class="tel">
+                   {{ ci.mobile }}</div>
+            </dt>
+            <!--大类-->
+            <dd>
+                全国售后热线：
+                <br />
+           {{ ci.mobile }}
+                <br />
+                邮箱：{{ci.email}}
+                <br />
+                地址：{{ci.address}}
+            </dd>
+        </dl>
+    </div>
+</div>
+
             </div>
-	  </div>
-	</div>
-       </div>
-     </div>
-   </div>
-  <div id="footer_a">
-  {% include "footer.html" %}
-  </div>
-  </body>
+            <div class="main_right">
+                <div class="sitemap">
+                    当前位置：<a href="/">首页</a>&nbsp;>&nbsp;<a href="/about/">公司简介</a>&nbsp;>&nbsp;<a href="/about/about9.html">联系裕华</a>&nbsp;&nbsp;
+                </div>
+                <div class="content">
+                    <p>
+	<span style="line-height:1.5;">{{site.name}}</span> 
+</p>
+<p>
+	联系人<span>：</span>{{ ci.username }}
+</p>
+<p>
+	联系方式：{{ ci.mobile }}
+</p>
+
+<p>
+	固定电话<span>：</span>{{ci.telephone}}
+</p>
+<p>
+	邮箱<span>：</span>{{ci.email}}
+</p>
+<p>
+	地址<span>：</span>{{ci.address}}
+</p>
+
+<p>
+	<!--<img src="/uploads/image/20161103/20161103090348_5171.png" alt="" />--> 
+</p>
+<p>
+	地图:
+</p>
+<p>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=766788c0604cc68f5a8d8e5722c41365"></script>
+<script type="text/javascript" src="/static/js/baidumap.js"></script>
+<div id="dituContent" style="width: 100%; height: 400px; border: 1px solid gray;"></div>
+<script type="text/javascript">addAddress('123.413273','41.597983','{{site.name}}','<font color=red><b>{{site.name}}</b></font><br>地址：{{ci.address}}<br>电话：{{ ci.mobile }}');</script>
+
+</p>
+<p>
+	<br />
+</p>
+                </div>
+                <div class="cateslist">
+    <dl>
+        <dt>相关推荐</dt>
+        
+
+
+      {% include "show_ads.html" %}
+
+       
+    </dl>
+</div>
+
+            </div>
+        </div>
+    </div>
+   
+
+<!--  footer begin  -->
+ {% include "footer.html" %}
+
+
+
+<!--  footer end  -->
+
+
+
+
+</body>
 </html>

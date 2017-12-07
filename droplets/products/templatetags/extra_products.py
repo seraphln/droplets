@@ -11,7 +11,7 @@ from django import template
 
 from droplets.products.models import Products
 from droplets.products.models import ProductsCategory
-from droplets.products.views import get_products_categories
+from droplets.utils.models import get_categories
 
 from droplets.dphome.views import get_cur_city
 from droplets.dphome.utils import get_data_by_page
@@ -25,7 +25,7 @@ register = template.Library()
 def get_root_cate(context):
     """ 获取产品页面左侧的分类信息 """
 
-    products_categories = get_products_categories()
+    products_categories = get_categories("supply")
     return {"products_categories": products_categories}
 
 

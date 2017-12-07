@@ -112,10 +112,11 @@ class Menus(models.Model):
 
             if not self.dir_name.endswith(".html") and not self.dir_name.endswith("/"):
                 self.dir_name = self.dir_name + "/"
-        super(Menus, self).save(*args, **kwargs)
+
         if not self.customized_seq:
-            self.customized_seq = self.id
-            self.save()
+            self.customized_seq = 0
+
+        super(Menus, self).save(*args, **kwargs)
 
 
 class Banners(models.Model):

@@ -1,58 +1,124 @@
-{% extends "base.html" %}
-{% block title %}{{site.name}}{% endblock %}
-{% block body %}
-<!-- 首页banner -->
-{% include "header.html" %}
-<div id="container" class="clearfix">
-	<div class="left">
-		<div class="box sort_menu">
-		  <h3> 新闻分类</h3>
-        <ul class="sort">
-         {% for news in news_categories %}
-             <li><a href="/news/{{news.dir_name}}/">{{news.name}}</a></li>
+  {% include "top.html" %}
+  {% include "nav.html" %}
+  <script src="/static/js/outjs.js"></script> 
+  <div id="focus"> 
+   <ul> 
+    <li> <a href="" title="新闻动态"> <img src="/static/images/news_banner.jpg" alt="新闻动态" title="新闻动态" /></a> </li> 
+   </ul> 
+  </div> 
+  <input type="hidden" id="cid" value="43" /> 
+  <input type="hidden" id="tid" value="1" /> 
+  <div class="clear"> 
+  </div> 
+ {% include "list_key.html" %}
+  <div class="main"> 
+   <div class="main_left"> 
+    <div class="leftitem"> 
+     <div class="tit">
+       网站导航 
+     </div> 
+     <div class="cates"> 
+      <dl> 
+        {% for news in news_categories %}
+        {% if news.name  != "荣誉资质" and  news.name  != "客户见证" %}
+       <dt class="p21"> 
+        <a href="/news/{{news.dir_name}}/" title="{{news.name}}">{{news.name}}</a> 
+       </dt> 
+        {% endif %}
+      {% endfor %}
+      </dl> 
+     </div> 
+    </div> 
+    
+    <div class="leftitem"> 
+     <div class="tit">
+       热门新闻 
+     </div> 
+     <div class="lianxi"> 
+      <dl> 
+       <dd> 
+         {% for news in total_news %}
+        <a href="/news/{{news.id}}.html" title="{{news.title}}"> {{news.title}}</a> 
          {% endfor %}
-        </ul>
-		</div>
+       </dd> 
+      </dl> 
+     </div> 
+    </div> 
+    <div class="leftitem"> 
+     <div class="tit">
+       联系我们 
+     </div> 
+     <div class="lianxi"> 
+      <dl> 
+       <dt> 
+        <div>
+          咨询热线
+        </div> 
+        <div class="tel">
+         {{ ci.mobile }}
+        </div> 
+       </dt> 
+       <!--大类--> 
+       <dd>
+         全国售后热线： 
+        <br />{{ ci.mobile }}
+        <br /> 邮箱：{{ci.email}}
+        <br /> 地址：{{ci.address}}
+       </dd> 
+      </dl> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="main_right"> 
+    <div class="sitemap">
+      当前位置：
+     <a href="/">首页</a>&nbsp;&gt;&nbsp; <a href="/news/">新闻动态</a>&nbsp;&gt;&nbsp; <a href="/news/hydt/">行业新闻</a>&nbsp;&nbsp; 
+    </div> 
+    <div class="content"> 
+     <div class="news_xaingxi">
+      {{news.title}}
+     </div> 
+     <div class="news_author">
+       发布日期：{{news.created_on|date:"Y-m-d"}} 
+      <script type="text/javascript" src="/api/submit_ajax.ashx?action=click_view&amp;id=346&amp;click=1"></script> 
+    
+     </div> 
+     <div class="news_content"> 
+      {{ news.content | safe }} 
+     </div> 
+     <div class="pagess"> 
+      <ul> 
+        {% if prev_news %}
+       <li>上一篇:<a href="/news/{{prev_news.id}}.html" title="{{ prev_news.title }}">{{ prev_news.title }}</a></li>  {% endif %}
+        {% if next_news %}
+       <li>下一篇:<a href="/news/{{next_news.id}}.html" title="{{ next_news.title }}">{{ next_news.title }}</a></li> 
+        {% endif %}
+      </ul> 
+     </div> 
+    
+    </div> 
+    <div class="cateslist"> 
+     <dl> 
+      <dt>
+       相关产品
+      </dt> 
+       {% include "show_ads.html" %}
+     </dl> 
+    </div> 
+    <div class="zklist"> 
+     <div class="zklist-T">
+       相关新闻 
+     </div> 
+   {% include "show_news_ads.html" %}
 
-  {% include "contract.html" %}
-</div>
-
-<div class="right">
-  <div class="sitemp clearfix">
-    {% if cur_cate %}
-      <h2>{{cur_cate.name}}</h2>
-      <div class="site"><a href="/">首页</a> &gt; <a href="/news/">企业新闻</a> &gt; <a href="/news/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a></div>
-    {% else %}
-      <h2>案例展示</h2>
-      <div class="site"><a href="/">首页</a> &gt; <a href="/news/">企业新闻</a></div>
-    {% endif %}
-   </div>
-<div class="content">
-  <div class="container1">
-    <div class="content1">
-      <h3>{{news.title}}</h3>
-      <div class="container2" id="zoom">
-        {{ news.content | safe }}
-      </div>
-    </div>
-	</div>
-</div>
-  {% if prev_news %}
-  <div>
-    <p><a href="/news/{{prev_news.id}}.html">上一页：{{ prev_news.title }}</a></p>
-  </div>
-  {% endif %}
-
-  {% if next_news %}
-  <div>
-    <p><a href="/news/{{next_news.id}}.html">下一页：{{ next_news.title }}</a></p>
-  </div>
-  {% endif %}
-
- </div>
-	</div>
-</div>
-<div id="footer_a">
-{% include "footer.html" %}
-  </div>
-{% endblock %}
+    </div> 
+   </div> 
+  </div> 
+  
+  <!--  footer begin  --> 
+    {% include "footer.html" %}
+ 
+  <!--  footer end  --> 
+ 
+ </body>
+</html>
