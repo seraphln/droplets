@@ -73,11 +73,14 @@ def get_news_by_id(request, cid):
     news = News.objects.filter(id=cid).first()
     prev_news, next_news = get_prev_and_next_page(News, cid)
 
+    _, total_news = get_data_by_page(News, {"category": news.category})
+
     basic_params.update({"news_categories": get_categories("news"),
                          "news": news,
                          "cur_cate": news.category,
                          "prev_news": prev_news,
                          "next_news": next_news,
+                         "total_news": total_news,
                          "ci": CompanyInfo.objects.filter().first()})
 
     return render_to_response("news/news_detail.html", basic_params)

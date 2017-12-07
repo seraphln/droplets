@@ -689,8 +689,8 @@ urlredirect();
      <div class="clearboth"></div>
      <div class="news_n">
       <ul>
-        {% for news in gsdt_news %}
-       <li> <a href="/news/{{news.id}}.html" title="{{news.title}}">{{news.title}}</a> </li>
+       {% for news in gsdt_news %}
+         <li> <a href="/news/{{news.id}}.html" title="{{news.title}}">{{news.title}}</a> </li>
        {% endfor %}
       </ul>
      </div>
@@ -707,7 +707,6 @@ urlredirect();
      <div class="clearboth"></div>
      <div class="news_n">
       <ul>
-
           {% for news in hydt_news %}
              <li> <a href="/news/{{news.id}}.html" title="{{news.title}}">{{news.title}}</a> </li>
           {% endfor %}

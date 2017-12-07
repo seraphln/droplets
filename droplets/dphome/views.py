@@ -43,6 +43,7 @@ from droplets.dphome.utils import get_data_by_page
 from droplets.utils.models import get_categories
 
 from droplets.seo.utils import do_generate_product_name
+from droplets.seo.models import Videos
 
 from droplets.utils.decorators import check_static_files
 
@@ -89,16 +90,10 @@ def index(request, city=None):
     basic_params["links"] = links
 
     # 获取新闻信息
-    news_categories = NewsCategory.objects.filter()[:2]
-    news_dict = {}
-    for new_cate in news_categories:
-        _, news = get_data_by_page(News, {"category": new_cate}, reverse=False)
-        news_dict[new_cate] = news
+    _, total_news = get_data_by_page(News, reverse=False)
 
-    news_cate = NewsCategory.objects.filter(dir_name="hydt").first()
+    news_cate = NewsCategory.objects.filter(dir_name="/hyxw/").first()
     _, hydt_news = get_data_by_page(News, {"category": news_cate}, reverse=False)
-
-    basic_params["total_news"] = news_dict
 
     lt = LongTailKeywords.objects.filter().first()
 
@@ -109,6 +104,8 @@ def index(request, city=None):
                          "cur_city_name": cur_city_name,
                          "hydt_news": hydt_news,
                          "is_jump": "true",
+                         "total_news": total_news,
+                         "gsdt_news": total_news,
                          "cur_city": cur_city})
 
     # 处理多站
@@ -130,8 +127,10 @@ def about(request, dir_name=None):
         dir_name = format_dir_name(dir_name)
         target_dir = dir_name
 
+    video = Videos.objects.filter().first()
+
     menu = Menus.objects.filter(dir_name=target_dir).first()
-    basic_params.update({"cates": cates, "menu": menu})
+    basic_params.update({"cates": cates, "menu": menu, "video": video})
 
     template_name = "about.html"
     return render_to_response(template_name, basic_params)

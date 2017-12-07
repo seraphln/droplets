@@ -40,7 +40,7 @@
        <dl>
          {% for cate in cates %}
           <dt class="p23">
-          {% if cate.name == "公司简介" %}
+          {% if cate.name == cates.0.name %}
             <a href="{{cate.dir_name}}" title="{{cate.name}}">{{cate.name}}</a>
           {% else %}
             <a href="/about{{cate.dir_name}}" title="{{cate.name}}">{{cate.name}}</a>
@@ -101,7 +101,7 @@
       <a href="/about/">公司简介</a>
 
       {% if menu %}
-        {% if menu.name != "公司简介" %}
+        {% if menu.name != cates.0.name %}
           &nbsp;&gt;&nbsp;<a href="{{menu.dir_name}}" title="{{menu.name}}">{{menu.name}}</a>
         {% endif %}
       {% endif %}
@@ -113,6 +113,7 @@
       {% else %}
         {{ site.intro|safe }}
       {% endif %}
+      <video src="/{{video.name}}" width="100%" controls autobuffer autoplay="autoplay" loop="loop">您的浏览器不支持html5，无法观看此视频</video>
      </div>
      <div class="cateslist">
       <dl>
