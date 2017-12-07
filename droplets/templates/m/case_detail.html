@@ -9,7 +9,7 @@
 		  <h3> 案例分类</h3>
         <ul class="sort">
          {% for case in case_categories %}
-             <li><a href="/cases/{{case.dir_name}}/">{{case.name}}</a></li>
+             <li><a href="/cases/{{case.dir_name|cut:"/"}}/">{{case.name}}</a></li>
          {% endfor %}
         </ul>
 		</div>
@@ -21,7 +21,7 @@
   <div class="sitemp clearfix">
     {% if cur_cate %}
       <h2>{{cur_cate.name}}</h2>
-      <div class="site"><a href="/">首页</a> &gt; <a href="/cases/">公司案例</a> &gt; <a href="/cases/{{cur_cate.dir_name}}/">{{cur_cate.name}}</a></div>
+      <div class="site"><a href="/">首页</a> &gt; <a href="/cases/">公司案例</a> &gt; <a href="/cases/{{cur_cate.dir_name|cut:"/"}}/">{{cur_cate.name}}</a></div>
     {% else %}
       <h2>案例展示</h2>
       <div class="site"><a href="/">首页</a> &gt; <a href="/cases/">公司案例</a></div>

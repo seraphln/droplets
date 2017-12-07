@@ -18,7 +18,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	
+
 </head>
 <body>
     <header class="all clear-fix" id="head">
@@ -31,22 +31,22 @@
             <input class="search-textbox" type="text" name="s" value="输入关键字" />
             <input class="search-btn"  type="submit" value="搜索" />
             </form>
-</header>	
+</header>
 <section class="all clear-fix" id="contont">
-  
+
 
   {% include "m/nav.html" %}
 
-</section>			
+</section>
 <section class="all clear-fix">
          <div class="conBodyBox">
 				<div class="pproPosition">
 					产品展示 <span> products </span>
 					<!--<div class="pproClass"><a href="?cat=17">产品分类</a></div>-->
 				</div>
-			
+
 			<div class="ipro">
-  
+
     {% for product in products %}
 <div class="metro-b clear-fix">
   {% if cur_city %}
@@ -54,7 +54,7 @@
                            {% else %}
                        <a href="/mobile/supply/{{product.id}}.html" >
                        {% endif %}
-                                 <div class="pic"><img src="/{{product.pic}}"/></div>
+                                 <div class="pic"><img src="{{product.pic}}" /></div>
                                  <div class="text">
                                <span class="aa">{{product.title}}</span>
                                  </div>
@@ -65,27 +65,27 @@
 
 
 
-            		
+
     <div class="itl-more"><a href="?cat=2">查看更多  + </a></div>
   </div>
                 <div class="pgList clear-fix">
                    {% if products %}
-                  <li class="previous_s"><a href="/mobile/supply_{{cur_city}}/{{cur_cate.dir_name}}/Products_{{products_page_info.pre_page}}.html">上一页</a></li>
-                  
+                  <li class="previous_s"><a href="/mobile/supply_{{cur_city}}/{{cur_cate.dir_name|cut:"/"}}/Products_{{products_page_info.pre_page}}.html">上一页</a></li>
+
 <li class="pages_hollow"><a href="" >{{products_page_info.page}}</a></li>
 
-<li class="next"><a href="/mobile/supply_{{cur_city}}/{{cur_cate.dir_name}}/Products_{{products_page_info.next_page}}.html">下一页</a></li>
+<li class="next"><a href="/mobile/supply_{{cur_city}}/{{cur_cate.dir_name|cut:"/"}}/Products_{{products_page_info.next_page}}.html">下一页</a></li>
         	</div>
 			    {% endif %}
-	      </div>	
-          
-</section>	 
+	      </div>
+
+</section>
 <footer class="all clear-fix" id="footer"> <a href="tel:{{ci.telephone}} "><div id="yptel">
 									<span class="icon tel"></span>
 									<span class="text">电话</span>
 								</div></a>
-               <a href="sms:{{ ci.mobile }}" class="iconfont one-order"></a> 
-				
+               <a href="sms:{{ ci.mobile }}" class="iconfont one-order"></a>
+
                                 <a href="/mobile/about/about9.html"><div id="share">
 									<span class="icon share"></span>
 									<span class="text">联系</span>
@@ -93,13 +93,13 @@
 				<a href="/mobile/about/about9.html"><div id="map">
 									<span class="icon map"></span>
 									<span class="text">地图</span>
-								</div></a> 
+								</div></a>
 			</footer>
 <div class="cbtn-top"><a href="javascript:;">
          <span class="iconfont"><img src="/static/images/icon.png"></span></a>
 </div>
 	{% include "m/rightnav.html" %}
-        <script src="/static/js/jquery-shouji.js"></script><div style="display: none;" id="pageslide"></div> 
+        <script src="/static/js/jquery-shouji.js"></script><div style="display: none;" id="pageslide"></div>
 		<script>
 		       $(".first").pageslide();
 		       $(".second").pageslide({ direction: "left", modal: true });

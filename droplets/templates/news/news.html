@@ -1,111 +1,111 @@
 {% include "top.html" %}
   {% include "nav.html" %}
-  <script src="/static/js/outjs.js"></script> 
-  <div id="focus"> 
-   <ul> 
-    <li> <a href="" title="新闻动态"> <img src="/static/images/news_banner.jpg" alt="新闻动态" title="新闻动态" /></a> </li> 
-   </ul> 
-  </div> 
-  <input type="hidden" id="cid" value="1" /> 
-  <input type="hidden" id="tid" value="1" /> 
-  <div class="clear"> 
-  </div> 
+  <script src="/static/js/outjs.js"></script>
+  <div id="focus">
+   <ul>
+    <li> <a href="" title="新闻动态"> <img src="/static/images/news_banner.jpg" alt="新闻动态" title="新闻动态" /></a> </li>
+   </ul>
+  </div>
+  <input type="hidden" id="cid" value="1" />
+  <input type="hidden" id="tid" value="1" />
+  <div class="clear">
+  </div>
 {% include "list_key.html" %}
-  <div class="main"> 
-   <div class="main_left"> 
-    <div class="leftitem"> 
+  <div class="main">
+   <div class="main_left">
+    <div class="leftitem">
      <div class="tit">
-       网站导航 
-     </div> 
-     <div class="cates"> 
-      <dl> 
+       网站导航
+     </div>
+     <div class="cates">
+      <dl>
         {% for news in news_categories %}
         {% if news.name  != "荣誉资质" and  news.name != "客户见证" %}
-       <dt class="p21"> 
-        <a href="/news/{{news.dir_name}}/" title="{{news.name}}">{{news.name}}</a> 
-       </dt> 
+       <dt class="p21">
+        <a href="/news/{{news.dir_name|cut:"/"}}/" title="{{news.name}}">{{news.name}}</a>
+       </dt>
         {% endif %}
        {% endfor %}
 
-      </dl> 
-     </div> 
-    </div> 
-    <div class="leftitem"> 
+      </dl>
+     </div>
+    </div>
+    <div class="leftitem">
      <div class="tit">
-       热门新闻 
-     </div> 
-     <div class="lianxi"> 
-      <dl> 
-       <dd> 
-         
+       热门新闻
+     </div>
+     <div class="lianxi">
+      <dl>
+       <dd>
+
   {% for new in news %}
        <a href="/news/{{new.id}}.html">{{new.title}}</a>
              {% endfor %}
-       </dd> 
-      </dl> 
-     </div> 
-    </div> 
-   
-    <div class="leftitem"> 
+       </dd>
+      </dl>
+     </div>
+    </div>
+
+    <div class="leftitem">
      <div class="tit">
-       联系我们 
-     </div> 
-     <div class="lianxi"> 
-      <dl> 
-       <dt> 
+       联系我们
+     </div>
+     <div class="lianxi">
+      <dl>
+       <dt>
         <div>
           咨询热线
-        </div> 
+        </div>
         <div class="tel">
         {{ ci.mobile }}
-        </div> 
-       </dt> 
-       <!--大类--> 
+        </div>
+       </dt>
+       <!--大类-->
        <dd>
-         全国售后热线： 
+         全国售后热线：
         <br /> {{ ci.mobile }}
         <br /> 邮箱：{{ci.email}}
         <br /> 地址：{{ci.address}}
-       </dd> 
-      </dl> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="main_right"> 
+       </dd>
+      </dl>
+     </div>
+    </div>
+   </div>
+   <div class="main_right">
     <div class="sitemap">
       当前位置：
      <a href="/">首页</a>&nbsp;&gt;&nbsp;
-     <a href="/news/">新闻动态</a>&nbsp;&nbsp; 
-    </div> 
-    <div class="content"> 
-     <ul class="newslist"> 
-      <!--取得一个分页DataTable--> 
+     <a href="/news/">新闻动态</a>&nbsp;&nbsp;
+    </div>
+    <div class="content">
+     <ul class="newslist">
+      <!--取得一个分页DataTable-->
         {% for new in news %}
-      <li> 
-       <div class="img"> 
-        <a href="/news/{{new.id}}.html" title="{{new.title}}"> <img src="/{{ new.pic }}" title="{{new.title}}" alt="{{new.title}}" /> </a> 
-       </div> 
-       <div class="txt"> 
-        <h2><a href="/news/{{new.id}}.html" title="{{new.title}}">{{new.title}}</a></h2> 
-        <p>  {{ new.desc | truncatewords:"30"  }}</p> 
-       </div> </li> 
+      <li>
+       <div class="img">
+        <a href="/news/{{new.id}}.html" title="{{new.title}}"> <img src="/{{ new.pic }}" title="{{new.title}}" alt="{{new.title}}" /> </a>
+       </div>
+       <div class="txt">
+        <h2><a href="/news/{{new.id}}.html" title="{{new.title}}">{{new.title}}</a></h2>
+        <p>  {{ new.desc | truncatewords:"30"  }}</p>
+       </div> </li>
        {% endfor %}
-     </ul> 
-     <div class="flickr"> 
+     </ul>
+     <div class="flickr">
       {% if cases %}
-      <a href="/cases/{{cur_cate.dir_name}}/Cases_{{case_page_info.pre_page}}.html">上一页&gt;</a> 
+      <a href="/cases/{{cur_cate.dir_name|cut:"/"}}/Cases_{{case_page_info.pre_page}}.html">上一页&gt;</a>
       <a href="">{{case_page_info.page}}</a>
-      
-      <a href="/cases/{{cur_cate.dir_name}}/Cases_{{case_page_info.next_page}}.html">下一页&gt;</a> 
-      {% endif %}
-     </div> 
-    </div> 
-   </div> 
-  </div> 
 
-  <!--  footer begin  --> 
+      <a href="/cases/{{cur_cate.dir_name|cut:"/"}}/Cases_{{case_page_info.next_page}}.html">下一页&gt;</a>
+      {% endif %}
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!--  footer begin  -->
   {% include "footer.html" %}
-  <!--  footer end  --> 
+  <!--  footer end  -->
 
 
  </body>

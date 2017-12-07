@@ -47,6 +47,9 @@ from droplets.dphome.views import add_msg
 from droplets.dphome.views import sceneImgUpload
 from droplets.dphome.views import get_supply_by_page
 
+from droplets.dphome.views import m
+from droplets.m.urls import urlpatterns as m_urlpatterns
+
 
 urlpatterns = [
     # 案例相关接口
@@ -79,6 +82,7 @@ urlpatterns = [
 
     # 关于我们
     url(r'^about/(?P<dir_name>\w+.html)', about),
+    url(r'^about/(?P<dir_name>\w+)/$', about),
     url(r'^about/$', about),
 
     # 站点地图
@@ -93,6 +97,9 @@ urlpatterns = [
 
     # 广告相关
     url(r'^ads/', ads),
+
+    # 移动端跳转
+    url(r'^mobile/$', m),
 
     # 留言管理
     url(r'^MessageLeftMain.htm', message),
@@ -109,3 +116,5 @@ if settings.DEBUG:
 
     urlpatterns += static(settings.MEDIA_PATH,
                           document_root=settings.MEDIA_ROOT)
+
+urlpatterns += m_urlpatterns

@@ -88,6 +88,7 @@ class Menus(models.Model):
     parent_cate = models.ForeignKey("self", null=True, blank=True, verbose_name=u"上级分类")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
     modified_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
+    is_online = models.BooleanField(default=True, verbose_name=u"是否在导航显示")
     is_root = models.BooleanField(default=False, verbose_name=u"是否是顶级分类")
     is_foot = models.BooleanField(default=False, verbose_name=u"是否是加入底边框")
 

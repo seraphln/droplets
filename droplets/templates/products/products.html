@@ -1,17 +1,11 @@
 {% include "top.html" %}
 {% include "nav.html" %}
-
-
- 
     <script src="/static/js/outjs.js"></script>
 <div id="focus">
     <ul>
-        
       <li>
-       
           <img src="/static/images/pro_banner.jpg" alt="产品中心" title="产品中心" />
       </li>
-    
     </ul>
 </div>
 <input type="hidden" id="cid" value="30" />
@@ -28,33 +22,27 @@
                 </div>
                 <div class="cates">
                     <dl>
-                        
 {% for product in products_categories.items %}
 {% if cur_city %}
-              <dt class="p36"><a href="/supply_{{cur_city}}/{{product.0.dir_name}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt>
+              <dt class="p36"><a href="/supply_{{cur_city}}/{{product.0.dir_name|cut:"/"}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt>
 
  {% else %}
-            <dt class="p36"><a href="/supply/{{product.0.dir_name}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt> 
+            <dt class="p36"><a href="/supply/{{product.0.dir_name|cut:"/"}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt>
                       {% endif %}
               <!--大类-->
   {% for sp in product.1 %}
                 <dd class="p47" fn="p36">
-
-
-                  <a href="/supply_{{cur_city}}/{{sp.dir_name}}/" title="{{sp.name}}">{{sp.name}}</a>
-
-
+                  <a href="/supply_{{cur_city}}/{{sp.dir_name|cut:"/"}}/" title="{{sp.name}}">{{sp.name}}</a>
                 </dd>
  {% endfor %}
-               
  {% endfor %}
 
-   
+
 
 
               <!--大类-->
 
-            
+
                     </dl>
                 </div>
             </div>
@@ -64,9 +52,9 @@
     </div>
     <div class="lianxi">
         <dl>
-          
+
           <dd>
-                 
+
 
  {% for new in news %}
 {% if new.category.name  != "客户见证" %}
@@ -79,10 +67,10 @@
 
 
 
-			    
 
 
-			    
+
+
             </dd>
         </dl>
     </div>
@@ -117,10 +105,11 @@
         </div>
         <div class="main_right">
             <div class="sitemap">
-                当前位置： {% if cur_cate %}<a href="/">首页</a> &nbsp;&nbsp;>&nbsp;<a href="/supply/">产品中心</a>&nbsp;&nbsp;&nbsp;>&nbsp;<a href="/supply/Products_{{cur_cate.dir_name}}/">{{cur_cate.name}}</a>{% endif %}
-              
-             
-              
+                当前位置： <a href="/">首页</a>
+                            &nbsp;&nbsp;>&nbsp; <a href="/supply/">产品中心</a>
+                            {% if cur_cate %}
+                            &nbsp;&nbsp;&nbsp;>&nbsp;<a href="/supply/Products_{{cur_cate.dir_name|cut:"/"}}/">{{cur_cate.name}}</a>
+                            {% endif %}
             </div>
             <div class="cateslist">
                 <dl>
@@ -131,45 +120,45 @@
                   <img src="/{{product.pic}}" title="{{product.title}}" alt="{{product.title}}" />
                 </a>
               </div>
-                      
+
               <div class="txt">
                  {% if cur_city %}
                 <a href="/supply_{{cur_city}}/{{product.id}}.html" title="{{cur_city_name}}">{{product.title}}</a>
                 {% else %}
               <a href="/supply/{{product.id}}.html" >{{product.title}}</a>{% endif %}
               </div>
-                       
+
             </dd>
        {% endfor %}
-           
 
-          
+
+
                 </dl>
                  {% if products %}
                 <div class="flickr">
                     <span></span>
-               
-                  <span class="display"><a href="/supply_{{cur_city}}/{{cur_cate.dir_name}}/Products_{{products_page_info.pre_page}}.html">上一页</a></span>
+
+                  <span class="display"><a href="/supply_{{cur_city}}/{{cur_cate.dir_name|cut:"/"}}/Products_{{products_page_info.pre_page}}.html">上一页</a></span>
                   <span class="current">{{products_page_info.page}}</span>
-                
-                 
-                  <a href="/supply_{{cur_city}}/{{cur_cate.dir_name}}/Products_{{products_page_info.next_page}}.html">下一页></a>
+
+
+                  <a href="/supply_{{cur_city}}/{{cur_cate.dir_name|cut:"/"}}/Products_{{products_page_info.next_page}}.html">下一页></a>
                 </div>
             </div>{% endif %}
             <div class="cateslist">
     <dl>
         <dt>相关推荐</dt>
-        
+
 
 {% include "show_ads.html" %}
 
-       
+
     </dl>
 </div>
 
         </div>
     </div>
-  
+
 <!--  footer begin  -->
 
 

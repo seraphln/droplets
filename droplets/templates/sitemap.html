@@ -15,7 +15,7 @@
 <div class="top_bgk">
    <div class="mainall">
     <div class="top_zi">欢迎您进入{{site.name}}网站！</div>
-    <div class="top_sw"> <a href="/sitemap.html" title="网站地图">网站地图</a> 
+    <div class="top_sw"> <a href="/sitemap.html" title="网站地图">网站地图</a>
       <a href="/about/about9.html" title="联系我们">联系我们</a> </div>
     <div class="clearboth"></div>
   </div>
@@ -26,105 +26,105 @@
       <h1><a href="/" title="{{site.name}}"><img src="/{{site.logo}}" alt="{{site.name}}" title="{{site.name}}" /></a></h1>
     </div>
 
-   
+
     <div class="biaoyu"> <p> <span>十八年</span>倾心专注</p>
 <p><span>各种工程机械产品</span>经营专家</p>
 <p>国内外知名品牌省级总代理</p>
     </div>
-   
-     
+
+
       <div class="iphone"> <span>全国服务热线</span>
       <div>{{ ci.mobile }}<p>{{ci.telephone}}</p></div>
       </div>
     </div>
     <div class="clearboth"></div>
- 
+
 </div>
-  <div class="nav_bg"> 
-   <div class="mainall"> 
-    <ul id="nav"> 
+  <div class="nav_bg">
+   <div class="mainall">
+    <ul id="nav">
       {% for menu in menus %}
-     <li> <a href="/" title="{{menu.dir_name}}">{{menu.name}}</a> </li> 
+     <li> <a href="/" title="{{menu.name}}">{{menu.name}}</a> </li>
      {% endfor %}
-    </ul> 
-   </div> 
-  </div> 
-  <div id="focus"> 
-   <ul> 
-    <li> <a href=""> <img src="/static/images/pro_banner.jpg" alt="产品中心" /></a> </li> 
-   </ul> 
-  </div> 
-  <div class="main"> 
-   <div class="search_con"> 
-    <div class="hotkey"> 
+    </ul>
+   </div>
+  </div>
+  <div id="focus">
+   <ul>
+    <li> <a href=""> <img src="/static/images/pro_banner.jpg" alt="产品中心" /></a> </li>
+   </ul>
+  </div>
+  <div class="main">
+   <div class="search_con">
+    <div class="hotkey">
      <span>关键词：</span>
      {% for hk in hot_keywords %}
-     <a href="" title="{{ hk.name }}">{{ hk.name }}</a> 
+     <a href="" title="{{ hk.name }}">{{ hk.name }}</a>
     {% endfor %}
-    </div> 
-    <div class="form"> 
-     <input type="text" onblur="if (value ==''){value='请输入关键字'}" onclick="if(this.value=='请输入关键字')this.value=''" value="请输入关键字" class="search-t" id="keywords" name="keywords" onkeydown="if(event.keyCode==13){SiteSearch('/search.html', '#keywords');return false};" /> 
-     <button type="submit" class="search-s" onclick="SiteSearchkwf('#keywords');"> 搜索</button> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sitemap_con main"> 
-  
-   <h4> <a href="/" title="网站首页">网站首页</a></h4> 
-   <div class="b4"> 
-    <ul> 
+    </div>
+    <div class="form">
+     <input type="text" onblur="if (value ==''){value='请输入关键字'}" onclick="if(this.value=='请输入关键字')this.value=''" value="请输入关键字" class="search-t" id="keywords" name="keywords" onkeydown="if(event.keyCode==13){SiteSearch('/search.html', '#keywords');return false};" />
+     <button type="submit" class="search-s" onclick="SiteSearchkwf('#keywords');"> 搜索</button>
+    </div>
+   </div>
+  </div>
+  <div class="sitemap_con main">
+
+   <h4> <a href="/" title="网站首页">网站首页</a></h4>
+   <div class="b4">
+    <ul>
   {% for menu in menus %}
-     <li> <a href="/" title="{{menu.dir_name}}">{{menu.name}}</a> </li> 
+  <li> <a href="{{menu.dir_name}}" title="{{menu.name}}">{{menu.name}}</a> </li>
      {% endfor %}
-    </ul> 
-    <div class="clear"> 
-    </div> 
-   </div> 
-   <h4> <a href="/hzkh/index.html" title="合作客户">合作客户</a></h4> 
-   <div class="b4"> 
-    <ul> 
-    </ul> 
-    <div class="clear"> 
-    </div> 
-   </div> 
-  
-   <h4> <a href="/cpzs/index.html" title="产品中心">产品中心</a></h4> 
-   <div class="b4"> 
-    <ul> 
-     
+    </ul>
+    <div class="clear">
+    </div>
+   </div>
+   <h4> <a href="/hzkh/index.html" title="合作客户">合作客户</a></h4>
+   <div class="b4">
+    <ul>
+    </ul>
+    <div class="clear">
+    </div>
+   </div>
+
+   <h4> <a href="/cpzs/index.html" title="产品中心">产品中心</a></h4>
+   <div class="b4">
+    <ul>
+
 
       {% for product in products_categories %}
 
       {% if cur_city %}
-             <li><a href="/supply_{{cur_city}}/Products_{{product.dir_name}}/">{{cur_city_name}}{{product.name}}</a></li>
+             <li><a href="/supply_{{cur_city}}/Products_{{product.dir_name|cut:"/"}}/">{{cur_city_name}}{{product.name}}</a></li>
       {% else %}
-             <li><a href="/supply/Products_{{product.dir_name}}/">{{product.name}}</a></li>
-        
+             <li><a href="/supply/Products_{{product.dir_name|cut:"/"}}/">{{product.name}}</a></li>
+
        {% endif %}
            {% endfor %}
-    </ul> 
-    <div class="clear"> 
-    </div> 
-   </div> 
-   
-   <h4> <a href="/xwzx/index.html" title="新闻动态">新闻动态</a></h4> 
-   <div class="b4"> 
-    <ul> 
+    </ul>
+    <div class="clear">
+    </div>
+   </div>
+
+   <h4> <a href="/xwzx/index.html" title="新闻动态">新闻动态</a></h4>
+   <div class="b4">
+    <ul>
       {% for news in news_categories %}
-   
-     <li><a href="/news/{{news.dir_name}}/" title="{{news.name}}" target="_blank">{{news.name}}</a></li> 
- 
-       {% endfor %} 
-    </ul> 
-    <div class="clear"> 
-    </div> 
-   </div> 
-  
-  </div> 
- 
-  <!--  footer begin  --> 
+
+     <li><a href="/news/{{news.dir_name|cut:"/"}}/" title="{{news.name}}" target="_blank">{{news.name}}</a></li>
+
+       {% endfor %}
+    </ul>
+    <div class="clear">
+    </div>
+   </div>
+
+  </div>
+
+  <!--  footer begin  -->
     {% include "footer.html" %}
-  <!--  footer end  --> 
- 
+  <!--  footer end  -->
+
  </body>
 </html>

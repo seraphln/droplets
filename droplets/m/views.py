@@ -214,7 +214,10 @@ def process_news(basic_params, request, cur_city=None,
         # 默认使用公司动态
         cate = NewsCategory.objects.filter(name=u"公司动态").first()
 
-    query_dict = {"category": cate.id}
+    if cate:
+        query_dict = {"category": cate.id}
+    else:
+        query_dict = {}
     basic_params["cur_cate"] = cate
 
     news_page_info, news = get_data_by_page(News)

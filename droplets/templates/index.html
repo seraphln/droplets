@@ -1,19 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
- <head> 
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-  <meta name="Copyright" content="All Rights Reserved btoe.cn" /> 
-  <title>{{ site.title }}</title> 
-  <meta name="keywords" content="{{ site.keywords }}" /> 
-  <meta name="description" content="{{ site.desc }}" /> 
-  <link href="/static/css/css.css" rel="stylesheet" type="text/css" /> 
-  <link href="/static/css/in.css" rel="stylesheet" type="text/css" /> 
-  <script src="/static/js/jquery-1.7.2.min.js"></script> 
-  <script src="/static/js/js.js"></script> 
-  <script src="/static/js/outjs.js"></script> 
- </head> 
- <body> 
-  <script type="text/javascript" src="/static/js/base.js"></script> 
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="Copyright" content="All Rights Reserved btoe.cn" />
+  <title>{{ site.title }}</title>
+  <meta name="keywords" content="{{ site.keywords }}" />
+  <meta name="description" content="{{ site.desc }}" />
+  <link href="/static/css/css.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/in.css" rel="stylesheet" type="text/css" />
+  <script src="/static/js/jquery-1.7.2.min.js"></script>
+  <script src="/static/js/js.js"></script>
+  <script src="/static/js/outjs.js"></script>
+ </head>
+ <body>
+  <script type="text/javascript" src="/static/js/base.js"></script>
    <script type="text/javascript">
 // JavaScript Document
 function urlredirect() {
@@ -22,7 +22,7 @@ function urlredirect() {
     console.log(typeof(is_jump));
 
     if (is_jump !== 0) {
-        var sUserAgent = navigator.userAgent.toLowerCase(); 
+        var sUserAgent = navigator.userAgent.toLowerCase();
         if ((sUserAgent.match(/(ipod|iphone os|midp|ucweb|android|windows ce|windows mobile)/i))) {
             // PC跳转移动端
             var thisUrl = window.location.href;
@@ -31,89 +31,87 @@ function urlredirect() {
     }
 }
 urlredirect();
-</script> 
-  <div class="top_bgk"> 
-   <div class="mainall"> 
+</script>
+  <div class="top_bgk">
+   <div class="mainall">
     <div class="top_zi">
      欢迎您进入{{site.name}}！
-    </div> 
-    <div class="top_sw"> 
-     <a href="{{site.site}}/sitemap" title="网站地图">网站地图</a> 
-   
-     <a href="/about/about9.html" title="联系我们">联系我们</a> 
-    
-    </div> 
-    <div class="clearboth"></div> 
-   </div> 
-  </div> 
-  <div class="top_bg"> 
-   <div class="mainall1"> 
-    <div class="logo"> 
-     <h1><a href="{{site.site}}" title="{{site.name}}"><img src="/{{site.logo}}" alt="{{site.name}}" title="{{site.name}}" /></a></h1> 
-    </div> 
-    <div class="biaoyu"> 
-     <p> <span>十八年</span>倾心专注</p> 
-     <p><span>各种工程机械产品</span>经营专家</p> 
-     <p>国内外知名品牌省级总代理</p> 
-    </div> 
-    <div class="iphone"> 
-     <span>全国服务热线</span> 
+    </div>
+    <div class="top_sw">
+     <a href="{{site.site}}/sitemap" title="网站地图">网站地图</a>
+
+     <a href="/about/about9.html" title="联系我们">联系我们</a>
+
+    </div>
+    <div class="clearboth"></div>
+   </div>
+  </div>
+  <div class="top_bg">
+   <div class="mainall1">
+    <div class="logo">
+     <h1><a href="{{site.site}}" title="{{site.name}}"><img src="/{{site.logo}}" alt="{{site.name}}" title="{{site.name}}" /></a></h1>
+    </div>
+    <div class="biaoyu">
+     <p> <span>十八年</span>倾心专注</p>
+     <p><span>各种工程机械产品</span>经营专家</p>
+     <p>国内外知名品牌省级总代理</p>
+    </div>
+    <div class="iphone">
+     <span>全国服务热线</span>
      <div>
       {{ ci.mobile }}
       <p>{{ci.telephone}}</p>
-     </div> 
-    </div> 
-   </div> 
-   <div class="clearboth"></div> 
-  </div> 
-  <div class="nav_bg"> 
-   <div class="mainall"> 
-    <ul id="nav"> 
+     </div>
+    </div>
+   </div>
+   <div class="clearboth"></div>
+  </div>
+  <div class="nav_bg">
+   <div class="mainall">
+    <ul id="nav">
       {% for menu in menus %}
       {% if menu.is_online %}
-         <li class="0"> <a href="{{menu.dir_name}}" title="{{menu.name}}">{{menu.name}}</a> </li> 
+         <li class="0"> <a href="{{menu.dir_name}}" title="{{menu.name}}">{{menu.name}}</a> </li>
       {% endif %}
      {% endfor %}
-    </ul> 
-   </div> 
-  </div> 
-  <!--banner--> 
+    </ul>
+   </div>
+  </div>
+  <!--banner-->
  {% include "banner.html" %}
-  <div class="mainall"> 
-   <div class="search_zi"> 
-    <span>搜索关键词</span> 
+  <div class="mainall">
+   <div class="search_zi">
+    <span>搜索关键词</span>
      {% for hk in hot_keywords %}
-    <a href="{{ hk.link }}" title="{{ hk.name }}">{{ hk.name }}</a> 
+    <a href="{{ hk.link }}" title="{{ hk.name }}">{{ hk.name }}</a>
   {% endfor %}
-   </div> 
-   <div class="search1 "> 
-    <input type="text" class="text" value="请输入搜索关键字" onblur="if (value ==''){value='请输入搜索关键字'}" onclick="if(this.value=='请输入搜索关键字')this.value=''" id="keywords" name="keywords" /> 
-    <input type="submit" class="submit" value=" " onclick="SiteSearchkwf('#keywords');" /> 
-   </div> 
-  </div> 
-  <!--hz--> 
-  <div class="mainall"> 
-   <div class="pp"> 
-    <!--<div class="pp_title"> 
-     <h3> <a href="/hzhb/" title="感谢以下客户选择我们">感谢以下客户选择我们</a> </h3> 
-     <p> <img src="/static/images/hz_en.jpg" alt="感谢以下客户选择我们" title="感谢以下客户选择我们" /></p> 
+   </div>
+   <div class="search1 ">
+    <input type="text" class="text" value="请输入搜索关键字" onblur="if (value ==''){value='请输入搜索关键字'}" onclick="if(this.value=='请输入搜索关键字')this.value=''" id="keywords" name="keywords" />
+    <input type="submit" class="submit" value=" " onclick="SiteSearchkwf('#keywords');" />
+   </div>
+  </div>
+  <!--hz-->
+  <div class="mainall">
+   <div class="pp">
+    <!--<div class="pp_title">
+     <h3> <a href="/hzhb/" title="感谢以下客户选择我们">感谢以下客户选择我们</a> </h3>
+     <p> <img src="/static/images/hz_en.jpg" alt="感谢以下客户选择我们" title="感谢以下客户选择我们" /></p>
     </div> -->
-    <div class="about_gun"> 
-     <!-- 滚动01 开始 --> 
-     <!--<div class="gd_03"> 
-      <div id="simgs3"> 
+    <div class="about_gun">
+     <!-- 滚动01 开始 -->
+     <!--<div class="gd_03">
+      <div id="simgs3">
        <ul>
             {% for product in hzhb_news %}
-        <li> <a href="#" title="{{product.title}}" class="pp_img"> <img src="{{product.pic}}" title="{{product.title}}" alt="{{product.title}}" /> </a> <p> <a href="#" title="{{product.title}}">{{product.title}}</a> </p> </li> 
+        <li> <a href="#" title="{{product.title}}" class="pp_img"> <img src="{{product.pic}}" title="{{product.title}}" alt="{{product.title}}" /> </a> <p> <a href="#" title="{{product.title}}">{{product.title}}</a> </p> </li>
        {% endfor %}
-       </ul> 	
+       </ul>
       </div> -->
-      <em class="t_l"><a href="javascript:;" id="lefts03" title="向左"></a></em> 
-      <em class="t_r"><a href="javascript:;" id="rights03" title="向右"></a></em> 
-     </div> 
+      <em class="t_l"><a href="javascript:;" id="lefts03" title="向左"></a></em>
+      <em class="t_r"><a href="javascript:;" id="rights03" title="向右"></a></em>
+     </div>
      <script language="javascript" type="text/javascript">
-
-
 
     $(function () {
         var cc = new ScrollPic();
@@ -123,226 +121,220 @@ urlredirect();
         cc.frameWidth = 1050; //显示框宽度
         cc.pageWidth = 1; //翻页宽度
         cc.speed = 10; //移动速度(单位毫秒，越小越快)
-      cc.space = 10; //每次移动像素(单位px，越大越快)
-
+        cc.space = 10; //每次移动像素(单位px，越大越快)
         cc.autoPlay = true; //自动播放
-
         cc.autoPlayTime = 0.03; //自动播放间隔时间(秒)
-
         cc.initialize(); //初始化
-
-
-
     });
 
 
 
 
 
-</script> 
-    </div> 
-   </div> 
-  </div> 
-  <!--pro--> 
-  <div class="pro_dbg"> 
-   <div class="mainall"> 
-    <div class="pro_c"> 
-     <div class="pro_c_nav"> 
-      <h2> <a href="" title="产品中心">产品中心</a> </h2> 
-     </div> 
-     <div class="pro_n"> 
-      <ul> 
+</script>
+    </div>
+   </div>
+  </div>
+  <!--pro-->
+  <div class="pro_dbg">
+   <div class="mainall">
+    <div class="pro_c">
+     <div class="pro_c_nav">
+      <h2> <a href="" title="产品中心">产品中心</a> </h2>
+     </div>
+     <div class="pro_n">
+      <ul>
          {% for product in products_categories.items %}
-       
-       <li> 
-         
+
+       <li>
+
           {% if cur_city %}
-         <span> <a href="/supply_{{cur_city}}/{{product.0.dir_name}}/" title="{{product.0.name}}">{{cur_city_name}}{{product.0.name}}</a> </span> 
+         <span> <a href="/supply_{{cur_city}}/{{product.0.dir_name|cut:"/"}}/" title="{{product.0.name}}">{{cur_city_name}}{{product.0.name}}</a> </span>
           {% else %}
-          <span><a href="/supply/{{product.0.dir_name}}/">{{product.0.name }}</a></span> 
+          <span><a href="/supply/{{product.0.dir_name|cut:"/"}}/">{{product.0.name }}</a></span>
          {% endif %}
-        <dl> 
+        <dl>
           {% for sp in product.1 %}
-         <dd> 
-           
-           
+         <dd>
+
+
              {% if cur_city %}
-          <a href="/supply_{{cur_city}}/{{sp.dir_name}}/" title="{{sp.name }}">{{cur_city_name}}{{sp.name }}</a> 
+          <a href="/supply_{{cur_city}}/{{sp.dir_name|cut:"/"}}/" title="{{sp.name }}">{{cur_city_name}}{{sp.name }}</a>
             {% else %}
-            <a href="/supply/{{sp.dir_name}}/" title="{{sp.name }}">{{sp.name }}</a> 
+            <a href="/supply/{{sp.dir_name|cut:"/"}}/" title="{{sp.name }}">{{sp.name }}</a>
             {% endif %}
          </dd>  {% endfor %}
-        
-        </dl> </li> 
+
+        </dl> </li>
       {% endfor %}
-      </ul> 
-     </div> 
-    </div> 
-    <div class="pro_show"> 
-     <div class="pro_s_nav"> 
-      <h3> 
-       <!--推荐产品--> <a href="/supply/" title="主推产品">主推产品</a> </h3> 
-     </div> 
-     <div class="pro_show_n"> 
-      <ul> 
+      </ul>
+     </div>
+    </div>
+    <div class="pro_show">
+     <div class="pro_s_nav">
+      <h3>
+       <!--推荐产品--> <a href="/supply/" title="主推产品">主推产品</a> </h3>
+     </div>
+     <div class="pro_show_n">
+      <ul>
        {% for product in products %}
        <li>
          {% if cur_city %}
-         <a href="/supply_{{cur_city}}/{{product.id}}.html" title="{{product.title}}" class="picshow1"> 
+         <a href="/supply_{{cur_city}}/{{product.id}}.html" title="{{product.title}}" class="picshow1">
            {% else %}
            <a href="/supply/{{product.id}}.html" class="picshow1">
              {% endif %}
          <img src="{{product.pic}}" alt="{{product.title}}" title="{{product.title}}" /> </a>
-         
-         <p> <a href="/supply/{{product.id}}.html" title="{{product.title}}">{{product.title}}</a> </p> <em> <a href="/supply_{{cur_city}}/{{product.id}}.html" title="查看详情">查看详情</a> 
+
+         <p> <a href="/supply/{{product.id}}.html" title="{{product.title}}">{{product.title}}</a> </p> <em> <a href="/supply_{{cur_city}}/{{product.id}}.html" title="查看详情">查看详情</a>
          <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=3319706174" title="在线咨询">在线咨询</a> </em>
-        </li> 
+        </li>
       {% endfor %}
-      </ul> 
-     </div> 
-    </div> 
-   </div> 
-  </div> 
-  <!--<div class="gg1"> 
-   <div class="mainall1"> 
-    <div class="gg1_pic fl"> 
-     <a href="/cpzs/index.html" title="准时/保质/保量满足您的供货要求"> <img src="/static/images/gg1_pic.jpg" alt="准时/保质/保量满足您的供货要求" title="准时/保质/保量满足您的供货要求" height="205" width="539" /></a> 
-    </div> 
-    <div class="gg1_right"> 
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!--<div class="gg1">
+   <div class="mainall1">
+    <div class="gg1_pic fl">
+     <a href="/cpzs/index.html" title="准时/保质/保量满足您的供货要求"> <img src="/static/images/gg1_pic.jpg" alt="准时/保质/保量满足您的供货要求" title="准时/保质/保量满足您的供货要求" height="205" width="539" /></a>
+    </div>
+    <div class="gg1_right">
      <div class="gg1_zi">
-       准时/保质/保量满足您的供货要求 
-      <p> Time / durability / security of supply to meet your requirements </p> 
-     </div> 
-     <div class="gg1_tel"> 
-      <p> 全国服务热线： <span>189&nbsp;4028&nbsp;3936</span> </p> 
-      <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="我要订购咨询">我要订购咨询</a> 
-     </div> 
-    </div> 
-   </div> 
-  </div>--> 
-  <div class="ys_title"> 
-   <div class="mainall"> 
-    <a href="#" title="让门业成为您专业的门类供应商">让裕华成为您专业的工程机械供应商</a> 
-   </div> 
-  </div> 
-  <div class="ys1"> 
-   <div class="mainall"> 
-    <div class="ys_com"> 
-     <em>优势一</em> 
-     <dl> 
+       准时/保质/保量满足您的供货要求
+      <p> Time / durability / security of supply to meet your requirements </p>
+     </div>
+     <div class="gg1_tel">
+      <p> 全国服务热线： <span>189&nbsp;4028&nbsp;3936</span> </p>
+      <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="我要订购咨询">我要订购咨询</a>
+     </div>
+    </div>
+   </div>
+  </div>-->
+  <div class="ys_title">
+   <div class="mainall">
+    <a href="#" title="让门业成为您专业的门类供应商">让裕华成为您专业的工程机械供应商</a>
+   </div>
+  </div>
+  <div class="ys1">
+   <div class="mainall">
+    <div class="ys_com">
+     <em>优势一</em>
+     <dl>
       <dt>
-        18年专注各种工程机械产品领域 
-       <p>工程机械行业内的专业厂商</p> 
-      </dt> 
-      <dd> 
-       <p> 裕华集团成立于1999年，注册资金7200万元，总资产4.5亿元，是徐工集团、日本加藤等多个国内外知名品牌工程机械产品的省级总代理，是集整机销售，技术服务，备件供应，设备再制造，二手机租赁。 </p> 
-      </dd> 
-      <dd> 
-       <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="立即咨询"> <img src="/static/images/ys_zixun.jpg" alt="立即咨询" title="立即咨询" /></a> 
-      </dd> 
-     </dl> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="ys2"> 
-   <div class="mainall"> 
-    <div class="ys_com"> 
-     <dl> 
+        18年专注各种工程机械产品领域
+       <p>工程机械行业内的专业厂商</p>
+      </dt>
+      <dd>
+       <p> 裕华集团成立于1999年，注册资金7200万元，总资产4.5亿元，是徐工集团、日本加藤等多个国内外知名品牌工程机械产品的省级总代理，是集整机销售，技术服务，备件供应，设备再制造，二手机租赁。 </p>
+      </dd>
+      <dd>
+       <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="立即咨询"> <img src="/static/images/ys_zixun.jpg" alt="立即咨询" title="立即咨询" /></a>
+      </dd>
+     </dl>
+    </div>
+   </div>
+  </div>
+  <div class="ys2">
+   <div class="mainall">
+    <div class="ys_com">
+     <dl>
       <dt>
-        一站式采购工程机械产品 
-       <p>公司技术力量雄厚</p> 
-      </dt> 
-      <dd> 
-       <p> 不管三包内还是三包外，都可以提供工程设备的选型、技术应用资讯、操作保养培训、整机销售、保内保外维修等多项服务。 </p> 
-      </dd> 
-      <dd> 
-       <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="立即咨询"> <img src="/static/images/ys_zixun.jpg" alt="立即咨询" title="立即咨询" /></a> 
-      </dd> 
-     </dl> 
-     <em>优势二</em> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="ys3"> 
-   <div class="mainall"> 
-    <div class="ys_com"> 
-     <em>优势三</em> 
-     <dl> 
+        一站式采购工程机械产品
+       <p>公司技术力量雄厚</p>
+      </dt>
+      <dd>
+       <p> 不管三包内还是三包外，都可以提供工程设备的选型、技术应用资讯、操作保养培训、整机销售、保内保外维修等多项服务。 </p>
+      </dd>
+      <dd>
+       <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="立即咨询"> <img src="/static/images/ys_zixun.jpg" alt="立即咨询" title="立即咨询" /></a>
+      </dd>
+     </dl>
+     <em>优势二</em>
+    </div>
+   </div>
+  </div>
+  <div class="ys3">
+   <div class="mainall">
+    <div class="ys_com">
+     <em>优势三</em>
+     <dl>
       <dt>
-        覆盖省内多个城市 
-       <p>中国工程机械服务50强企业</p> 
-      </dt> 
-      <dd> 
-       <p>销售、服务网络覆盖辽宁省、河北省及北京市等多个地区的市及县。</p> 
-       <p>2009年至今连续4年被中国工程机械协会评为“中国工程机械服务50强企业。</p> 
-        
-      </dd> 
-      <dd> 
-       <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="立即咨询"> <img src="/static/images/ys_zixun.jpg" alt="立即咨询" title="立即咨询" /></a> 
-      </dd> 
-     </dl> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="ys4"> 
-   <div class="mainall"> 
-    <div class="ys_com"> 
-     <dl> 
+        覆盖省内多个城市
+       <p>中国工程机械服务50强企业</p>
+      </dt>
+      <dd>
+       <p>销售、服务网络覆盖辽宁省、河北省及北京市等多个地区的市及县。</p>
+       <p>2009年至今连续4年被中国工程机械协会评为“中国工程机械服务50强企业。</p>
+
+      </dd>
+      <dd>
+       <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="立即咨询"> <img src="/static/images/ys_zixun.jpg" alt="立即咨询" title="立即咨询" /></a>
+      </dd>
+     </dl>
+    </div>
+   </div>
+  </div>
+  <div class="ys4">
+   <div class="mainall">
+    <div class="ys_com">
+     <dl>
       <dt>
-        团队和服务经验 
-       <p>人性化管理方式</p> 
-      </dt> 
-      <dd> 
-       <p>现有员工800余人，其中大专以上600余人，服务维修技师300余人，其中高级服务技师占30%以上。集团厂地面积133000平方米，办公面积26000平方米，年均销售额达14亿元以上。</p> 
-       
-        
-      </dd> 
-     </dl> 
-     <em>优势四</em> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="ys5"> 
-   <div class="mainall"> 
-    <div class="ys_com"> 
-     <em>优势五</em> 
-     <dl> 
+        团队和服务经验
+       <p>人性化管理方式</p>
+      </dt>
+      <dd>
+       <p>现有员工800余人，其中大专以上600余人，服务维修技师300余人，其中高级服务技师占30%以上。集团厂地面积133000平方米，办公面积26000平方米，年均销售额达14亿元以上。</p>
+
+
+      </dd>
+     </dl>
+     <em>优势四</em>
+    </div>
+   </div>
+  </div>
+  <div class="ys5">
+   <div class="mainall">
+    <div class="ys_com">
+     <em>优势五</em>
+     <dl>
       <dt>
-        完善的服务 
-       <p>快速响应解决售后难题</p> 
-      </dt> 
-      <dd> 
-       <p> <span>一通电话协助解决，专业售后服务</span> </p> 
-       <p>周边地区12小时现场勘查；核心部件1年质保，原产部件10年供给，生产维护资料10年备查</p> 
-       <p>强大支持团队，免费售前方案指导，免费安装技术指导</p> 
-       <p>还可享受免费调试及操作培训，享有终身平价配件供应</p> 
-      </dd> 
-     </dl> 
-    </div> 
-    <div class="clearboth"></div> 
-    <div class="gg2_tel"> 
-     <p> 全国服务热线： <span>{{ ci.mobile }}</span> </p> 
-     <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="我要订购咨询">我要订购咨询</a> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="mainall"> 
-   <div class="case"> 
-    <!--<div class="pp_title"> 
-     <h3> <a href="/gcal/index.html" title="经典客户案例">经典客户案例</a> </h3> 
-     <p> <img src="/static/images/case_en.jpg" alt="经典客户案例" title="经典客户案例" /></p> 
+        完善的服务
+       <p>快速响应解决售后难题</p>
+      </dt>
+      <dd>
+       <p> <span>一通电话协助解决，专业售后服务</span> </p>
+       <p>周边地区12小时现场勘查；核心部件1年质保，原产部件10年供给，生产维护资料10年备查</p>
+       <p>强大支持团队，免费售前方案指导，免费安装技术指导</p>
+       <p>还可享受免费调试及操作培训，享有终身平价配件供应</p>
+      </dd>
+     </dl>
+    </div>
+    <div class="clearboth"></div>
+    <div class="gg2_tel">
+     <p> 全国服务热线： <span>{{ ci.mobile }}</span> </p>
+     <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=281848068" title="我要订购咨询">我要订购咨询</a>
+    </div>
+   </div>
+  </div>
+  <div class="mainall">
+   <div class="case">
+    <!--<div class="pp_title">
+     <h3> <a href="/gcal/index.html" title="经典客户案例">经典客户案例</a> </h3>
+     <p> <img src="/static/images/case_en.jpg" alt="经典客户案例" title="经典客户案例" /></p>
     </div> -->
-    <div class="case_show_n"> 
-     <!-- 滚动01 开始 --> 
-     <!--<div class="gd_04"> 
-      <div id="simgs66"> 
-       {%  for case in cases  %} 
+    <div class="case_show_n">
+     <!-- 滚动01 开始 -->
+     <!--<div class="gd_04">
+      <div id="simgs66">
+       {%  for case in cases  %}
           <url>
             <li> <a href="/cases/{{case.id}}.html"><img src="/{{case.pic}}" title="{{case.title}}" alt="{{case.category}}"</a></li>
           </url>
        {% endfor %}
       </div> -->
-     </div> 
+     </div>
      <script language="javascript" type="text/javascript">
 
 
@@ -385,102 +377,102 @@ urlredirect();
         cc.initialize(); //初始化
     });
 
-</script> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="mainall"> 
-   <div class="about"> 
-    <div class="com_nav"> 
-     <h3> <a href="{{site.url}}/about/" title="公司简介">公司简介</a> </h3> 
-     <span> <img src="/static/images/about_en.jpg" alt="company profile" title="company profile" /></span> 
-     <a href="{{site.url}}/about/" title="more" class="com_more"></a> 
-    </div> 
-    <div class="about_n"> 
+</script>
+    </div>
+   </div>
+  </div>
+  <div class="mainall">
+   <div class="about">
+    <div class="com_nav">
+     <h3> <a href="{{site.url}}/about/" title="公司简介">公司简介</a> </h3>
+     <span> <img src="/static/images/about_en.jpg" alt="company profile" title="company profile" /></span>
+     <a href="{{site.url}}/about/" title="more" class="com_more"></a>
+    </div>
+    <div class="about_n">
      <a href="{{site.url}}/about/" title="{{ site.name }}"> <img src="{{ site.logo }}" alt="{{ site.name }}" title="{{ site.name }}" /></a>
     {{ site.intro|safe }}
-    </div> 
-   </div> 
-   <!--<div class="honor"> 
-    <div class="com_nav"> 
-     <h3> <a href="/ryzz/index.html" title="荣誉资质">荣誉资质</a> </h3> 
-     <span> <img src="/static/images/honor_en.jpg" alt="honor" title="honor" /></span> 
-     <a href="/ryzz/index.html" title="more" class="com_more"></a> 
+    </div>
+   </div>
+   <!--<div class="honor">
+    <div class="com_nav">
+     <h3> <a href="/ryzz/index.html" title="荣誉资质">荣誉资质</a> </h3>
+     <span> <img src="/static/images/honor_en.jpg" alt="honor" title="honor" /></span>
+     <a href="/ryzz/index.html" title="more" class="com_more"></a>
     </div>-->
-    <!--<div class="picMarquee-top"> 
-     <div class="bd"> 
-      <ul class="picList"> 
+    <!--<div class="picMarquee-top">
+     <div class="bd">
+      <ul class="picList">
           {% for cases in ryzz_news %}
-       <li> 
-        <div class="pic"> 
-         <a href="/cases/{{cases.id}}.html" title="{{cases.title}}"> <img src="{{cases.pic}}" alt="{{cases.title}}" title="{{cases.title}}" /> </a> 
-        </div> 
-        <div class="title"> 
-         <a href="/cases/{{cases.id}}.html" title="{{cases.title}}">{{cases.title}}</a> 
-        </div> </li> 
+       <li>
+        <div class="pic">
+         <a href="/cases/{{cases.id}}.html" title="{{cases.title}}"> <img src="{{cases.pic}}" alt="{{cases.title}}" title="{{cases.title}}" /> </a>
+        </div>
+        <div class="title">
+         <a href="/cases/{{cases.id}}.html" title="{{cases.title}}">{{cases.title}}</a>
+        </div> </li>
         {% endfor %}
-      </ul> 
-     </div> 
-    </div>--> 
+      </ul>
+     </div>
+    </div>-->
     <script type="text/javascript">
     jQuery(".picMarquee-top").slide({mainCell:".bd ul",autoPlay:true,effect:"topMarquee",vis:1,interTime:50});
-    </script> 
-   </div> 
-  </div> 
-  <div class="mainall"> 
-   <!--<div class="kehu"> 
-    <div class="com_nav"> 
-     <h3> <a href="/khjz/index.html" title="客户见证">客户见证</a> </h3> 
+    </script>
+   </div>
+  </div>
+  <div class="mainall">
+   <!--<div class="kehu">
+    <div class="com_nav">
+     <h3> <a href="/khjz/index.html" title="客户见证">客户见证</a> </h3>
      <span> <img src="/static/images/kehu_en.jpg" alt="Customer testimonials
-" title="Customer testimonials" /></span> 
-     <a href="/khjz/index.html" title="more" class="com_more"></a> 
+" title="Customer testimonials" /></span>
+     <a href="/khjz/index.html" title="more" class="com_more"></a>
     </div>-->
-     <!--<div class="kehu_n"> 
-     <ul> 
-        {% for news in khjz_news %}  
-      <li> 
-       <dl> 
-        <dt> 
-         <a href="/news/{{news.id}}.html" title="{{news.title}}"> <img src="{{news.pic}}" alt="{{news.title}}" title="{{news.title}}" height="136" width="162" /></a> 
-        </dt> 
-        <dd> 
-         <a href="/news/{{news.id}}.html" title="{{news.title}}" class="kehu_title">{{news.title}}</a> 
-         <p> {{news.desc}} ...... </p> 
-         <a href="/news/{{news.id}}.html" title="more" class="kehu_more"></a> 
-        </dd> 
+     <!--<div class="kehu_n">
+     <ul>
+        {% for news in khjz_news %}
+      <li>
+       <dl>
+        <dt>
+         <a href="/news/{{news.id}}.html" title="{{news.title}}"> <img src="{{news.pic}}" alt="{{news.title}}" title="{{news.title}}" height="136" width="162" /></a>
+        </dt>
+        <dd>
+         <a href="/news/{{news.id}}.html" title="{{news.title}}" class="kehu_title">{{news.title}}</a>
+         <p> {{news.desc}} ...... </p>
+         <a href="/news/{{news.id}}.html" title="more" class="kehu_more"></a>
+        </dd>
        </dl> </li>  {% endfor %}
-      
-     </ul> 
+
+     </ul>
     </div> -->
    </div>
-    <!--<div class="cjwq"> 
-    <div class="com_nav"> 
-     <h3> <a href="/cjwt/index.html" title="常见问题">常见问题</a> </h3> 
-     <span> <img src="/static/images/cjwq_en.jpg" alt="Common problems" title="Common problems" /></span> 
-     <a href="/cjwt/index.html" title="more" class="com_more"></a> 
-    </div> 
-    <ul id="ticker2"> 
-   
-      
-       {% for news in cjwt_news %}  
-     <li> 
-      <div class="wen"> 
-       <a title="{{news.title}}" href="/news/{{news.id}}.html">{{news.title}}</a> 
-      </div> 
+    <!--<div class="cjwq">
+    <div class="com_nav">
+     <h3> <a href="/cjwt/index.html" title="常见问题">常见问题</a> </h3>
+     <span> <img src="/static/images/cjwq_en.jpg" alt="Common problems" title="Common problems" /></span>
+     <a href="/cjwt/index.html" title="more" class="com_more"></a>
+    </div>
+    <ul id="ticker2">
+
+
+       {% for news in cjwt_news %}
+     <li>
+      <div class="wen">
+       <a title="{{news.title}}" href="/news/{{news.id}}.html">{{news.title}}</a>
+      </div>
       <div class="da">
-        {{ news.desc | truncatewords:"30"  }} 
+        {{ news.desc | truncatewords:"30"  }}
       </div> </li>
       {% endfor %}
-    
-    </ul> 
-   </div>--> 
-  </div> 
-  <div class="gg3"> 
-   <div class="mainall1 re"> 
+
+    </ul>
+   </div>-->
+  </div>
+  <div class="gg3">
+   <div class="mainall1 re">
     <div class="gg3_zi ">
-      裕华专业工程机械设备 
-     <p>提供“一站式采购工程机械产品”的解决方案</p> 
-    </div> 
+      裕华专业工程机械设备
+     <p>提供“一站式采购工程机械产品”的解决方案</p>
+    </div>
     <script type="text/javascript">
 
     function commSubmi() {
@@ -660,98 +652,98 @@ urlredirect();
 
     }
 
-</script> 
-    <div class="gg3_input"> 
-     <form id="feedback_form" name="feedback_form" url=""> 
-      <input id="kuse" name="kuser" type="text" datatype="*" sucmsg=" " onblur="if (value ==''){value='联系人姓名'}" onclick="if(this.value=='联系人姓名')this.value=''" value="联系人姓名" /> 
-      <input id="kphon" name="kphone" type="text" datatype="*0-20" sucmsg=" " onblur="if (value ==''){value='联系人电话'}" onclick="if(this.value=='联系人电话')this.value=''" value="联系人电话" /> 
+</script>
+    <div class="gg3_input">
+     <form id="feedback_form" name="feedback_form" url="">
+      <input id="kuse" name="kuser" type="text" datatype="*" sucmsg=" " onblur="if (value ==''){value='联系人姓名'}" onclick="if(this.value=='联系人姓名')this.value=''" value="联系人姓名" />
+      <input id="kphon" name="kphone" type="text" datatype="*0-20" sucmsg=" " onblur="if (value ==''){value='联系人电话'}" onclick="if(this.value=='联系人电话')this.value=''" value="联系人电话" />
       <input name="btnSubmit" type="submit" value="提交" class="btn_submit" onclick="commSubmi()" />
-     </form> 
-    </div> 
-    <div class="gg3_tel"> 
-     <p> 全国服务热线： <span>{{ ci.mobile }}</span> </p> 
-     <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=3319706174" title="我要订购咨询">我要订购咨询</a> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="news_dbg"> 
-   <div class="mainall"> 
-    <div class="news_left"> 
-     <h3> <a href="/news/" title="新闻资讯">新闻资讯</a> </h3> 
-     <p> <a href="/news/" title="more" class="news_lmore"></a> </p> 
-    </div> 
-    <div class="news_nl"> 
-     <div class="news_te"> 
-      <dl> 
-       <dt> 
-        <a href="/news/{{gsdt_news.0.id}}.html" title=""> <img src="/static/images/news_ico.jpg" alt="" title="" /></a> 
-       </dt> 
-       <dd> 
-        <a href="/news/{{gsdt_news.0.id}}.html" title="{{gsdt_news.0.title}}">{{gsdt_news.0.title}}</a> 
+     </form>
+    </div>
+    <div class="gg3_tel">
+     <p> 全国服务热线： <span>{{ ci.mobile }}</span> </p>
+     <a href="http://wpa.qq.com/msgrd?v=3&amp;site=qq&amp;menu=yes&amp;uin=3319706174" title="我要订购咨询">我要订购咨询</a>
+    </div>
+   </div>
+  </div>
+  <div class="news_dbg">
+   <div class="mainall">
+    <div class="news_left">
+     <h3> <a href="/news/" title="新闻资讯">新闻资讯</a> </h3>
+     <p> <a href="/news/" title="more" class="news_lmore"></a> </p>
+    </div>
+    <div class="news_nl">
+     <div class="news_te">
+      <dl>
+       <dt>
+        <a href="/news/{{gsdt_news.0.id}}.html" title=""> <img src="/static/images/news_ico.jpg" alt="" title="" /></a>
+       </dt>
+       <dd>
+        <a href="/news/{{gsdt_news.0.id}}.html" title="{{gsdt_news.0.title}}">{{gsdt_news.0.title}}</a>
         <div class="newssss">
-         {{gsdt_news.0.desc}} ...... 
-        </div> 
-       </dd>  
-      </dl> 
-     </div> 
-     <div class="clearboth"></div> 
-     <div class="news_n"> 
-      <ul> 
-        {% for news in gsdt_news %}
-       <li> <a href="/news/{{news.id}}.html" title="{{news.title}}">{{news.title}}</a> </li> 
-       {% endfor %}
-      </ul> 
-     </div> 
-    </div> 
-
-
-      
-    <div class="news_r">   
-     <div class="news_nav"> 
-      <h3><a href="/xyxw/index.html" title="行业新闻">行业新闻</a> 
-        <span> <img src="/static/images/news_en.jpg" alt=" industry" title="industry" /></span> </h3> 
-      <a href="" title="more" class="news_lmore"></a> 
-     </div>  
-     <div class="clearboth"></div> 
+         {{gsdt_news.0.desc}} ......
+        </div>
+       </dd>
+      </dl>
+     </div>
+     <div class="clearboth"></div>
      <div class="news_n">
-      <ul> 
-         
-          {% for news in hydt_news %}
-             <li> <a href="/news/{{news.id}}.html" title="{{news.title}}">{{news.title}}</a> </li> 
-          {% endfor %}
-      </ul> 
-     </div> 
-    </div>      
+      <ul>
+        {% for news in gsdt_news %}
+       <li> <a href="/news/{{news.id}}.html" title="{{news.title}}">{{news.title}}</a> </li>
+       {% endfor %}
+      </ul>
+     </div>
+    </div>
 
-   </div> 
-  </div> 
-   
-   <div class="links_bg"> 
-   <div class="mainall"> 
-    <h3>地区分站</h3> 
-     
+
+
+    <div class="news_r">
+     <div class="news_nav">
+      <h3><a href="/xyxw/index.html" title="行业新闻">行业新闻</a>
+        <span> <img src="/static/images/news_en.jpg" alt=" industry" title="industry" /></span> </h3>
+      <a href="" title="more" class="news_lmore"></a>
+     </div>
+     <div class="clearboth"></div>
+     <div class="news_n">
+      <ul>
+
+          {% for news in hydt_news %}
+             <li> <a href="/news/{{news.id}}.html" title="{{news.title}}">{{news.title}}</a> </li>
+          {% endfor %}
+      </ul>
+     </div>
+    </div>
+
+   </div>
+  </div>
+
+   <div class="links_bg">
+   <div class="mainall">
+    <h3>地区分站</h3>
+
       {% for pinyin, city in subsites.items %}
       <a href="/index_{{ pinyin }}.html" title="{{ city }}">{{ city }}</a>
       {% endfor %}
-    
-   </div> 
-  </div> 
-   
-   
-  <div class="links_bg"> 
-   <div class="mainall"> 
-    <h3>友情链接</h3> 
+
+   </div>
+  </div>
+
+
+  <div class="links_bg">
+   <div class="mainall">
+    <h3>友情链接</h3>
      {% for link in links %}
-    <a href="{{ link.url }}" title="{{ link.name }}">{{ link.name }}</a> 
+    <a href="{{ link.url }}" title="{{ link.name }}">{{ link.name }}</a>
   {% endfor %}
-   </div> 
-  </div> 
+   </div>
+  </div>
 
- 
-  <!--  footer begin  --> 
+
+  <!--  footer begin  -->
 {% include "footer.html" %}
-  <!--  footer end  --> 
+  <!--  footer end  -->
 
-  
+
  </body>
 </html>

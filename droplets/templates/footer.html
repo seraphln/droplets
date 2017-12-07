@@ -95,53 +95,53 @@ span.slide-hover:after {
 	margin: 0 auto;
 }
 </style>
-<div class="nav_bg"> 
-   <div class="mainall"> 
-    <ul id="nav"> 
+<div class="nav_bg">
+   <div class="mainall">
+    <ul id="nav">
    {% for foot in footers_dict.items %}
-     <li> <a href="{{foot.0.dir_name}}" title="{{foot.0}}">{{foot.0}}</a> </li> 
+     <li> <a href="{{foot.0.dir_name|cut:"/"}}" title="{{foot.0}}">{{foot.0}}</a> </li>
   {% endfor %}
-    </ul> 
-   </div> 
-  </div> 
-  <div class="end_dbg"> 
-   <div class="mainall"> 
-    <div class="end_left"> 
+    </ul>
+   </div>
+  </div>
+  <div class="end_dbg">
+   <div class="mainall">
+    <div class="end_left">
      <div class="end_logo">
       <a href="/" title=""><img src="/static/images/end_logo.jpg" alt="" title="" /></a>
-     </div> 
-    </div> 
-    <div class="end_right"> 
-     <div class="end_n"> 
+     </div>
+    </div>
+    <div class="end_right">
+     <div class="end_n">
       <p> </p>
       <h2 class="clear_h2">版权所有：{{ site.name }}</h2> &nbsp;&nbsp;
       <a href="{{site.site}}/sitemap" title="网站地图">网站地图</a>
-      
-      <p> 联系人：{{ ci.username }} &nbsp;&nbsp;手机：{{ ci.mobile }} &nbsp;&nbsp;全国服务热线 ：{{ ci.mobile }}; &nbsp;固定电话：{{ci.telephone}}&nbsp;&nbsp; </p> 
-      <p> 邮 箱：{{ci.email}}&nbsp;&nbsp; 
-      </p> 
+
+      <p> 联系人：{{ ci.username }} &nbsp;&nbsp;手机：{{ ci.mobile }} &nbsp;&nbsp;全国服务热线 ：{{ ci.mobile }}; &nbsp;固定电话：{{ci.telephone}}&nbsp;&nbsp; </p>
+      <p> 邮 箱：{{ci.email}}&nbsp;&nbsp;
+      </p>
       <p> {{ site.name }}主要从事
         {% for hk in hot_keywords %}
-        <a href="" title="{{ hk.name }}">{{ hk.name }}</a> 
-        {% endfor %}  的产品,欢迎前来咨询! </p> 
+        <a href="" title="{{ hk.name }}">{{ hk.name }}</a>
+        {% endfor %}  的产品,欢迎前来咨询! </p>
        <p>技术支持：<a href="http://www.ourxn.com" title="信联" target="_blank" rel="external nofollow" style="font-size:16px;color:#f00;text-align:center;">信联</a>&nbsp;&nbsp; </p>
-     </div> 
-     <div class="end_ewm"> 
-      <img src="/static/images/erweima.png" alt="二维码" title="二维码" height="114" width="121" /> 
-      <p>扫一扫更精彩 </p> 
-     </div> 
-     <div class="clearboth"></div> 
-    </div> 
-    <div class="clearboth"></div> 
-   </div> 
-  </div> 
+     </div>
+     <div class="end_ewm">
+      <img src="/static/images/erweima.png" alt="二维码" title="二维码" height="114" width="121" />
+      <p>扫一扫更精彩 </p>
+     </div>
+     <div class="clearboth"></div>
+    </div>
+    <div class="clearboth"></div>
+   </div>
+  </div>
 <div class="page-slide">
 	<ul>
     	<li><span class="slide-img"><img src="/static/images/slide-img1.png" alt="phone" class="img1"></span><span class="slide-text">{{ci.telephone}}</span></li>
        <!-- <li><span class="slide-img"><img src="/static/images/slide-img2.png" alt="phone" class="img1"></span><span class="slide-hover"><img src="../images/erweima.png" alt="二维码" class="img1"></span></li>-->
 
         <li><span class="slide-img"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3319706174&amp;site=qq&amp;menu=yes" title="销售服务部"><img src="/static/images/slide-img3.png" alt="qq" class="img1"></a></span><span class="slide-text" style="font-size:20px;">销售服务部</span></li>
-  
+
     </ul>
 </div>
 <script type="text/javascript">
@@ -152,7 +152,7 @@ function urlredirect() {
     console.log(typeof(is_jump));
 
     if (is_jump !== 0) {
-        var sUserAgent = navigator.userAgent.toLowerCase(); 
+        var sUserAgent = navigator.userAgent.toLowerCase();
         if ((sUserAgent.match(/(ipod|iphone os|midp|ucweb|android|windows ce|windows mobile)/i))) {
             // PC跳转移动端
             var thisUrl = window.location.href;
@@ -167,7 +167,7 @@ var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?2b137fa46d502ff195b9d39ddc39f9e9";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>

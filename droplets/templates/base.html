@@ -2,16 +2,16 @@
 {% include "nav.html" %}
 
 
- 
+
     <script src="/static/js/outjs.js"></script>
 <div id="focus">
     <ul>
-        
+
       <li>
         <a href="/cpzs/index.html" title="产品中心">
           <img src="/static/images/pro_banner.jpg" alt="产品中心" title="产品中心" /></a>
       </li>
-    
+
     </ul>
 </div>
 <input type="hidden" id="cid" value="30" />
@@ -28,33 +28,33 @@
                 </div>
                 <div class="cates">
                     <dl>
-                        
+
 {% for product in products_categories.items %}
 {% if cur_city %}
-              <dt class="p36"><a href="/supply_{{cur_city}}/{{product.0.dir_name}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt>
+              <dt class="p36"><a href="/supply_{{cur_city}}/{{product.0.dir_name|cut:"/"}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt>
 
  {% else %}
-            <dt class="p36"><a href="/supply/{{product.0.dir_name}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt> 
+            <dt class="p36"><a href="/supply/{{product.0.dir_name|cut:"/"}}/" title="{{product.0.name}}"> {{product.0.name }}</a></dt>
                       {% endif %}
               <!--大类-->
   {% for sp in product.1 %}
                 <dd class="p47" fn="p36">
 
 
-                  <a href="/supply_{{cur_city}}/{{sp.dir_name}}/" title="{{sp.name}}">{{sp.name}}</a>
+                  <a href="/supply_{{cur_city}}/{{sp.dir_name|cut:"/"}}/" title="{{sp.name}}">{{sp.name}}</a>
 
 
                 </dd>
  {% endfor %}
-               
+
  {% endfor %}
 
-   
+
 
 
               <!--大类-->
 
-            
+
                     </dl>
                 </div>
             </div>
@@ -64,9 +64,9 @@
     </div>
     <div class="lianxi">
         <dl>
-          
+
           <dd>
-                 
+
 
  {% for new in news %}
 
@@ -78,10 +78,10 @@
 
 
 
-			    
 
 
-			    
+
+
             </dd>
         </dl>
     </div>
@@ -118,22 +118,22 @@
             <div class="sitemap">
                 当前位置：<a href="/">首页</a>&nbsp;>&nbsp;<a href="/cpzs/index.html">产品中心</a>&nbsp;&nbsp;
             </div>
-           
+
             {% block content %}{% endblock %}
             <div class="cateslist">
     <dl>
         <dt>相关推荐</dt>
-        
+
 
 {% include "show_ads.html" %}
 
-       
+
     </dl>
 </div>
 
         </div>
     </div>
-  
+
 <!--  footer begin  -->
 
 

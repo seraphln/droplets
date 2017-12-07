@@ -34,6 +34,7 @@ from droplets.products.models import ProductsCategory
 
 from droplets.seo.utils import generate_pinyin_mapper
 
+from droplets.dphome.utils import format_dir_name
 from droplets.dphome.utils import make_api_response
 from droplets.dphome.utils import get_basic_params
 from droplets.dphome.utils import get_and_format_site
@@ -107,6 +108,7 @@ def index(request, city=None):
     basic_params.update({"subsites": pinyin_mapper,
                          "cur_city_name": cur_city_name,
                          "hydt_news": hydt_news,
+                         "is_jump": "true",
                          "cur_city": cur_city})
 
     # 处理多站
@@ -118,26 +120,21 @@ def about(request, dir_name=None):
     basic_params = get_basic_params()
 
     # 取出产品中心的导航
-    cur_menu = Menus.objects.filter(name=u"产品中心", is_root=True).first()
-    cates = Menus.objects.filter(parent_cate=cur_menu)
+    cur_menu = Menus.objects.filter(name=u"公司简介", is_root=True).first()
+    cates = list(Menus.objects.filter(parent_cate=cur_menu))
+    cates.insert(0, cur_menu)
 
     target_dir = "/about/"
 
     if dir_name:
-        target_dir = "%s%s" %(target_dir, dir_name)
+        dir_name = format_dir_name(dir_name)
+        target_dir = dir_name
 
     menu = Menus.objects.filter(dir_name=target_dir).first()
     basic_params.update({"cates": cates, "menu": menu})
-    if menu:
-        if dir_name:
-            template_names = target_dir
-            template_name = template_names.split("/")[2]
-        else:
-            template_name = "about.html"
-        return render_to_response(template_name, basic_params)
-    else:
-        site = basic_params.get("site")
-        return http.HttpResponseRedirect(site.url)
+
+    template_name = "about.html"
+    return render_to_response(template_name, basic_params)
 
 
 def message(request):
@@ -224,24 +221,41 @@ def sceneImgUpload(request):
     else:
         raise Http404()
 
-
-def supplyproducts(request):
-    """ 二次开发示例 """
+def m(request, city=None):
+    """ 渲染网站首页 """
+    is_jump = int(request.GET.get("is_jump", "1"))
     basic_params = get_basic_params()
+    basic_params["site"] = get_and_format_site(request, city)
+
+    basic_params["cases"] = Cases.objects.filter()[:]
     basic_params.update({"products_categories": ProductsCategory.objects.filter()})
 
-    query_dict = {}
+    # 更新产品信息
+    prod_page_info, products = get_data_by_page(Products,per_page=5)
+    basic_params["products"] = do_generate_product_name(products, city)
 
-    cur_city = "BeiJing"
-    products_page_info, products = get_data_by_page(Products, query_dict)
+    # 获取链接信息
+    links_page_info, links = get_data_by_page(Links)
+    basic_params["links"] = links
+
+    # 获取新闻信息
+    news_categories = NewsCategory.objects.filter()[:2]
+    news_dict = {}
+    for new_cate in news_categories:
+        _, news = get_data_by_page(News, {"category": new_cate}, reverse=False)
+        news_dict[new_cate] = news
+
+    basic_params["total_news"] = news_dict
 
     lt = LongTailKeywords.objects.filter().first()
+
+    cur_city_name, cur_city = get_cur_city(city)
     pinyin_mapper = generate_pinyin_mapper(lt.cities)
-    products = do_generate_product_name(products, cur_city)
 
-    basic_params.update({"products_page_info": products_page_info,
-                         "cur_city_name": pinyin_mapper.get(cur_city, u"北京"),
-                         "cur_city": cur_city or "BeiJing",
-                         "products": products})
+    basic_params.update({"subsites": pinyin_mapper,
+                         "cur_city_name": cur_city_name,
+                         "is_jump": is_jump,
+                         "cur_city": cur_city})
 
-    return render_to_response("supplyproducts/index.html", basic_params)
+    # 处理多站
+    return render_to_response("m/index.html", basic_params)

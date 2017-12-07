@@ -28,7 +28,6 @@ urlpatterns = [
     url(r'^mobile/news/$', url_dispatcher, {"cate": "news"}),
 
     # 产品相关接口
-    #url(r'^supply/(?P<cid>\d+).html', get_products_by_id),
     url(r'^mobile/supply_(?P<cur_city>\w+)/(?P<cid>\d+).html', url_dispatcher, {"cate": "supply"}),
     url(r'^mobile/supply_(?P<cur_city>\w+)/(?P<cate_name>\w+)_(?P<dir_name>\w+)/$', url_dispatcher, {"cate": "supply"}),
     url(r'^mobile/supply_(?P<cur_city>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html$', url_dispatcher, {"cate": "supply"}),

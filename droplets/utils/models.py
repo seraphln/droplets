@@ -34,9 +34,9 @@ def get_categories(cate_name, name=None):
         cate_dict = {}
         default_name = name or default_name
 
-        par_cate = cls.objects.filter(name=default_name).first()
-        categories = cls.objects.filter(parent_cate=par_cate)
+        par_cate = cls.objects.filter(name=default_name, is_online=True).first()
+        categories = cls.objects.filter(parent_cate=par_cate, is_online=True)
         for cate in categories:
-            cate_dict[cate] = cls.objects.filter(parent_cate=cate)
+            cate_dict[cate] = cls.objects.filter(parent_cate=cate, is_online=True)
 
         return cate_dict
