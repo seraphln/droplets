@@ -25,6 +25,7 @@ from django.conf.urls.static import static
 
 from droplets.dphome.views import index
 from droplets.dphome.views import about
+from droplets.dphome.views import search
 from droplets.dphome.views import message
 
 # 案例相关接口
@@ -91,6 +92,9 @@ urlpatterns = [
     url(r'^about/(?P<dir_name>\w+.html)', about),
     url(r'^about/(?P<dir_name>\w+)/$', about),
     url(r'^about/$', about),
+
+    # 搜索
+    url(r'^search/$', search),
 
     # 站点地图
     url(r'^sitemap/$', sitemap),

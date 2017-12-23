@@ -48,6 +48,11 @@ class Cases(models.Model):
         verbose_name = u"案例介绍"
         verbose_name_plural = u"案例介绍"
 
+    def get_absolute_url(self):
+        """ 生成绝对路径 """
+
+        return "/cases/%d.html" % self.id
+
 
 class ProductsCategory(Menus):
     """ 产品类别 """
@@ -89,7 +94,5 @@ class Products(models.Model):
 
     def get_absolute_url(self):
         """ 生成绝对路径 """
-        #from droplets.dphome.models import SiteConfig
-        #sc = SiteConfig.objects.filter().first()
 
         return "/supply/%d.html" % self.id

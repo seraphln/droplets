@@ -1,0 +1,42 @@
+{% include "top.html" %}
+  {% include "nav.html" %}
+  <script src="/static/js/n/outjs.js"></script>
+      当前位置：
+     <a href="/">首页</a> &gt;
+    </div>
+    <div>
+     <div class="cateslist">
+      <dl>
+        {% for ret in rets %}
+       <dd>
+        <div class="txt">
+          <a href="{{ret.get_absolute_url}}" title="{{ret.title}}">{{ret.title}}</a>
+        </div>
+       </dd>
+           {% endfor %}
+
+      </dl>
+     </div>
+    </div>
+    <div class="cateslist">
+     <dl>
+      <dt>
+       相关推荐
+      </dt>
+     {% include "show_ads.html" %}
+
+     </dl>
+    </div>
+   </div>
+  </div>
+
+  <!--  footer begin  -->
+  {% include "footer.html" %}
+
+  <!--  footer end  -->
+
+
+
+ </body>
+</html>
+

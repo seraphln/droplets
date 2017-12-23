@@ -53,3 +53,8 @@ class News(models.Model):
     class Meta:
         verbose_name = u"新闻动态"
         verbose_name_plural = u"新闻动态"
+
+    def get_absolute_url(self):
+        """ 生成绝对路径 """
+
+        return "/news/%d.html" % self.id

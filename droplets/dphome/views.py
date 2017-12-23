@@ -17,6 +17,8 @@ from django.shortcuts import Http404
 from django.shortcuts import HttpResponse
 from django.shortcuts import render_to_response
 
+from django.db.models import Q
+
 from droplets.seo.models import HotKeywords
 from droplets.seo.models import LongTailKeywords
 from droplets.news.models import News
@@ -258,3 +260,20 @@ def m(request, city=None):
 
     # 处理多站
     return render_to_response("m/index.html", basic_params)
+
+
+def search(request):
+    """ 搜索 """
+    basic_params = get_basic_params()
+    ret = []
+
+    q = request.GET.get("q", "")
+
+    query = Q(title__contains=q)|Q(content__contains=q)|Q(desc__contains=q)
+    ret.extend(Products.objects.filter(query))
+    ret.extend(Cases.objects.filter(query))
+    ret.extend(News.objects.filter(query))
+
+    basic_params["rets"] = ret
+
+    return render_to_response("search.html", basic_params)
