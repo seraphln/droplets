@@ -86,3 +86,10 @@ class Products(models.Model):
     class Meta:
         verbose_name = u"产品介绍"
         verbose_name_plural = u"产品介绍"
+
+    def get_absolute_url(self):
+        """ 生成绝对路径 """
+        #from droplets.dphome.models import SiteConfig
+        #sc = SiteConfig.objects.filter().first()
+
+        return "/supply/%d.html" % self.id

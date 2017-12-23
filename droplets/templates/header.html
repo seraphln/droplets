@@ -13,7 +13,11 @@
       <div id="menu">
       <ul class="nav clearfix">
           {% for menu in menus %}
+            {% if menu.link %}
+              <li><a href="{{menu.link}}">{{menu.name}}</a>
+            {% else %}
               <li><a href="{{menu.dir_name}}">{{menu.name}}</a>
+            {% endif %}
               <div style="height: 0px; overflow: hidden;" class="sec"> </div>
             </li>
           {% endfor %}

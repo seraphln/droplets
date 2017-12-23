@@ -36,6 +36,8 @@ from droplets.products.views import products
 from droplets.products.views import get_products_by_id
 from droplets.products.views import get_products_by_page
 
+from droplets.dphome.sitemap import DPSitemap
+
 from droplets.ads.views import ads
 
 from droplets.news.views import news
@@ -49,6 +51,11 @@ from droplets.dphome.views import get_supply_by_page
 
 from droplets.dphome.views import m
 from droplets.m.urls import urlpatterns as m_urlpatterns
+
+from django.contrib.sitemaps.views import sitemap as djsitemap
+
+
+sitemaps = {'posts': DPSitemap}
 
 
 urlpatterns = [
@@ -87,6 +94,7 @@ urlpatterns = [
 
     # 站点地图
     url(r'^sitemap/$', sitemap),
+    url(r'^sitemap\.xml$', djsitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     # 首页以及多站点配置
     url(r'^index_(?P<city>\w+).html', index),

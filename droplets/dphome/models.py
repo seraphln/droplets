@@ -77,10 +77,9 @@ class CompanyInfo(models.Model):
 class Menus(models.Model):
     """ 站点导航栏设置 """
     name = models.CharField(max_length=128, verbose_name=u"导航名称")
-    ename = models.CharField(max_length=128, verbose_name=u"英文名称",
-                             default="", null=True, blank=True)
-    pic = models.FileField(upload_to="../uploads/", verbose_name=u"导航图片",
-                           blank=True, null=True)
+    ename = models.CharField(max_length=128, verbose_name=u"英文名称", default="", null=True, blank=True)
+    pic = models.FileField(upload_to="../uploads/", verbose_name=u"导航图片", blank=True, null=True)
+    link = models.CharField(max_length=255, verbose_name=u"外链链接", blank=True, null=True)
     customized_seq = models.IntegerField(default=0, verbose_name=u"序号")
     dir_name = models.CharField(max_length=255, verbose_name=u"目录名称")
     description = models.CharField(max_length=255, verbose_name=u"描述", blank=True, null=True)

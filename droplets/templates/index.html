@@ -71,7 +71,11 @@ urlredirect();
     <ul id="nav">
       {% for menu in menus %}
       {% if menu.is_online %}
+        {% if menu.link %}
+         <li class="0"> <a target="_blank" href="{{menu.link}}" title="{{menu.name}}">{{menu.name}}</a> </li>
+        {% else %}
          <li class="0"> <a href="{{menu.dir_name}}" title="{{menu.name}}">{{menu.name}}</a> </li>
+        {% endif %}
       {% endif %}
      {% endfor %}
     </ul>
@@ -156,8 +160,6 @@ urlredirect();
         <dl>
           {% for sp in product.1 %}
          <dd>
-
-
              {% if cur_city %}
           <a href="/supply_{{cur_city}}/{{sp.dir_name|cut:"/"}}/" title="{{sp.name }}">{{cur_city_name}}{{sp.name }}</a>
             {% else %}
