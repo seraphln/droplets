@@ -12,6 +12,8 @@ import datetime
 from xpinyin import Pinyin
 
 from django import http
+
+from django.conf import settings
 from django.shortcuts import render
 from django.shortcuts import Http404
 from django.shortcuts import HttpResponse
@@ -70,7 +72,11 @@ def get_cur_city(city):
     cur_city = city or cur_city
     cur_city_name = pinyin_mapper.get(cur_city, u"")
 
-    return cur_city_name, cur_city
+    # 多站还是单站
+    if not settings.USE_MULTI_SITE:
+        return u"", None
+    else:
+        return cur_city_name, cur_city
 
 
 @check_static_files

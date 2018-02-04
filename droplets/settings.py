@@ -151,7 +151,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'droplets/static/uploads')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'droplets/static')]
 
 
-SUIT_CONFIG = {"ADMIN_NAME": u"Droplets网站管理系统",
+SUIT_CONFIG = {"ADMIN_NAME": u"信联",
                "MENU": ("sites",
                         {"app": "dphome", "label": u"系统设置"},
                         {"app": "news", 'label': u"新闻管理"},
@@ -233,3 +233,5 @@ CKEDITOR_CONFIGS = {
 
 
 USE_STATIC_HTML = True
+
+USE_MULTI_SITE = False

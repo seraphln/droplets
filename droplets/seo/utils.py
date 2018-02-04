@@ -10,6 +10,8 @@ from xpinyin import Pinyin
 
 from droplets.seo.models import LongTailKeywords
 
+from django.conf import settings
+
 
 def do_generate_product_name(products, city):
     """
@@ -23,6 +25,9 @@ def do_generate_product_name(products, city):
 
         :return:
     """
+    if not settings.USE_MULTI_SITE:
+        return products
+
     lt = LongTailKeywords.objects.filter().first()
     # 没有设置长尾词，直接返回
     cities = getattr(lt, "cities", "").split(",")
@@ -63,7 +68,10 @@ def do_generate_meta(keyword, site):
     site_keyword_lst = site.keywords.split(",")
 
     ## 生成公司标题列表
-    title_lst = map(lambda x: keyword + x, site_keyword_lst)
+    if not settings.USE_MULTI_SITE:
+        title_lst = map(lambda x: keyword + x, site_keyword_lst)
+    else:
+        title_lst = site_keyword_lst
 
     ## 最后加上公司名称
     #title_lst.append(site.name)
@@ -74,7 +82,8 @@ def do_generate_meta(keyword, site):
     site.keywords = ",".join(title_lst)
 
     # 生成描述meta
-    site.desc = (u"（%s）" + site.desc) % keyword
+    if not settings.USE_MULTI_SITE:
+        site.desc = (u"（%s）" + site.desc) % keyword
 
     return site
 
