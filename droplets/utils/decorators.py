@@ -68,3 +68,35 @@ def check_static_files(function=None):
             return function(request, *args, **kwargs)
 
     return decorator
+
+
+def check_cate(function=None):
+    """
+    检查给定的类别是否在已有的类别列表里
+    """
+    @wraps(function)
+    def decorator(request, cate, pid=None, cur_city=None, *args, **kwargs):
+        """ """
+        from droplets.products.models import Cases, CasesCategory
+        from droplets.products.models import Products, ProductsCategory
+        from droplets.news.models import News, NewsCategory
+        from droplets.about.models import Abouts, AboutCategory
+
+        cate_mapper = {"supply": (Cases, CasesCategory, "cases/cases.html", "cases/case_detail.html"),
+                       "case": (Products, ProductsCategory, "products/products.html", "products/product_detailf.html"),
+                       "about": (Abouts, AboutCategory, "about/about.html", "about/about_detail.html"),
+                       "news": (News, NewsCategory, "news/news.html", "news/news_detail.html")}
+
+        model_cls, cate_cls, template_list, template_detail = cate_mapper.get(cate, {})
+        if not cate_cls:
+            return redirect("/")
+        else:
+            data = getattr(request, "data", {})
+            data.update({"cate_cls": cate_cls,
+                         "model_cls": model_cls,
+                         "template_list": template_list,
+                         "template_detail": template_detail})
+            setattr(request, "data", data)
+            return function(request, cate=cate, pid=pid, cur_city=cur_city, *args, **kwargs)
+
+    return decorator

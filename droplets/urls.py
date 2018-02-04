@@ -50,6 +50,9 @@ from droplets.dphome.views import add_msg
 from droplets.dphome.views import sceneImgUpload
 from droplets.dphome.views import get_supply_by_page
 
+from droplets.dphome.page_views import page_by_id
+from droplets.dphome.page_views import page_by_category
+
 from droplets.dphome.views import m
 from droplets.m.urls import urlpatterns as m_urlpatterns
 
@@ -68,10 +71,12 @@ urlpatterns = [
     url(r'^cases/$', cases),
 
     # 新闻相关接口
-    url(r'^news/(?P<cid>\d+).html', get_news_by_id),
+    #url(r'^news/(?P<cid>\d+).html', get_news_by_id),
+    url(r'^news/(?P<pid>\d+).html', page_by_id, {"cate": "news"}),
     url(r'^news/(?P<dir_name>\w+)/(?P<cate_name>\w+)_(?P<page>\d+).html', get_news_by_page),
     url(r'^news/(?P<dir_name>\w+)/$', news),
-    url(r'^news/$', news),
+    #url(r'^news/$', news),
+    url(r'^news/$', page_by_category, {"cate": "news"}),
 
     # 产品相关接口
     url(r'^supply_(?P<cur_city>\w+)/(?P<cid>\d+).html', get_products_by_id),
