@@ -17,6 +17,7 @@ from droplets.article.models import Articles
 
 from droplets.seo.models import HotKeywords
 
+from droplets.dphome.models import Links
 from droplets.dphome.models import Menus
 from droplets.dphome.models import Banners
 
@@ -70,9 +71,11 @@ def get_basic_params(city=None):
     # 最多5张图
     banners = Articles.objects.filter(is_online=True, is_banner=True)[:5]
     menus = Menus.objects.filter(is_root=True)
+    links = Links.objects.filter()
 
     return {"site": site,
             "banners": banners,
+            "links": links,
             "menus": menus}
 
 

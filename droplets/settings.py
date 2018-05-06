@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'droplets.dphome',
     'droplets.article',
     'droplets.seo',
+    'droplets.crawler',
     # ckeditor
     'ckeditor',
 ]

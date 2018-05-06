@@ -58,6 +58,7 @@ class Articles(models.Model):
         #self.plural = generate_plural(self.title)
         if not self.plural:
             self.plural = "%s.html" % (uuid4().hex)
+        import ipdb;ipdb.set_trace()
         super(Articles, self).save(*args, **kwargs)
 
 

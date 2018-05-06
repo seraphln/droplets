@@ -6,6 +6,7 @@
     <title>{{ articles.0.categories.all.0.name }}相关新闻 - {{ site.title }}</title>
     <meta name="Keywords" content="{{ site.keywords }}">
     <meta name="Description" content="{{ site.desc }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />
 
     <!-- 通用meta配置 -->
     <meta http-equiv="mobile-agent" content="format=xhtml; url={{ site.wap_site }}">
@@ -33,10 +34,10 @@
           <li class="masonry-brick" style="left: 0px; overflow: hidden">
           <div class="pad">
             <div class="n-pic fl">
-              <a href="/{{cur_news.categories.all.0.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}"><img src="{{cur_news.pic}}" alt="{{cur_news.title}}"></a>
+              <a href="{{cur_news.categories.all.0.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}"><img src="{{cur_news.pic}}" alt="{{cur_news.title}}"></a>
             </div>
             <div class="n-text fl">
-              <h4><a href="{{cur_news.categories.all.0.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}">{{cur_news.title}}</a></h4>
+              <h4><a href="/{{cur_news.categories.all.0.dir_name}}{{cur_news.plural}}" title="{{cur_news.title}}">{{cur_news.title}}</a></h4>
               <div class="n-des">{{cur_news.brief|safe}}</div>
               <div class="clear"></div>
               <div class="n-keytime">

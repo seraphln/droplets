@@ -1,6 +1,14 @@
 <!-- footer begin -->
 <footer style="">
   <div class="fm-footer">
+    <div class="clear"></div>
+    <p style="color: #999">
+    友情链接: |
+    {% for link in links %}
+      <a href="{{link.url}}" style="color: #999">{{link.name}}</a> |
+    {% endfor %}
+    </p>
+
     <div class="foot-logo fl"><a href="#"><img src="{{site.logo}}"></a></div>
     <div class="foot-text fl">
       <div class="copyright">&nbsp;版权所有 {{site.icp_info}}</div>
