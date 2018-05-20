@@ -18,6 +18,7 @@ Including another URLconf
 """
 
 from django.conf.urls import url
+from django.conf.urls import include
 from django.conf import settings
 from django.contrib import admin
 
@@ -58,3 +59,5 @@ if settings.DEBUG:
 
 
 urlpatterns += [url(r'^(?P<dir_name>.*)/(?P<plural>.*)', page_router)]
+urlpatterns += [url(r'^jet/', include('jet.urls', 'jet'))]
+urlpatterns += [url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard'))]

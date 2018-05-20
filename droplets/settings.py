@@ -33,7 +33,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'suit',
+    #'suit',
+    'droplets.dashboard',
+    'jet',
+    #'wpadmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
