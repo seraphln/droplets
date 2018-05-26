@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'droplets.ads',
     'droplets.about',
     'droplets.products',
+    "droplets.preview",
     # ckeditor
     'ckeditor',
 ]
@@ -157,6 +158,7 @@ SUIT_CONFIG = {"ADMIN_NAME": u"信联",
                         {"app": "dphome", "label": u"系统设置"},
                         {"app": "news", 'label': u"新闻管理"},
                         {"app": "products", 'label': u"产品管理"},
+                        {"app": "preview", "label": u"预览管理"},
                         {"app": "seo", "label": u"SEO优化相关设置"})}
 
 CKEDITOR_UPLOAD_PATH = "uploads/"  # 他的目录相对与media root 就是 media root + CKEDITOR_UPLOAD_PATH 不能写成"/uploads/"

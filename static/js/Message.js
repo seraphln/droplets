@@ -55,7 +55,7 @@ function sendMsg() {
 
     $.ajax({
         type: "POST",
-        url: "/admin/usr_msg/",
+        url: "/admin/add_msg/",
         data: "{'username':'" + document.getElementById("msgLeft_senderName").value + "','telephone':'" + document.getElementById("msgLeft_telephone").value + "','email':'" + document.getElementById("msgLeft_email").value + "','content':'" + document.getElementById("msgLeft_Txtbox").value + "'}",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
