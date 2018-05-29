@@ -13,8 +13,8 @@ class Preview(models.Model):
     """ 预览页面 """
     title = models.CharField(max_length=255, verbose_name=u"案例标题")
     url = models.CharField(max_length=255, verbose_name=u"案例页面的URL", blank=True, null=True)
-    #content = RichTextField(blank=True, null=True, verbose_name="案例正文")
-    content = models.TextField(blank=True, null=True, verbose_name="案例正文")
+    content = RichTextField(blank=True, null=True, verbose_name="案例正文")
+    #content = models.TextField(blank=True, null=True, verbose_name="案例正文")
     ptype = models.CharField(max_length=255, verbose_name=u"类型")
     fpath = models.CharField(max_length=255, null=True, verbose_name=u"文件目录")
     created_on = models.DateTimeField(default=timezone.now, verbose_name=u"创建时间")
