@@ -28,7 +28,11 @@ class Preview(models.Model):
 
     def save(self, *args, **kwargs):
         """ 在保存时，更新本地的文件 """
-        with open(self.fpath, "w") as fp:
-            fp.write(self.content.encode('utf-8'))
+        try:
+            with open(self.fpath, "w") as fp:
+                fp.write(self.content)
+        except:
+            with open(self.fpath, "w") as fp:
+                fp.write(self.content.encode('utf-8'))
 
         super(Preview, self).save(*args, **kwargs)
